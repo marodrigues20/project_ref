@@ -1,0 +1,12 @@
+{
+    "header": {
+        "statusCode": 200
+    },
+    "subscriptionDataDTO": {
+        "partyKey": 102,
+        "tenantPartyKey": 10000,
+        "subscriptionId": 703,
+        "digitalServiceKey": 703,
+        "accountNumber": 41373681
+    }
+}

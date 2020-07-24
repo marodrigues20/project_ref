@@ -1,0 +1,54 @@
+{
+	"type": "record",
+	"name": "TransactionMessage",
+	"namespace": "com.tenx.universalbanking.transactionmessageparser.message",
+	"fields": [{
+		"name": "header",
+		"type": {
+			"type": "record",
+			"name": "TransactionMessageHeader",
+			"fields": [{
+				"name": "paymentType",
+				"type": {
+					"type": "enum",
+					"name": "TransactionTypeEnum",
+					"namespace": "com.tenx.universalbanking.transactionmessageparser.enums",
+					"symbols": ["FPS", "BACS", "PAIN001", "PAYMENT_AUTH", "XMLPACS", "CAIN003", "INTEREST_ACCRUAL", "INTEREST_APPLICATION", "ACCRUAL_ADJUSTMENTS_WITH_JOURNAL", "ACCRUAL_ADJUSTMENTS_WITHOUT_JOURNAL", "APPLICATION_ADJUSTMENTS", "FEES_AND_CHARGES"]
+				}
+			}, {
+				"name": "messageType",
+				"type": {
+					"type": "enum",
+					"name": "TransactionMessageTypeEnum",
+					"namespace": "com.tenx.universalbanking.transactionmessageparser.enums",
+					"symbols": ["PACS008", "PACS007", "PACS002", "PAIN001", "CAIN001", "CAIN003", "INTERNAL_ROUNDUP", "INTEREST_ACCRUAL", "INTEREST_APPLICATION", "ACCRUAL_ADJUSTMENTS_WITH_JOURNAL", "ACCRUAL_ADJUSTMENTS_WITHOUT_JOURNAL", "APPLICATION_ADJUSTMENTS", "FEES_AND_CHARGES"]
+				}
+			}, {
+				"name": "url",
+				"type": "string"
+			}, {
+				"name": "messageHash",
+				"type": "string"
+			}]
+		}
+	}, {
+		"name": "message",
+		"type": {
+			"type": "record",
+			"name": "JSONObject",
+			"namespace": "org.json",
+			"fields": [{
+				"name": "map",
+				"type": {
+					"type": "record",
+					"name": "Map",
+					"namespace": "java.util",
+					"fields": []
+				}
+			}]
+		}
+	}, {
+		"name": "additionalInfo",
+		"type": "org.json.JSONObject"
+	}]
+}

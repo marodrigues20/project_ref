@@ -1,0 +1,89 @@
+= Getting Started
+
+This document is a guide for new developers around the microservice, acting as an onboarding
+document to get them familiar with the microservice.
+
+== Key components
+This microservice is a Spring Boot Application. 
+
+== Building/Testing
+The microservice is built using Gradle so can be built by running `gradle build`.
+
+== Test Feedback
+When running locally, test results should be displayed on the console and also under
+`Junit Console`. When it gets built in Jenkins, the test results are available at `Jenkins Console`
+
+== Running the App
+1. Import TM  from repository to your editor
+2. Refresh gradle dependencies
+3. Update end point in application.yml if necessary,
+
+		* External Endpoints
+		 ** downstream.party-manager.rest.url: http://docker-manager.devblue.mylti3gh7p4x.net:8092
+		 ** downstream.event-data-manager.rest.url: http://docker-manager.devblue.mylti3gh7p4x.net:8090
+		 ** downstream.interest-calculator.rest.url: http://docker-manager.devblue.mylti3gh7p4x.net:2808
+		 ** downstream.queue-message-sender.rest.url. http://docker-manager.devblue.mylti3gh7p4x.net:9002
+		 ** downstream.categorisation.service.rest.url. http://docker-manager.devblue.mylti3gh7p4x.net:8093
+		 ** downstream.payment-decision.rest.url. http://paymentdecisionframework-cards.svc.devblue.mylti3gh7p4x.net
+		 ** downstream.payment-proxy.rest.url. http://docker-manager.devblue.mylti3gh7p4x.net:8097
+		   
+4. Run the TransactionManagerApp by `gradle bootRun -Dspring.profiles.active=dev` or inside your IDE by `Run as Java Application`
+
+== Technologies
+* Spring Boot
+* Swagger
+
+== Downstream Services
+
+Transaction Manager will communicate with Payment Decision Framework to make a decision for transaction . If the decision is positive, then the transaction will be sent to kafka topic for further process.
+
+|===
+| TableName | Read | Write 
+
+| Interest Calculation
+| Yes
+| No
+
+| Payment Decision
+| Yes
+| No
+
+| Payment Proxy
+| Yes
+| No
+
+|===
+
+== Running Testscd
+
+* Unit Test
+
+	The unit test is implemented by using JUnit library and will run as JUnit Test.
+
+ 	- Dependency 	
+ 	
+	- testCompile group: 'junit', name: 'junit', version: '4.4'
+
+* Component Test
+
+	The component test is implement by using Junit as well as spring test libraries
+
+	* Basic Configuration:
+
+		@RunWith(SpringRunner.class)
+		@PropertySource("classpath:application.properties")
+		@ComponentScan(basePackages = {"com.tenx.universalbanking.feeschargescalculator.*"})
+		@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT,
+		classes = {FeesChargesCalculatorApp.class, LocalDynamoDBConfig.class})
+
+	**	Component test is started using JUnit test. Test will start in a random port and the downstream ports will be a mocked port. The downstream  Api call will be mocked using wiremock library with dummy request/response
+
+	** Dependency 
+
+		compile("com.github.tomakehurst:wiremock:2.9.0")
+		compile group: 'org.springframework.boot', name: 'spring-boot-test',version: '1.5.2.RELEASE'
+
+== Deployment
+
+The App will be deployed in docker containers using Jenkins. To deploy we need basic config files such as run.sh, .yml file, Dockerfile for Service, Component & Integration etc
+		

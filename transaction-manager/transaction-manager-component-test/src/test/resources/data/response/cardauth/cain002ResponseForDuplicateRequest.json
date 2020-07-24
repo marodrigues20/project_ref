@@ -1,0 +1,40 @@
+{
+  "additionalInfo": {
+    "REQUEST_ID": "ecfc6c00-3cab-11e8-98d3-7f99b9a03939",
+    "TRANSACTION_CORRELATION_ID": "123456",
+    "TENANT_PARTY_KEY": "10000",
+    "TRANSACTION_TYPE": "CARD_AUTH_VIA_ADVICE"
+  },
+  "header": {
+    "type": "CARD_AUTH",
+    "url": null
+  },
+  "messages": [
+    {
+      "type": "CAIN002",
+      "message": {
+        "TRANSACTION_DATE": "2018-05-11T13:14:30.893Z",
+        "MERCHANT_CATEGORY_CODE": "5411",
+        "CARD_PROCESSOR_ACCOUNT_ID": 121212,
+        "INITIATOR_PARTY_ID": "101",
+        "TRANSACTION_TYPE": "CRDP",
+        "CARDHOLDER_PRESENT": true,
+        "TRANSACTION_RESPONSE_CODE": "APPR",
+        "TRANSACTION_AMOUNT_QUALIFIER": "ACTL",
+        "AMOUNT": "123",
+        "CARD_ACCEPTOR_NAME": "ASDA",
+        "CARD_DATA_ENTRY_MODE": "CICC",
+        "TRANSACTION_CURRENCY_CODE": "GBP",
+        "TOTAL_AMOUNT": "123",
+        "BANKNET_REFERENCE_NUMBER": "1000"
+      },
+      "additionalInfo": {
+        "PRODUCT_KEY": "703",
+        "PARTY_KEY": "102",
+        "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637",
+        "TRANSACTION_ID": "6066249928",
+        "TRANSACTION_CODE": "PMNT.CCRD.POSD"
+      }
+    }
+  ]
+}

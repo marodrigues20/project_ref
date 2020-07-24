@@ -1,0 +1,7 @@
+{
+  "paymentStatus": "FAILED",
+  "reason": {
+    "code": 2100,
+    "message": "Decision failed"
+  }
+}

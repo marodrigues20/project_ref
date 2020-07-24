@@ -1,0 +1,30 @@
+{
+  "header": {
+    "type": "FPS_IN",
+    "url": ""
+  },
+  "messages": [
+    {
+      "type": "PACS008",
+      "message": {
+        "INSTRUCTED_AMOUNT": "5",
+        "BASE_CURRENCY_CODE": "GBP",
+        "TRANSACTION_DATE": "2018-05-17T13:14:30.893Z",
+        "VALUE_DATE_TIME": "2018-05-17T13:14:30.893Z",
+        "CREDITOR_ACCOUNT_NUMBER": "41373689",
+        "CREDITOR_SORT_CODE": "603653",
+        "MESSAGE_ID": "12345"
+      },
+      "additionalInfo": {
+        "PARTY_KEY": "105",
+        "DIGITAL_SERVICE_KEY": "701",
+        "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637",
+        "TRANSACTION_ID": "1749682280"
+      }
+    }
+  ],
+  "additionalInfo": {
+    "REQUEST_ID": "ecfc6c00-3cab-11e8-98d3-7f99b9a03930",
+    "TENANT_PARTY_KEY": "10000"
+  }
+}

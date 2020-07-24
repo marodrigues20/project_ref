@@ -1,0 +1,23 @@
+{
+  "header": {
+    "type": "FEES_AND_CHARGES"
+  },
+  "messages": [
+    {
+      "type": "FEES_AND_CHARGES",
+      "message": {
+        "TRANSACTION_DATE": "2018-04-09T00:00:00.000+0000",
+        "VALUE_DATE_TIME": "2018-05-28T07:33:14.333+0000",
+        "FEE_AMOUNT": 100,
+        "BASE_CURRENCY_CODE": "GBP",
+        "FEE_DESCRIPTION": "Account opening fee"
+      },
+      "additionalInfo": {
+        "SUBSCRIPTION_KEY": "a72cb8ca-e1c4-45f0-9de0-c20c40cd5569"
+      }
+    }
+  ],
+  "additionalInfo": {
+    "TRANSACTION_STATUS": "COMPLETE"
+  }
+}

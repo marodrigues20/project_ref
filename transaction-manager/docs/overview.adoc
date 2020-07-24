@@ -1,0 +1,15 @@
+= Overview
+
+The scope of the microservice:
+
+  * What areas of the system is this microservice responsible for?
+
+    ** Responsible for analysis, evaluation, routing, orchestration and forwarding of all transaction events.
+
+    ** Orchestrate internal or external transaction events with help of Message Handler.
+
+    ** Ability to handle millions of transactions per second.
+
+  * What areas of the system is the microservice NOT responsible for?
+
+    ** It is not responsible for any functional data changes made in the request and response.

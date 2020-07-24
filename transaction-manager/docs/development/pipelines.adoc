@@ -1,0 +1,7 @@
+= Pipeline
+:toc:
+
+The pipeline for Transaction Manager microservice is how a change to a microservice goes from code being committed to a VCS repository to being deployed in production. The pipeline used in 10x is based on Docker images.
+
+* http://jenkins.internal.10x.mylti3gh7p4x.net/job/transaction-manager/job/develop/[Jenkins]
+* https://confluence.10x.mylti3gh7p4x.net/x/gy1vAg[Docs]

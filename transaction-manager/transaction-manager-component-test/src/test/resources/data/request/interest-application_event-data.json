@@ -1,0 +1,24 @@
+{
+  "transactionMessage": {
+    "header": {
+      "paymentType": "INTEREST_APPLICATION",
+      "messageType": "INTEREST_APPLICATION",
+      "url": "some url",
+      "messageHash": "some hash"
+    },
+    "message": {
+      "amount": "0.3242",
+      "targetReference": "1234567",
+      "transactionCurrencyCode": "GBP",
+      "baseCurrencyCode": "1234567",
+      "transactionDate": "1502746842323",
+      "transactionType": "InterestApplication"
+    },
+    "additionalInfo": {
+      "PARTY_KEY": "102",
+      "TENANT_PARTY_KEY": "10000",
+      "SUBSCRIPTION_KEY" : "123",
+      "DIGITAL_SERVICE_KEY": "3338827890"
+    }
+  }
+}

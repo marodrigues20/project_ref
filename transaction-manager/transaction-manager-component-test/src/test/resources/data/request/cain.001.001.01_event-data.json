@@ -1,0 +1,173 @@
+{
+  "transactionMessage": {
+    "header": {
+      "paymentType": "PAYMENT_AUTH",
+      "messageType": "CAIN001",
+      "url": "",
+      "messageHash": ""
+    },
+    "message": {
+      "Document": {
+        "AcqrrAuthstnInitn": {
+          "AuthstnInitn": {
+            "Tx": {
+              "MrchntCtgyCd": "5411",
+              "InitrTxId": "1234 field 11 id",
+              "TxTp": "CRDP",
+              "AccptrTxId": "1234 Field 37 ID",
+              "TxLifeCyclSeqCntr": "1",
+              "TxLifeCyclSeqNb": "1",
+              "TxDtls": {
+                "VldtyDt": "1900-01-01",
+                "TxAmts": {
+                  "AmtQlfr": "ACTL",
+                  "TtlAmt": {
+                    "Ccy": "GBP",
+                    "Value": "123.45"
+                  }
+                }
+              },
+              "Rcncltn": {
+                "RcncltnDt": "1900-01-01"
+              },
+              "AccptrTxDtTm": "2017-01-25T01:01:01.000+0000"
+            },
+            "Envt": {
+              "Accptr": {
+                "CmonNm": "ASDA",
+                "Id": {
+                  "ShrtNm": "ASDA",
+                  "Id": "ASDASUPERSTORE_04315",
+                  "Issr": "ACQR",
+                  "Tp": "MERC"
+                }
+              },
+              "Termnl": {
+                "Cpblties": {
+                  "ApprvlCdLngth": "6",
+                  "MxScrptLngth": "512",
+                  "CardRdngCpblties": [
+                    "CICC",
+                    "ECTL",
+                    "MGST"
+                  ],
+                  "CardWrttgCpblties": [
+                    "ECTL",
+                    "CICC"
+                  ],
+                  "CrdhldrVrfctnCpblties": [
+                    "APKI",
+                    "NPIN"
+                  ],
+                  "PINLngthCpblties": "6",
+                  "MsgCpblties": [
+                    {
+                      "NbOfLines": "1",
+                      "AvlblLang": "en-GB",
+                      "Dstn": "CDSP",
+                      "LineWidth": "40",
+                      "AvlblFrmt": "TEXT"
+                    },
+                    {
+                      "NbOfLines": "1",
+                      "AvlblLang": "en-GB",
+                      "Dstn": "CRCP",
+                      "LineWidth": "40",
+                      "AvlblFrmt": "TEXT"
+                    },
+                    {
+                      "NbOfLines": "1",
+                      "AvlblLang": "en-GB",
+                      "Dstn": "MDSP",
+                      "LineWidth": "40",
+                      "AvlblFrmt": "TEXT"
+                    }
+                  ],
+                  "CardCaptrCpbl": "true",
+                  "OnLineCpblties": "ONLN"
+                },
+                "Id": {
+                  "ShrtNm": "12312312",
+                  "Id": "12312312",
+                  "Issr": "MERC",
+                  "Tp": "OPOI"
+                }
+              },
+              "CardSchmeId": "MasterCard",
+              "Acqrr": {
+                "Id": "World Pay Acuiring Svcs",
+                "Issr": "CSCH"
+              },
+              "Card": {
+                "PlainCardData": {
+                  "CrdhldrNm": "Mr Fred Bloggs",
+                  "CardSeqNb": "001",
+                  "XpryDt": "1801",
+                  "PAN": "5584345930798931",
+                  "TrckData": [
+                    {
+                      "TrckVal": "%B5584345930798931^Bloggs/Fred^1801^?",
+                      "TrckNb": "1"
+                    },
+                    {
+                      "TrckVal": ";B5584345930798931=1801=?",
+                      "TrckNb": "2"
+                    }
+                  ]
+                },
+                "IssrBIN": "123412",
+                "CardCcyCd": "GBP"
+              }
+            },
+            "Cntxt": {
+              "TxCntxt": {
+                "CrdhldrPres": "true",
+                "LctnCtgy": "FIXD",
+                "CardDataNtryMd": "CICC",
+                "TxChanl": "SECM",
+                "AttndncCntxt": "ATTD",
+                "TxEnvt": "PUBL",
+                "SpprtdOptn": "MSRV",
+                "CardPres": "true",
+                "FllbckInd": "NFLB",
+                "HstgCtgy": "MERC"
+              },
+              "SaleCntxt": {
+                "SaleRefNb": "sale reference"
+              }
+            }
+          },
+          "Hdr": {
+            "MsgFctn": "AUTQ",
+            "ReTrnsmssnCntr": "000",
+            "CreDtTm": "1900-01-01T01:01:01.000+0000",
+            "PrtcolVrsn": "1",
+            "XchgId": "001",
+            "InitgPty": {
+              "ShrtNm": "WorldPay",
+              "Id": "World Pay Acuiring Svcs",
+              "Issr": "CSCH",
+              "Tp": "ACQR"
+            },
+            "RcptPty": {
+              "ShrtNm": "VMDB",
+              "Id": "Virgin Money Digital Bank",
+              "Issr": "CSCH",
+              "Tp": "CISS"
+            }
+          }
+        }
+      }
+    },
+    "additionalInfo": {
+      "PARTY_KEY": "102",
+      "TRANSACTION_CATEGORY": "Shopping",
+      "MERCHANT_CATEGORY_CODE": "5411",
+      "DIGITAL_SERVICE_KEY": "703",
+      "SUBSCRIPTION_KEY": "17c5b5c16-5aea-440d-adec-49cb56c6f637",
+      "TENANT_PARTY_KEY": "10000",
+      "MERCHANT_NAME": "Asda Groceries",
+      "MERCHANT_ID": "ASDASUPERSTORE_04315"
+    }
+  }
+}

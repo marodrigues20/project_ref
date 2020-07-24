@@ -1,0 +1,24 @@
+= Monitoring
+:toc:
+
+== Metrics
+
+Transaction Manager metrics have been identified and are being monitored. *link:http://docker-manager.devblue.mylti3gh7p4x.net:8099/metrics[Link]
+
+
+== Services Logs
+
+Services logs are logging by sumologic based on different environments
+
+* Sumologic dashboards
+** https://service.eu.sumologic.com/ui/bento.html#/search/e0a50c2d_b73c_a453_71b9_39f38f4c61c7 [devblue]
+** https://service.eu.sumologic.com/ui/bento.html#/dashboard/EyhCtqgesq0f3JU8YVHJRU5CXoRtGGNnTbIsnY4gsaKDNsAriOkCzMUOiyKy [solutiontestblue]
+** https://service.eu.sumologic.com/ui/bento.html#/dashboard/dJdmzUDpi40FmD65DQ7S00Ub7CWFnPonhWyDrWt5VarunTNCy0xxJrdDo1FW [Production]
+* Sumologic logs
+** https://service.eu.sumologic.com/ui/bento.html?reason=st#/search/249205[DevBlue]
+** https://service.eu.sumologic.com/ui/bento.html?reason=st#/search/226186[Solution Test]
+** https://service.eu.sumologic.com/ui/bento.html?reason=st#/search/300659[Solution Test Blue]
+** https://service.eu.sumologic.com/ui/bento.html?reason=st#/search/236603[Production]
+* http://jenkins.internal.10x.mylti3gh7p4x.net/job/transaction-manager/[Jenkins]
+* http://docker-manager.devblue.mylti3gh7p4x.net:8099/swagger-ui.html#/[API Documentation]
+* https://eu-west-1.console.aws.amazon.com/xray/home?region=eu-west-1#/traces[X-Ray]

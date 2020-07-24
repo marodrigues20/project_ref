@@ -1,0 +1,27 @@
+{
+  "header": {
+    "type": "APPLICATION_ADJUSTMENT",
+    "url": null
+  },
+  "messages": [{
+    "type": "APPLICATION_ADJUSTMENT",
+    "message": {
+      "TRANSACTION_DATE": "2019-02-05T15:39:57.283+0000",
+      "FROM_DATE": "2019-02-05",
+      "VALUE_DATE_TIME": "2019-03-05T00:00:00.000+0000",
+      "PRE_ROUNDED_AMOUNT": "1.5342465740",
+      "AMOUNT": "1.54",
+      "TO_DATE": "2019-03-04",
+      "BASE_CURRENCY_CODE": "GBP",
+      "CREDIT_DEBIT_INDICATOR": "CREDIT"
+    },
+    "additionalInfo": {
+      "TRANSACTION_CODE": "ACMT.OPCL.INTR",
+      "SUBSCRIPTION_KEY": "a4c51d62-9dd9-4907-a85e-5ea080ff57d6",
+      "TRANSACTION_ID": "5286521117"
+    }
+  }],
+  "additionalInfo": {
+    "TRANSACTION_CORRELATION_ID": "9857476953"
+  }
+}

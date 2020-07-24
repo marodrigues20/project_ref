@@ -1,0 +1,15 @@
+{
+ "mode" : "Execute",
+ "transactionId" : "9917387993",
+ "transactionAmount" : "100",
+ "partyKey" : "2373891895",
+ "initiatorReference" : "56198000",
+ "targetReference" : null,
+ "digitalServiceKey" : 3338827890,
+ "transactionType" : "Fees And Charges",
+ "transactionCurrencyCode" : "GBP",
+ "baseCurrencyCode" : "GBP",
+ "transactionChannel" : "ATM withdrawal",
+ "transactionDate" : 1493901268050,
+ "subscriptionId" : 3338827890
+}

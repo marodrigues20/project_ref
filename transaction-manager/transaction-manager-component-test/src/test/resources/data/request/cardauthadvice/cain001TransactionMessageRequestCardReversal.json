@@ -1,0 +1,40 @@
+{
+  "header": {
+    "type": "CARD_AUTH_VIA_ADVICE",
+    "url": ""
+  },
+  "messages": [
+    {
+      "type": "CAIN001",
+      "message": {
+        "AMOUNT": "123",
+        "TOTAL_AMOUNT": "123",
+        "TRANSACTION_CURRENCY_CODE": "GBP",
+        "INITIATOR_PARTY_ID": "101",
+        "MERCHANT_CATEGORY_CODE": "5411",
+        "TRANSACTION_DATE": "2018-05-11T13:14:30.893+0000",
+        "TRANSACTION_TYPE": "CRDP",
+        "CARD_DATA_ENTRY_MODE": "CICC",
+        "TRANSACTION_AMOUNT_QUALIFIER": "ACTL",
+        "CARDHOLDER_PRESENT": true,
+        "CARD_ACCEPTOR_NAME":"ASDA",
+        "CARD_TOKEN":"1234----1234",
+        "BANKNET_REFERENCE_NUMBER":"1000",
+        "AUTHORISATION_CODE":"12345",
+        "DEBIT_CREDIT_INDICATOR": "CREDIT"
+      },
+      "additionalInfo": {
+        "PRODUCT_KEY": "703",
+        "PARTY_KEY": "102",
+        "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637",
+        "TRANSACTION_ID": "12345",
+        "PAYMENT_METHOD_TYPE": "DOMESTIC_POS_CHIP_AND_PIN"
+      }
+    }
+  ],
+  "additionalInfo": {
+    "REQUEST_ID": "ecfc6c00-3cab-11e8-98d3-7f99b9a03939",
+    "TRANSACTION_CORRELATION_ID" : "123456",
+    "TENANT_PARTY_KEY": "10000"
+  }
+}

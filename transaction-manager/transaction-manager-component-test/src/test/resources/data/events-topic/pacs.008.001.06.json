@@ -1,0 +1,110 @@
+{
+  "header": {
+    "paymentType": "FPS",
+    "messageType": "PACS002",
+    "url": null,
+    "messageHash": null
+  },
+  "message": {
+    "Document": {
+      "FIToFIPmtStsRpt": {
+        "OrgnlGrpInfAndSts": [
+          {
+            "OrgnlMsgId": "Msg00800106",
+            "OrgnlMsgNmId": "pacs.008.001.08",
+            "StsRsnInf": [
+              {
+                "Orgtr": {
+                  "Id": {
+                    "OrgId": {
+                      "Othr": [
+                        {
+                          "Id": "1234"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "TxInfAndSts": [
+          {
+            "OrgnlTxRef": {
+              "CdtrAgt": {
+                "FinInstnId": {
+                  "Othr": {
+                    "Id": "str1234"
+                  }
+                }
+              },
+              "IntrBkSttlmAmt": {
+                "value": 123.45
+              },
+              "SttlmInf": {
+                "InstdRmbrsmntAgt": {
+                  "FinInstnId": {
+                    "Othr": {
+                      "Id": "str1234"
+                    }
+                  }
+                },
+                "SttlmMtd": "INDA",
+                "InstgRmbrsmntAgt": {
+                  "FinInstnId": {
+                    "Othr": {
+                      "Id": "str1234"
+                    }
+                  }
+                }
+              },
+              "DbtrAgt": {
+                "FinInstnId": {
+                  "Othr": {
+                    "Id": "str1234"
+                  }
+                }
+              },
+              "IntrBkSttlmDt": "2012-12-13T00:00:00",
+              "UltmtCdtr": {
+                "Id": {
+                  "OrgId": {
+                    "Othr": [
+                      {
+                        "Id": "123456"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "OrgnlTxId": "str1234",
+            "TxSts": "ACSC",
+            "StsRsnInf": [
+              {
+                "Rsn": {
+                  "Prtry": "0000"
+                },
+                "AddtlInf": [
+                  "OK"
+                ]
+              }
+            ],
+            "AccptncDtTm": "2035-01-25T12:12:12",
+            "InstgAgt": {
+              "FinInstnId": {
+                "ClrSysMmbId": {
+                  "MmbId": "str1234"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "additionalInfo": {
+
+  }
+}

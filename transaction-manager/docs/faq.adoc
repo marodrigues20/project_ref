@@ -1,0 +1,12 @@
+= Frequently Asked Questions
+
+The following represents a list of the most frequently asked questions about the service.
+
+* *Which type of transactions does Transaction Manager currently support?*
+** FPS_IN,FPS_OUT,CAIN,CardAuth,CardFund,ONUS
+* *What is the type of message converted by Transaction Manager  for internal components to process?*
+** Transaction Message
+* *My service is using transaction manager API and I am getting 500 Internal Server Error. What should I do?*
+** Should check the status of the service using health url
+* *When I send an inbound request to Transaction Manager  API, I received 504 gateway timeout. What should I do?*
+** should check the total time taken to execute the api and the time specified in the API gateway

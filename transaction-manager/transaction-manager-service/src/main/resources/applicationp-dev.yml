@@ -1,0 +1,173 @@
+server:
+ port: 8099
+
+lion:
+ application:
+  name: transaction-manager
+
+redis:
+ host: "localhost"
+ port: 6379
+
+reconciliation:
+  log:
+    console: false
+
+
+downstream:
+  interest-calculator:
+    rest:
+      url: https://interestcalculator-corebanking.svc.solution-testblue.mylti3gh7p4x.net
+  payment-decision:
+    rest:
+      url: https://paymentdecisionframework-corepayments.svc.solution-testblue.mylti3gh7p4x.net
+  payment-proxy:
+    rest:
+      url: https://paymentproxy-corepayments.svc.solution-testblue.mylti3gh7p4x.net
+  worldpay-adapter:
+    rest:
+      url: https://worldpayadapter-corepayments.svc.solution-testblue.mylti3gh7p4x.net
+  ledger-manager:
+    rest:
+      url: https://ledgermanager-corebanking.svc.solution-testblue.mylti3gh7p4x.net
+  fam:
+    rest:
+      url: https://fundaccountmanager-cards.svc.solution-testblue.mylti3gh7p4x.net
+  platform-payment-manager:
+    rest:
+      url: https://platformpaymentmanager-corepayments.svc.devblue.mylti3gh7p4x.net
+  http-headers-forward: "x-ray-trace,x-b3-*,l5d-*"
+
+spring:
+  profiles:
+    active: cockroachdb
+  application:
+    name: transaction-manager
+  main:
+    banner-mode: "off"
+  jmx:
+    enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      temp:
+        use_jdbc_metadata_defaults: false
+  sleuth.traceId128: true
+
+management:
+  endpoints:
+    web:
+      base-path: "/"
+      path-mapping:
+        prometheus: "metrics"
+      exposure:
+        include: ["health", "info", "prometheus", "httptrace"]
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    binders:
+      jvm.enabled: true
+      logback.enabled: true
+    export:
+      prometheus:
+        descriptions: true
+        enabled: true
+        step: 1m
+    distribution:
+      percentiles-histogram[http.server.requests]: true
+      percentiles:
+        http.server.requests: 0.50, 0.75, 0.95, 0.99
+      sla:
+        http.server.requests: 10ms,100ms
+
+endpoints:
+  enabled: true
+
+kafka:
+  bootstrap:
+    servers: localhost:9093
+  security.protocol: PLAINTEXT
+  api:
+    key: apiKey
+    password: apiPassword
+  headers-forward: "x-ray-trace,X-Amzn-Trace-Id,traceId,spanId,parentId,spanExportable,X-,l5d-"
+  consumer:
+    interest:
+      thread:
+        count: 1
+      client:
+        id:
+          prefix: tm-interest-consumer
+      group:
+        id: tm-interest-group
+      topics: transaction-interest-commands-topic
+      poll:
+        timeout:
+          ms: 200
+        max:
+          records: 5
+  producer:
+    client:
+      id:
+        prefix:  tm-producer
+    transaction-enrichment:
+      topic:
+        name: transaction-enrichment-commands-topic
+    ledger-manager:
+      topic:
+        name: ledger-manager-commands-topic
+      payment-messages:
+        topic:
+          name: payment-messages-topic
+    payment-messages:
+      topic:
+        name: payment-messages-topic
+---
+spring:
+  profiles: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/tm?createDatabaseIfNotExist=true
+    username: root
+    password: test
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        default_schema: transactionmanager
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        use_sql_comments: false
+        format_sql: false
+          #jdbc:
+          #  lob:
+          #    non_contextual_creation: true
+      open-in-view: false
+      show-sql: false
+  flyway:
+    schemas: tm
+    locations: classpath:db/migration/mysql
+---
+spring:
+  profiles: cockroachdb
+  datasource:
+    url: jdbc:postgresql://localhost:26257/tm?sslmode=disable
+    username: txmanager
+    password:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        default_schema:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        use_sql_comments: false
+        format_sql: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+      show-sql: true
+  flyway:
+    schemas:
+    locations: classpath:db/migration/cockroachdb
+
+
+

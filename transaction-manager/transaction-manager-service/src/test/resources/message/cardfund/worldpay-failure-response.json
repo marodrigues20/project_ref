@@ -1,0 +1,24 @@
+{
+  "transactionMessage": {
+    "header": {
+      "type": "TOP_UP_BY_CARD",
+      "url": ""
+    },
+    "messages": [
+      {
+        "type": "CAAA002",
+        "message": {
+          "LAST_PAYMENT_STATUS": "Invalid payment details"
+        },
+        "additionalInfo": {
+          "PRODUCT_KEY": "703",
+          "PARTY_KEY": "102",
+          "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637"
+        }
+      }
+    ],
+    "additionalInfo": {
+      "REQUEST_ID": "2654971661"
+    }
+  }
+}

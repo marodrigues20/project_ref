@@ -1,0 +1,15 @@
+= Dependency Failures
+:toc:
+
+This page documents the dependencies that this microservice has along with how failures are expected to be handled.
+
+== PostgreSQL
+Lack of PostgreSQL is seen as a catastrophic failure.
+
+== Payment Decision Framework
+A failure in the call to PDF means that all requests to do will fail. This failure
+will be exposed to the client who is expected to try again after a short delay.
+
+== Apache Kafka
+A failure in the call to Kafka means that all requests to do will fail. This failure
+will be exposed to the client who is expected to try again after a short delay.

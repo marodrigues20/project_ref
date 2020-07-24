@@ -1,0 +1,20 @@
+= Description
+
+Transaction Manager microservice is used to handling the internal and external payments.
+
+== Payment method
+
+When external Payment occurs, Transaction Manager communicates with the  PDF(Payment Decision Framework), then PDF makes the decision and if the decision is success then the LM reserves the amount and send the response back to the PDF and PDF sends it back to TM. TM post the message into Kafka topic and send back the response to Transaction Manager. Later on, LM consumes the message posted in the Kafka topic and updates the corresponding data in the Postgres DB.
+
+* Endpoint - Card Payment Authorisation -`/transaction-manager/card-auth`
+
+		http://docker-manager.devblue.mylti3gh7p4x.net:8099/transaction-manager/card-auth
+
+* Endpoint - Card payment processor -`/transaction-manager/process-paymentt`
+
+		http://docker-manager.devblue.mylti3gh7p4x.net:8099/transaction-manager/process-paymentt
+
+* Dependencies
+
+	** Payment Decision Framework
+	** Kafka

@@ -1,0 +1,1512 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "ledgermanager-corebanking.svc.devblue.mylti3gh7p4x.net",
+  "basePath": "/",
+  "tags": [{
+    "name": "authorisation-controller",
+    "description": "Authorisation Controller"
+  }, {
+    "name": "basic-error-controller",
+    "description": "Basic Error Controller"
+  }, {
+    "name": "ledger-manager-controller",
+    "description": "Ledger Manager Controller"
+  }, {
+    "name": "operation-handler",
+    "description": "Operation Handler"
+  }, {
+    "name": "process-payments-controller",
+    "description": "Process Payments Controller"
+  }, {
+    "name": "publisher-controller",
+    "description": "Publisher Controller"
+  }, {
+    "name": "subscription-manager-controller",
+    "description": "Subscription Manager Controller"
+  }],
+  "paths": {
+    "/error": {
+      "get": {
+        "tags": ["basic-error-controller"],
+        "summary": "error",
+        "operationId": "errorUsingGET",
+        "produces": ["*/*"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "head": {
+        "tags": ["basic-error-controller"],
+        "summary": "error",
+        "operationId": "errorUsingHEAD",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["basic-error-controller"],
+        "summary": "error",
+        "operationId": "errorUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["basic-error-controller"],
+        "summary": "error",
+        "operationId": "errorUsingPUT",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["basic-error-controller"],
+        "summary": "error",
+        "operationId": "errorUsingDELETE",
+        "produces": ["*/*"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "options": {
+        "tags": ["basic-error-controller"],
+        "summary": "error",
+        "operationId": "errorUsingOPTIONS",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["basic-error-controller"],
+        "summary": "error",
+        "operationId": "errorUsingPATCH",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/flyway": {
+      "get": {
+        "tags": ["operation-handler"],
+        "summary": "handle",
+        "operationId": "handleUsingGET",
+        "produces": ["application/json", "application/vnd.spring-boot.actuator.v2+json"],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "body",
+          "required": false,
+          "schema": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": ["operation-handler"],
+        "summary": "handle",
+        "operationId": "handleUsingGET_1",
+        "produces": ["application/json", "application/vnd.spring-boot.actuator.v2+json"],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "body",
+          "required": false,
+          "schema": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/httptrace": {
+      "get": {
+        "tags": ["operation-handler"],
+        "summary": "handle",
+        "operationId": "handleUsingGET_2",
+        "produces": ["application/json", "application/vnd.spring-boot.actuator.v2+json"],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "body",
+          "required": false,
+          "schema": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/info": {
+      "get": {
+        "tags": ["operation-handler"],
+        "summary": "handle",
+        "operationId": "handleUsingGET_3",
+        "produces": ["application/json", "application/vnd.spring-boot.actuator.v2+json"],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "body",
+          "required": false,
+          "schema": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/publish/message": {
+      "post": {
+        "tags": ["publisher-controller"],
+        "summary": "publishMessage",
+        "operationId": "publishMessageUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [{
+          "in": "body",
+          "name": "kafkaMessage",
+          "description": "kafkaMessage",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/KafkaMessage"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v1/accounts/{subscriptionKey}/averageDailyBalance/{fromValueDatetime}/{toValueDatetime}": {
+      "get": {
+        "tags": ["ledger-manager-controller"],
+        "summary": "getAverageDailyBalance",
+        "operationId": "getAverageDailyBalanceUsingGET",
+        "produces": ["*/*"],
+        "parameters": [{
+          "name": "fromValueDatetime",
+          "in": "path",
+          "description": "fromValueDatetime",
+          "required": true,
+          "type": "string",
+          "format": "date-time"
+        }, {
+          "name": "subscriptionKey",
+          "in": "path",
+          "description": "subscriptionKey",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }, {
+          "name": "toValueDatetime",
+          "in": "path",
+          "description": "toValueDatetime",
+          "required": true,
+          "type": "string",
+          "format": "date-time"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AverageDailyBalanceResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v1/accounts/{subscriptionKey}/balances": {
+      "get": {
+        "tags": ["ledger-manager-controller"],
+        "summary": "getAccountBalances",
+        "operationId": "getAccountBalancesUsingGET",
+        "produces": ["*/*"],
+        "parameters": [{
+          "name": "subscriptionKey",
+          "in": "path",
+          "description": "subscriptionKey",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BalancesResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v1/accounts/{subscriptionKey}/balances/interest/{accountingTimestamp}": {
+      "get": {
+        "tags": ["ledger-manager-controller"],
+        "summary": "getInterestCalculationBalance",
+        "operationId": "getInterestCalculationBalanceUsingGET",
+        "produces": ["*/*"],
+        "parameters": [{
+          "name": "accountingTimestamp",
+          "in": "path",
+          "description": "accountingTimestamp",
+          "required": true,
+          "type": "string",
+          "format": "date-time"
+        }, {
+          "name": "subscriptionKey",
+          "in": "path",
+          "description": "subscriptionKey",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BalanceResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v1/accounts/{subscriptionKey}/transactions": {
+      "get": {
+        "tags": ["ledger-manager-controller"],
+        "summary": "getAccountTransactions",
+        "operationId": "getAccountTransactionsUsingGET",
+        "produces": ["*/*"],
+        "parameters": [{
+          "name": "fromValueDateTime",
+          "in": "query",
+          "description": "fromValueDateTime",
+          "required": false,
+          "type": "string"
+        }, {
+          "name": "subscriptionKey",
+          "in": "path",
+          "description": "subscriptionKey",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }, {
+          "name": "toValueDateTime",
+          "in": "query",
+          "description": "toValueDateTime",
+          "required": false,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TransactionsResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v1/accounts/{subscriptionKey}/transactions/count/{fromValueDatetime}/{toValueDatetime}": {
+      "get": {
+        "tags": ["ledger-manager-controller"],
+        "summary": "getTransactionCount",
+        "operationId": "getTransactionCountUsingGET",
+        "produces": ["*/*"],
+        "parameters": [{
+          "name": "fromValueDatetime",
+          "in": "path",
+          "description": "fromValueDatetime",
+          "required": true,
+          "type": "string",
+          "format": "date-time"
+        }, {
+          "name": "subscriptionKey",
+          "in": "path",
+          "description": "subscriptionKey",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }, {
+          "name": "toValueDatetime",
+          "in": "path",
+          "description": "toValueDatetime",
+          "required": true,
+          "type": "string",
+          "format": "date-time"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TransactionCountResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v1/authorisations/reversal": {
+      "post": {
+        "tags": ["authorisation-controller"],
+        "summary": "Requires a CAIN001 messsage and the following attributes to be set. Key \"TRANSACTION_STATUS\" in TransactionMessage's additionalInfo has to be REVERSE. Key \"type\" in TransactionMessage's header has to be CARD_AUTH.Key \"DEBIT_CREDIT_INDICATOR\" in payment message's additionalInfo has to be CREDIT.",
+        "operationId": "reverseAuthorisationUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [{
+          "in": "body",
+          "name": "transactionMessage",
+          "description": "transactionMessage",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/TransactionMessage"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BalanceResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v1/processPayments": {
+      "post": {
+        "tags": ["process-payments-controller"],
+        "summary": "processPayments",
+        "operationId": "processPaymentsUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [{
+          "in": "body",
+          "name": "transactionMessage",
+          "description": "transactionMessage",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/TransactionMessage"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BalancesResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v1/transaction/{subscriptionKey}/{transactionId}": {
+      "get": {
+        "tags": ["ledger-manager-controller"],
+        "summary": "getTransaction",
+        "operationId": "getTransactionUsingGET",
+        "produces": ["*/*"],
+        "parameters": [{
+          "name": "subscriptionKey",
+          "in": "path",
+          "description": "subscriptionKey",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }, {
+          "name": "transactionId",
+          "in": "path",
+          "description": "transactionId",
+          "required": true,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TransactionResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v2/account": {
+      "post": {
+        "tags": ["subscription-manager-controller"],
+        "summary": "provisionMultipleSubscriptions",
+        "operationId": "provisionMultipleSubscriptionsUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [{
+          "in": "body",
+          "name": "subscriptionRequests",
+          "description": "subscriptionRequests",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/SubscriptionRequests"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/ledger-manager/v2/accounts/{subscriptionKeys}/balances": {
+      "get": {
+        "tags": ["ledger-manager-controller"],
+        "summary": "getBalances",
+        "operationId": "getBalancesUsingGET",
+        "produces": ["*/*"],
+        "parameters": [{
+          "name": "subscriptionKeys",
+          "in": "path",
+          "description": "Comma separated UUIDs",
+          "required": true,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BalancesListResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v2/reserve": {
+      "post": {
+        "tags": ["ledger-manager-controller"],
+        "summary": "reserve",
+        "operationId": "reserveUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [{
+          "in": "body",
+          "name": "transactionMessage",
+          "description": "transactionMessage",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/TransactionMessage"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ReserveRequestResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v3/account": {
+      "post": {
+        "tags": ["subscription-manager-controller"],
+        "summary": "provisionMultipleRelatedSubscriptions",
+        "operationId": "provisionMultipleRelatedSubscriptionsUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [{
+          "in": "body",
+          "name": "subscriptionRequests",
+          "description": "subscriptionRequests",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/SubscriptionRequests"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v3/account/{subscriptionKey}": {
+      "patch": {
+        "tags": ["subscription-manager-controller"],
+        "summary": "changeSubscriptionStatus",
+        "operationId": "changeSubscriptionStatusUsingPATCH",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [{
+          "in": "body",
+          "name": "changeSubscriptionStatusAndLockRequest",
+          "description": "changeSubscriptionStatusAndLockRequest",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/ChangeSubscriptionStatusAndLockRequest"
+          }
+        }, {
+          "name": "subscriptionKey",
+          "in": "path",
+          "description": "subscriptionKey",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ledger-manager/v3/accounts/{subscriptionKeys}/balances": {
+      "get": {
+        "tags": ["ledger-manager-controller"],
+        "summary": "getMultipleBalances",
+        "operationId": "getMultipleBalancesUsingGET",
+        "produces": ["*/*"],
+        "parameters": [{
+          "name": "subscriptionKeys",
+          "in": "path",
+          "description": "Comma separated UUIDs",
+          "required": true,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BalancesListResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/metrics": {
+      "get": {
+        "tags": ["operation-handler"],
+        "summary": "handle",
+        "operationId": "handleUsingGET_4",
+        "produces": ["text/plain;version=0.0.4;charset=utf-8"],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "body",
+          "required": false,
+          "schema": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "AmountDto": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "title": "AmountDto"
+    },
+    "AverageDailyBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "amount": {
+          "$ref": "#/definitions/AmountDto"
+        },
+        "fromDatetime": {
+          "type": "string"
+        },
+        "toDatetime": {
+          "type": "string"
+        }
+      },
+      "title": "AverageDailyBalanceResponse"
+    },
+    "BalanceDto": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/definitions/AmountDto"
+        },
+        "creditDebitIndicator": {
+          "type": "string",
+          "enum": ["CREDIT", "DEBIT"]
+        },
+        "datetime": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "BalanceDto"
+    },
+    "BalanceResponse": {
+      "type": "object",
+      "properties": {
+        "balance": {
+          "$ref": "#/definitions/BalanceDto"
+        }
+      },
+      "title": "BalanceResponse"
+    },
+    "BalancesListResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/BalanceDto"
+            }
+          }
+        },
+        "errors": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/ErrorResponse"
+          }
+        },
+        "links": {
+          "$ref": "#/definitions/LinksDto"
+        },
+        "meta": {
+          "$ref": "#/definitions/MetaDto"
+        }
+      },
+      "title": "BalancesListResponse"
+    },
+    "BalancesResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BalanceDto"
+          }
+        },
+        "links": {
+          "$ref": "#/definitions/LinksDto"
+        },
+        "meta": {
+          "$ref": "#/definitions/MetaDto"
+        }
+      },
+      "title": "BalancesResponse"
+    },
+    "ChangeSubscriptionStatusAndLockRequest": {
+      "type": "object",
+      "properties": {
+        "locked": {
+          "type": "boolean"
+        },
+        "subscriptionStatus": {
+          "type": "string",
+          "enum": ["ACTIVE", "FAILED", "PROVISIONED"]
+        }
+      },
+      "title": "ChangeSubscriptionStatusAndLockRequest"
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      },
+      "title": "ErrorResponse"
+    },
+    "KafkaMessage": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "topic": {
+          "type": "string"
+        }
+      },
+      "title": "KafkaMessage"
+    },
+    "LinksDto": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "prev": {
+          "type": "string"
+        },
+        "self": {
+          "type": "string"
+        }
+      },
+      "title": "LinksDto"
+    },
+    "MerchantAddress": {
+      "type": "object",
+      "properties": {
+        "cityOrTown": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "firstLine": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "postcode": {
+          "type": "string"
+        }
+      },
+      "title": "MerchantAddress"
+    },
+    "MerchantDto": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/MerchantAddress"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "merchantCategoryCode": {
+          "type": "string"
+        },
+        "merchantName": {
+          "type": "string"
+        }
+      },
+      "title": "MerchantDto"
+    },
+    "MetaDto": {
+      "type": "object",
+      "properties": {
+        "firstAvailableDateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastAvailableDateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "MetaDto"
+    },
+    "ModelAndView": {
+      "type": "object",
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        },
+        "model": {
+          "type": "object"
+        },
+        "modelMap": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "reference": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["100", "101", "102", "103", "200", "201", "202", "203", "204", "205", "206", "207", "208", "226", "300", "301", "302", "303", "304", "305", "307", "308", "400", "401", "402", "403", "404", "405", "406", "407", "408", "409", "410", "411", "412", "413", "414", "415", "416", "417", "418", "419", "420", "421", "422", "423", "424", "426", "428", "429", "431", "451", "500", "501", "502", "503", "504", "505", "506", "507", "508", "509", "510", "511"]
+        },
+        "view": {
+          "$ref": "#/definitions/View"
+        },
+        "viewName": {
+          "type": "string"
+        }
+      },
+      "title": "ModelAndView"
+    },
+    "PaymentMessage": {
+      "type": "object",
+      "properties": {
+        "additionalInfo": {
+          "type": "object"
+        },
+        "message": {
+          "type": "object"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "PaymentMessage"
+    },
+    "ReserveRequestResponse": {
+      "type": "object",
+      "properties": {
+        "availableBalance": {
+          "type": "number"
+        },
+        "result": {
+          "type": "boolean"
+        }
+      },
+      "title": "ReserveRequestResponse"
+    },
+    "SubscriptionRequest": {
+      "type": "object",
+      "properties": {
+        "locked": {
+          "type": "boolean"
+        },
+        "parentSubscriptionKey": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "productKey": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "subscriptionKey": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "subscriptionStatus": {
+          "type": "string",
+          "enum": ["ACTIVE", "FAILED", "PROVISIONED"]
+        },
+        "subscriptionType": {
+          "type": "string",
+          "enum": ["PERSONALCURRENTACCOUNT", "SAVINGSPOOL", "CURRENTPOOL"]
+        }
+      },
+      "title": "SubscriptionRequest"
+    },
+    "SubscriptionRequests": {
+      "type": "object",
+      "properties": {
+        "subscriptionRequests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SubscriptionRequest"
+          }
+        }
+      },
+      "title": "SubscriptionRequests"
+    },
+    "TenXDto": {
+      "type": "object",
+      "properties": {
+        "creditorName": {
+          "type": "string"
+        },
+        "debtorName": {
+          "type": "string"
+        },
+        "feesDescription": {
+          "type": "string"
+        },
+        "interestDescription": {
+          "type": "string"
+        },
+        "paymentMethod": {
+          "type": "string"
+        },
+        "topupDescription": {
+          "type": "string"
+        },
+        "transactionCategoryName": {
+          "type": "string"
+        },
+        "transactionCode": {
+          "type": "string"
+        },
+        "transactionReference": {
+          "type": "string"
+        }
+      },
+      "title": "TenXDto"
+    },
+    "TransactionCountResponse": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "TransactionCountResponse"
+    },
+    "TransactionDto": {
+      "type": "object",
+      "properties": {
+        "10x": {
+          "$ref": "#/definitions/TenXDto"
+        },
+        "accountId": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/definitions/AmountDto"
+        },
+        "bookingDateTime": {
+          "type": "string"
+        },
+        "creditDebitIndicator": {
+          "type": "string",
+          "enum": ["CREDIT", "DEBIT"]
+        },
+        "merchant": {
+          "$ref": "#/definitions/MerchantDto"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["BOOKED", "PENDING"]
+        },
+        "transactionId": {
+          "type": "string"
+        },
+        "transactionInformation": {
+          "type": "string"
+        },
+        "transactionReference": {
+          "type": "string"
+        },
+        "valueDateTime": {
+          "type": "string"
+        }
+      },
+      "title": "TransactionDto"
+    },
+    "TransactionMessage": {
+      "type": "object",
+      "properties": {
+        "additionalInfo": {
+          "type": "object"
+        },
+        "header": {
+          "$ref": "#/definitions/TransactionMessageHeader"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PaymentMessage"
+          }
+        }
+      },
+      "title": "TransactionMessage"
+    },
+    "TransactionMessageHeader": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "title": "TransactionMessageHeader"
+    },
+    "TransactionResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/TransactionDto"
+        }
+      },
+      "title": "TransactionResponse"
+    },
+    "TransactionsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransactionDto"
+          }
+        },
+        "links": {
+          "$ref": "#/definitions/LinksDto"
+        },
+        "meta": {
+          "$ref": "#/definitions/MetaDto"
+        }
+      },
+      "title": "TransactionsResponse"
+    },
+    "View": {
+      "type": "object",
+      "properties": {
+        "contentType": {
+          "type": "string"
+        }
+      },
+      "title": "View"
+    }
+  }
+}

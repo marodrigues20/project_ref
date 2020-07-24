@@ -1,0 +1,10 @@
+[Unit]
+Description=Transaction Manager Spring Boot application
+After=syslog.target
+ 
+[Service]
+User=springboot
+ExecStart=/opt/transaction-manager/transaction-manager.jar SuccessExitStatus=143
+ 
+[Install] 
+WantedBy=multi-user.target

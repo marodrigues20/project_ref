@@ -1,0 +1,15 @@
+{
+  "additionalInfo": {
+    "PRODUCT_KEY": "703",
+    "PARTY_KEY": "102",
+    "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637"
+  },
+  "message": {
+    "BALANCE_AMOUNT": "200",
+    "MASKED_PAN": "444433XXXXXX1111",
+    "AUTHORISATION_RESULT_RESPONSE": "FAILED",
+    "PDF_ERROR_CODE": 2100,
+    "PDF_ERROR_DESC": "Decision failed"
+  },
+  "type": "CAAA002"
+}

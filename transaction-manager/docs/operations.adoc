@@ -1,0 +1,20 @@
+= Operations
+
+The content under this section will document resources and knowledge that can be used to support a deployed instance of the
+microservice.
+
+== Dashboards
+
+* <<operations/01-dashboards.adoc#, Click here for more details>>
+
+== Metrics
+
+* <<operations/02-metrics.adoc#, Click here for more details>>
+
+== Logs
+
+* <<operations/03-logs.adoc#, Click here for more details>>
+
+== On Call Runbook
+
+* <<operations/04-runbooks.adoc#, Click here for more details>>

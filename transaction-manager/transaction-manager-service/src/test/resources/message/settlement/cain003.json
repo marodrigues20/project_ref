@@ -1,0 +1,51 @@
+{
+  "header": {
+    "type": "CLEARING"
+  },
+  "messages": [
+    {
+      "type": "CAIN003",
+      "message": {
+        "BILLING_AMOUNT": "123.45",
+        "BILLING_CURRENCY_CODE": "GBP",
+        "TRANSACTION_AMOUNT": "55.00000",
+        "TRANSACTION_CURRENCY_CODE": "GBP",
+        "CASH_BACK_AMOUNT":"0",
+        "CASH_BACK_IND":false,
+        "TRANSACTION_DATE": "2018-09-18",
+        "MERCHANT_NUMBER": "XXXXXXXXXXXXXXXX",
+        "MERCHANT_CATEGORY_CODE": "5411",
+        "CARD_ACCEPTOR_ID": "111111111111111",
+        "CARD_ACCEPTOR_CITY": "XXXXXXXXXXXXX",
+        "CARD_ACCEPTOR_STATE": "XXX",
+        "CARD_ACCEPTOR_COUNTRY_CODE": "XXX",
+        "CARD_ACCEPTOR_TERMINAL_ID":"12312312",
+        "TOKENISED_PAN": "5584345930798931",
+        "CARD_ACCEPTOR_NAME": "ASDA",
+        "TRANSACTION_TYPE": "CRDP",
+        "EXCHANGE_RATE": "2.0",
+        "TRANSACTION_POSTED_DATE":"2018-04-10",
+        "TRANSACTION_POSTED_TIME":"tbc",
+        "AUTHORISATION_CODE":"126182",
+        "BANKNET_REFERENCE_NUMBER":"123456",
+        "CARDHOLDER_PRESENT":true,
+        "TRANSACTION_VERIFICATION_ENTITY":"ICCD",
+        "CARD_DATA_ENTRY_MODE": "CICC",
+        "TRANSACTION_AMOUNT_QUALIFIER": "ACTL",
+        "RECURRING_PAYMENT_INDICATOR":false
+      },
+      "additionalInfo": {
+        "TRANSACTION_ID": "12345",
+        "SUBSCRIPTION_KEY": "a72cb8ca-e1c4-45f0-9de0-c20c40cd5569",
+        "CARD_PROCESSOR_ACCOUNT_ID":"000070978",
+        "CUSTOMER_STATUS": "ACTIVE",
+        "TRANSACTION_CODE":"XXXX.XXXX.XXXX",
+        "CREDIT_DEBIT_INDICATOR":"D"
+      }
+    }
+  ],
+  "additionalInfo": {
+    "TRANSACTION_STATUS": "POSTED",
+    "TRANSACTION_CORRELATION_ID": "234454"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "decisionResponse": "FAILED",
+  "decisionReason": {
+    "code": 2100,
+    "message": "Decision failed"
+  }
+}

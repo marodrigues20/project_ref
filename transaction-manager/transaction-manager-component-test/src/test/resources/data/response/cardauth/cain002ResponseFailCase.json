@@ -1,0 +1,38 @@
+{
+  "paymentStatus": "SUCCESS",
+  "transactionMessage": {
+    "header": {
+      "type": "CARD_AUTH",
+      "url": null
+    },
+    "messages": [
+      {
+        "type": "CAIN002",
+        "message": {
+          "TRANSACTION_DATE": "2018-05-11T13:14:30.893+0000",
+          "TRANSACTION_RESPONSE_CODE": "APPR",
+          "MERCHANT_CATEGORY_CODE": "5411",
+          "TRANSACTION_AMOUNT_QUALIFIER": "ACTL",
+          "AMOUNT": "123",
+          "CARD_ACCEPTOR_NAME": "ASDA",
+          "CARD_DATA_ENTRY_MODE": "CICC",
+          "INITIATOR_PARTY_ID": "101",
+          "TRANSACTION_CURRENCY_CODE": "GBP",
+          "TRANSACTION_TYPE": "CRDP",
+          "TOTAL_AMOUNT": "123",
+          "CARDHOLDER_PRESENT": true
+        },
+        "additionalInfo": {
+          "PRODUCT_KEY": "703",
+          "PARTY_KEY": "102",
+          "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637"
+        }
+      }
+    ],
+    "additionalInfo": {
+      "TENANT_PARTY_KEY": "10000",
+      "TRANSACTION_STATUS": "FAILED",
+      "POSTED_BALANCE": 100
+    }
+  }
+}

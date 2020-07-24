@@ -1,0 +1,51 @@
+{
+    "header": {
+        "statusCode": 200
+    },
+    "partyTenantDTO": {
+        "partyTypeKey": 10,
+        "partyKey": 10000,
+        "createdDate": 1232455,
+        "parentPartyKey": -1,
+        "partyCaption": "TENANT",
+        "tenantPartyKey": 100,
+        "associatedAttributes": {
+            "tenantProfile": null,
+            "dnsNumber": null,
+            "isAllowedToCreateDigitalService": null,
+            "tenantProfileDetails": {
+                "tenantName": null
+            }
+        },
+        "feeConfigurations": {
+            "primaryFeeLevel": "PRODUCT",
+            "flowApproach": "TOP_DOWN",
+            "feeLevelFlow": [
+                {
+                    "feeLevelName": "PRODUCT",
+                    "order": 1
+                },
+                {
+                    "feeLevelName": "SERVICE",
+                    "order": 2
+                },
+                {
+                    "feeLevelName": "SUBSCRIPTION",
+                    "order": 3
+                },
+                {
+                    "feeLevelName": "CUSTOMER",
+                    "order": 4
+                }
+            ]
+        },
+        "tenantBankInfo": {
+            "countryCode": "GB",
+            "bankCode": "MIDL",
+            "branchCode": "400515",
+            "sortCode": "111111",
+            "fpsReferenceAccountNumber": "2345678",
+            "fpsReferenceSortCode": "123456"
+        }
+    }
+}

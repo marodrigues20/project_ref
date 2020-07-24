@@ -1,0 +1,1 @@
+ALTER TABLE authorisations MODIFY COLUMN mcc varchar(4);

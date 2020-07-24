@@ -1,0 +1,34 @@
+{
+  "header": {
+    "type": "FPS_IN",
+    "url": null
+  },
+  "messages": [
+    {
+      "type": "PACS002",
+      "message": {
+        "REQUESTING_SYSTEM_ID": "",
+        "RESPONSE_CODE": 8005,
+        "POSTING_DATE": "",
+        "ERRORS": "Invalid payee subscription key",
+        "OUTCOME": "FAILED",
+        "SUPPLEMENTARY_DATA_CBS_RESPONSE_CODE": "",
+        "EXTERNAL_REFERENCE_ID": "123232",
+        "CORE_BANKING_REFERENCE_ID": "",
+        "RESPONSE_DESCRIPTION": "Invalid payee subscription key"
+      },
+      "additionalInfo": {
+        "PARTY_KEY": "105",
+        "DIGITAL_SERVICE_KEY": "701",
+        "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec",
+        "TRANSACTION_ID": "1336309001"
+      }
+    }
+  ],
+  "additionalInfo": {
+    "TRANSACTION_CORRELATION_ID": "7184895129",
+    "REQUEST_ID": "ecfc6c00-3cab-11e8-98d3-7f99b9a03930",
+    "TENANT_PARTY_KEY": "10000",
+    "TRANSACTION_STATUS": "FAILED"
+  }
+}

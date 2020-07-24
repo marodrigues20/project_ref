@@ -1,0 +1,2270 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "localhost:9039",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "basic-error-controller",
+      "description": "Basic Error Controller"
+    },
+    {
+      "name": "child-subscription-controller",
+      "description": "Child Subscription Controller"
+    },
+    {
+      "name": "domestic-controller",
+      "description": "Domestic Controller"
+    },
+    {
+      "name": "fps-out-controller",
+      "description": "FPS Out Controller"
+    },
+    {
+      "name": "fund-account-controller",
+      "description": "Fund Account Controller"
+    },
+    {
+      "name": "on-us-controller",
+      "description": "On Us Controller"
+    },
+    {
+      "name": "operation-handler",
+      "description": "Operation Handler"
+    },
+    {
+      "name": "request-payment-controller",
+      "description": "Request Payment Controller"
+    }
+  ],
+  "paths": {
+    "/error": {
+      "get": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingGET",
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "head": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingHEAD",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingDELETE",
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "options": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingOPTIONS",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingPATCH",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "operation-handler"
+        ],
+        "summary": "handle",
+        "operationId": "handleUsingGET",
+        "produces": [
+          "application/json",
+          "application/vnd.spring-boot.actuator.v2+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/httptrace": {
+      "get": {
+        "tags": [
+          "operation-handler"
+        ],
+        "summary": "handle",
+        "operationId": "handleUsingGET_1",
+        "produces": [
+          "application/json",
+          "application/vnd.spring-boot.actuator.v2+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/info": {
+      "get": {
+        "tags": [
+          "operation-handler"
+        ],
+        "summary": "handle",
+        "operationId": "handleUsingGET_2",
+        "produces": [
+          "application/json",
+          "application/vnd.spring-boot.actuator.v2+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/metrics": {
+      "get": {
+        "tags": [
+          "operation-handler"
+        ],
+        "summary": "handle",
+        "operationId": "handleUsingGET_3",
+        "produces": [
+          "text/plain;version=0.0.4;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/accounts/{subscriptionKey}/topUps/cards/pans": {
+      "post": {
+        "tags": [
+          "fund-account-controller"
+        ],
+        "summary": "Account Funding with New PAN",
+        "operationId": "fundAccountPan",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Party-Key",
+            "in": "header",
+            "description": "Party-Key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "fundAccountPanRequest",
+            "description": "fundAccountPanRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FundAccountPanRequest"
+            }
+          },
+          {
+            "name": "subscriptionKey",
+            "in": "path",
+            "description": "subscriptionKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/accounts/{subscriptionKey}/topUps/cards/tokens": {
+      "post": {
+        "tags": [
+          "fund-account-controller"
+        ],
+        "summary": "Account Funding with Token Id / Saved Card ",
+        "operationId": "fundAccountToken",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Party-Key",
+            "in": "header",
+            "description": "Party-Key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "fundAccountTokenRequest",
+            "description": "fundAccountTokenRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FundAccountTokenRequest"
+            }
+          },
+          {
+            "name": "subscriptionKey",
+            "in": "path",
+            "description": "subscriptionKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/accounts/{subscriptionKey}/transfers/child-subscription": {
+      "post": {
+        "tags": [
+          "child-subscription-controller"
+        ],
+        "summary": "Money Transfer between Child Subscriptions",
+        "operationId": "childSubscription",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "childSubsriptionRequest",
+            "description": "childSubsriptionRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChildSubscriptionTransferRequest"
+            }
+          },
+          {
+            "name": "subscriptionKey",
+            "in": "path",
+            "description": "subscriptionKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ChildSubscriptionTransferResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/make-fps-payment": {
+      "post": {
+        "tags": [
+          "fps-out-controller"
+        ],
+        "summary": "Process the FPS-OUT V1 Payment request",
+        "operationId": "fpsOutV1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpsOutPaymentRequest",
+            "description": "fpsOutPaymentRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FpsOutPaymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FpsOutPaymentResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/payments/async-confirmation": {
+      "post": {
+        "tags": [
+          "domestic-controller"
+        ],
+        "summary": "Accept payment confirmation",
+        "operationId": "acceptPaymentConfirmation",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "transactionMessage",
+            "description": "transactionMessage",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TransactionMessage"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/payments/domestic": {
+      "post": {
+        "tags": [
+          "domestic-controller"
+        ],
+        "summary": "Domestic Payment Request",
+        "operationId": "Domestic",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Party-Key",
+            "in": "header",
+            "description": "Party-Key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Tenant-Key",
+            "in": "header",
+            "description": "Tenant-Key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "domesticPaymentRequest",
+            "description": "domesticPaymentRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DomesticPaymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DomesticPaymentResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/payments/domestic/modules-checker": {
+      "post": {
+        "tags": [
+          "domestic-controller"
+        ],
+        "summary": "Domestic Payment Account Number and Sort Code validation",
+        "operationId": "DomesticModulesCheck",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "modulesCheckerRequest",
+            "description": "modulesCheckerRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ModulesCheckerRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/payments/domestic/scheduled": {
+      "get": {
+        "tags": [
+          "domestic-controller"
+        ],
+        "summary": "Get future dated payments by subscriptionKey, accountName, PaymentDate, amount, reference",
+        "operationId": "searchFutureDatedPaymentUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "query",
+            "description": "accountName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fromAmount",
+            "in": "query",
+            "description": "fromAmount",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "fromPaymentDate",
+            "in": "query",
+            "description": "fromPaymentDate",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "reference",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "subscriptionKey",
+            "in": "query",
+            "description": "subscriptionKey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "toAmount",
+            "in": "query",
+            "description": "toAmount",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "toPaymentDate",
+            "in": "query",
+            "description": "toPaymentDate",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "domestic-controller"
+        ],
+        "summary": "Future Dated Payment Request",
+        "operationId": "Future Dated Payment Request",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "futureDatedPaymentRequest",
+            "description": "futureDatedPaymentRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FutureDatedPaymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/FutureDatedPaymentResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/payments/domestic/scheduled/cleaning": {
+      "post": {
+        "tags": [
+          "domestic-controller"
+        ],
+        "summary": "Clean all failed future dated payments",
+        "operationId": "CleanFutureDatedPayments",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/payments/domestic/scheduled/initiate": {
+      "post": {
+        "tags": [
+          "domestic-controller"
+        ],
+        "summary": "Initiate future dated payment",
+        "operationId": "InitiateDomesticFutureDatedPayment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/payments/domestic/scheduled/{id}": {
+      "get": {
+        "tags": [
+          "domestic-controller"
+        ],
+        "summary": "Get a future dated payment by payment id",
+        "operationId": "DomesticGetFutureDatedPaymentById",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "domestic-controller"
+        ],
+        "summary": "Update future dated payment request",
+        "operationId": "FDPUpdate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "futureDatedPaymentUpdateRequest",
+            "description": "futureDatedPaymentUpdateRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FutureDatedPaymentUpdateRequest"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FutureDatedPaymentResponse"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/payments/domestic/standing-order": {
+      "post": {
+        "tags": [
+          "domestic-controller"
+        ],
+        "summary": "Domestic payment standing order request",
+        "operationId": "SOP",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "standingOrderPaymentRequest",
+            "description": "standingOrderPaymentRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StandingOrderPaymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/payments/requests": {
+      "get": {
+        "tags": [
+          "request-payment-controller"
+        ],
+        "summary": "searchRequestPayment",
+        "operationId": "searchRequestPaymentUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "customerReference",
+            "in": "query",
+            "description": "customerReference",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PaymentDetailsResponseDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "request-payment-controller"
+        ],
+        "summary": "generatePaymentRequest",
+        "operationId": "generatePaymentRequestUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Party-Key",
+            "in": "header",
+            "description": "Party-Key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Tenant-Key",
+            "in": "header",
+            "description": "Tenant-Key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "paymentRequestDto",
+            "description": "paymentRequestDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PaymentRequestDto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/GenerateRequestPayResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/payments/requests/{requestGuid}": {
+      "get": {
+        "tags": [
+          "request-payment-controller"
+        ],
+        "summary": "paymentDetails",
+        "operationId": "paymentDetailsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "requestGuid",
+            "in": "path",
+            "description": "requestGuid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PaymentDetailsResponseDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/payments/requests/{requestGuid}/submission": {
+      "post": {
+        "tags": [
+          "request-payment-controller"
+        ],
+        "summary": "submitPaymentRequest",
+        "operationId": "submitPaymentRequestUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "makePaymentRequest",
+            "description": "makePaymentRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MakePaymentRequest"
+            }
+          },
+          {
+            "name": "requestGuid",
+            "in": "path",
+            "description": "requestGuid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MakePaymentResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v2/on-us": {
+      "post": {
+        "tags": [
+          "on-us-controller"
+        ],
+        "summary": "On-Us Payment Request",
+        "operationId": "onUsPayment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "onUsPaymentRequest",
+            "description": "onUsPaymentRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OnUsPaymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OnUsPaymentResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "line1": {
+          "type": "string"
+        },
+        "postcode": {
+          "type": "string"
+        }
+      },
+      "title": "Address"
+    },
+    "Amount": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "title": "Amount"
+    },
+    "Card": {
+      "type": "object",
+      "properties": {
+        "cvv": {
+          "type": "string"
+        },
+        "expiryMonth": {
+          "type": "string"
+        },
+        "expiryYear": {
+          "type": "string"
+        },
+        "nameOnCard": {
+          "type": "string"
+        },
+        "pan": {
+          "type": "string"
+        },
+        "sequenceNumber": {
+          "type": "string"
+        },
+        "startMonth": {
+          "type": "string"
+        },
+        "startYear": {
+          "type": "string"
+        }
+      },
+      "title": "Card"
+    },
+    "ChildSubscriptionTransferRequest": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "toChildSubscriptionKey": {
+          "type": "string"
+        }
+      },
+      "title": "ChildSubscriptionTransferRequest"
+    },
+    "ChildSubscriptionTransferResponse": {
+      "type": "object",
+      "properties": {
+        "paymentStatus": {
+          "type": "string"
+        },
+        "reason": {
+          "$ref": "#/definitions/ReasonDto"
+        }
+      },
+      "title": "ChildSubscriptionTransferResponse"
+    },
+    "DomesticPaymentRequest": {
+      "type": "object",
+      "properties": {
+        "addToPayees": {
+          "type": "boolean"
+        },
+        "amount": {
+          "$ref": "#/definitions/Amount"
+        },
+        "category": {
+          "type": "string"
+        },
+        "howFound": {
+          "type": "string"
+        },
+        "payeeAccountName": {
+          "type": "string"
+        },
+        "payeeAccountNumber": {
+          "type": "string"
+        },
+        "payeeId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "payeeSortCode": {
+          "type": "string"
+        },
+        "payerAccountNumber": {
+          "type": "string"
+        },
+        "payerSortCode": {
+          "type": "string"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "tenantName": {
+          "type": "string"
+        },
+        "updatePayee": {
+          "type": "boolean"
+        }
+      },
+      "title": "DomesticPaymentRequest"
+    },
+    "DomesticPaymentResponse": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "title": "DomesticPaymentResponse"
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "Error"
+    },
+    "FpsOutPaymentRequest": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "category": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "payeeAccountNumber": {
+          "type": "string"
+        },
+        "payeeName": {
+          "type": "string"
+        },
+        "payeeSortCode": {
+          "type": "string"
+        },
+        "payerSubscriptionKey": {
+          "type": "string"
+        }
+      },
+      "title": "FpsOutPaymentRequest"
+    },
+    "FpsOutPaymentResponse": {
+      "type": "object",
+      "properties": {
+        "paymentStatus": {
+          "type": "string"
+        },
+        "reason": {
+          "$ref": "#/definitions/ReasonDto"
+        }
+      },
+      "title": "FpsOutPaymentResponse"
+    },
+    "FundAccountPanRequest": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "cvv": {
+          "type": "string"
+        },
+        "expiryMonth": {
+          "type": "string"
+        },
+        "expiryYear": {
+          "type": "string"
+        },
+        "pan": {
+          "type": "string"
+        }
+      },
+      "title": "FundAccountPanRequest"
+    },
+    "FundAccountResponse": {
+      "type": "object",
+      "properties": {
+        "cardBrand": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReasonDto"
+          }
+        },
+        "panLast4Digit": {
+          "type": "string"
+        },
+        "panToken": {
+          "type": "string"
+        },
+        "uniqueShopperId": {
+          "type": "string"
+        }
+      },
+      "title": "FundAccountResponse"
+    },
+    "FundAccountTokenRequest": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "panToken": {
+          "type": "string"
+        }
+      },
+      "title": "FundAccountTokenRequest"
+    },
+    "FutureDatedPaymentDto": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "createDateTime": {
+          "$ref": "#/definitions/Timestamp"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "fdpPaymentStatus": {
+          "type": "string",
+          "enum": [
+            "NEW",
+            "PAYMENT_REQUESTED",
+            "PAYMENT_INITIATION_FAILED",
+            "PAYMENT_INITIATION_SUCCESS",
+            "PAYMENT_SUBMISSION_FAILED",
+            "PAYMENT_SUBMISSION_SUCCESS"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "payeeAccountName": {
+          "type": "string"
+        },
+        "payeeAccountNumber": {
+          "type": "string"
+        },
+        "payeeBankId": {
+          "type": "string"
+        },
+        "paymentDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "paymentReason": {
+          "type": "string"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "subscriptionKey": {
+          "type": "string"
+        }
+      },
+      "title": "FutureDatedPaymentDto"
+    },
+    "FutureDatedPaymentRequest": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "$ref": "#/definitions/Amount"
+        },
+        "category": {
+          "type": "string"
+        },
+        "payeeAccountName": {
+          "type": "string"
+        },
+        "payeeAccountNumber": {
+          "type": "string"
+        },
+        "payeeBankId": {
+          "type": "string"
+        },
+        "payerAccountNumber": {
+          "type": "string"
+        },
+        "payerBankId": {
+          "type": "string"
+        },
+        "paymentDate": {
+          "type": "string"
+        },
+        "reference": {
+          "type": "string"
+        }
+      },
+      "title": "FutureDatedPaymentRequest"
+    },
+    "FutureDatedPaymentResponse": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "payeeAccountName": {
+          "type": "string"
+        },
+        "payeeAccountNumber": {
+          "type": "string"
+        },
+        "payeeBankId": {
+          "type": "string"
+        },
+        "paymentDate": {
+          "type": "string"
+        },
+        "paymentStatus": {
+          "type": "string"
+        },
+        "subscriptionKey": {
+          "type": "string"
+        }
+      },
+      "title": "FutureDatedPaymentResponse"
+    },
+    "FutureDatedPaymentUpdateRequest": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "$ref": "#/definitions/Amount"
+        },
+        "category": {
+          "type": "string"
+        },
+        "payeeAccountName": {
+          "type": "string"
+        },
+        "payeeAccountNumber": {
+          "type": "string"
+        },
+        "payeeBankId": {
+          "type": "string"
+        },
+        "paymentDate": {
+          "type": "string"
+        },
+        "reference": {
+          "type": "string"
+        }
+      },
+      "title": "FutureDatedPaymentUpdateRequest"
+    },
+    "GenerateRequestPayResponse": {
+      "type": "object",
+      "properties": {
+        "customerReference": {
+          "type": "string"
+        }
+      },
+      "title": "GenerateRequestPayResponse"
+    },
+    "MakePaymentRequest": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "card": {
+          "$ref": "#/definitions/Card"
+        },
+        "reference": {
+          "type": "string"
+        }
+      },
+      "title": "MakePaymentRequest"
+    },
+    "MakePaymentResponse": {
+      "type": "object",
+      "properties": {
+        "paymentStatus": {
+          "type": "string"
+        },
+        "redirectUrl3d": {
+          "type": "string"
+        }
+      },
+      "title": "MakePaymentResponse"
+    },
+    "ModelAndView": {
+      "type": "object",
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        },
+        "model": {
+          "type": "object"
+        },
+        "modelMap": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "reference": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "view": {
+          "$ref": "#/definitions/View"
+        },
+        "viewName": {
+          "type": "string"
+        }
+      },
+      "title": "ModelAndView"
+    },
+    "ModulesCheckerRequest": {
+      "type": "object",
+      "properties": {
+        "payeeAccountNumber": {
+          "type": "string"
+        },
+        "payeeSortCode": {
+          "type": "string"
+        }
+      },
+      "title": "ModulesCheckerRequest"
+    },
+    "OnUsPaymentRequest": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "category": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "payeeSubscriptionKey": {
+          "type": "string"
+        },
+        "payerSubscriptionKey": {
+          "type": "string"
+        }
+      },
+      "title": "OnUsPaymentRequest"
+    },
+    "OnUsPaymentResponse": {
+      "type": "object",
+      "properties": {
+        "paymentStatus": {
+          "type": "string"
+        },
+        "reason": {
+          "$ref": "#/definitions/ReasonDto"
+        }
+      },
+      "title": "OnUsPaymentResponse"
+    },
+    "PaymentDetailsResponseDto": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "string"
+        },
+        "payerBusinessName": {
+          "type": "string"
+        },
+        "payerFullName": {
+          "type": "string"
+        },
+        "requestGuid": {
+          "type": "string"
+        },
+        "requestorBusinessName": {
+          "type": "string"
+        },
+        "requestorIndividualName": {
+          "type": "string"
+        },
+        "totalRequestedAmount": {
+          "$ref": "#/definitions/Amount"
+        },
+        "transactionStatus": {
+          "type": "string",
+          "enum": [
+            "NEW",
+            "IN_PROGRESS",
+            "COMPLETED",
+            "FAILED"
+          ]
+        }
+      },
+      "title": "PaymentDetailsResponseDto"
+    },
+    "PaymentMessage": {
+      "type": "object",
+      "properties": {
+        "additionalInfo": {
+          "type": "object"
+        },
+        "message": {
+          "type": "object"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "PaymentMessage"
+    },
+    "PaymentRequestDto": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "string"
+        },
+        "payerBusinessName": {
+          "type": "string"
+        },
+        "payerEmail": {
+          "type": "string"
+        },
+        "payerFullName": {
+          "type": "string"
+        },
+        "payerMobileNumber": {
+          "type": "string"
+        },
+        "requestorSubscriptionKey": {
+          "type": "string"
+        },
+        "totalRequestedAmount": {
+          "$ref": "#/definitions/Amount"
+        }
+      },
+      "title": "PaymentRequestDto"
+    },
+    "ReasonDto": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ReasonDto"
+    },
+    "ResponseEntity": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "object"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ResponseEntity"
+    },
+    "StandingOrderPaymentRequest": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "$ref": "#/definitions/Amount"
+        },
+        "category": {
+          "type": "string"
+        },
+        "payeeAccountName": {
+          "type": "string"
+        },
+        "payeeAccountNumber": {
+          "type": "string"
+        },
+        "payeeBankId": {
+          "type": "string"
+        },
+        "payerAccountNumber": {
+          "type": "string"
+        },
+        "payerBankId": {
+          "type": "string"
+        },
+        "paymentEndDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "paymentStartDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "standingOrderPaymentFrequency": {
+          "type": "string",
+          "enum": [
+            "DAILY",
+            "WEEKLY",
+            "TWO_WEEKLY",
+            "FOUR_WEEKLY",
+            "MONTHLY",
+            "TWO_MONTHLY",
+            "QUARTERLY",
+            "HALF_YEARLY",
+            "YEARLY"
+          ]
+        }
+      },
+      "title": "StandingOrderPaymentRequest"
+    },
+    "Timestamp": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hours": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minutes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nanos": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "time": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "timezoneOffset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "Timestamp"
+    },
+    "TransactionMessage": {
+      "type": "object",
+      "properties": {
+        "additionalInfo": {
+          "type": "object"
+        },
+        "header": {
+          "$ref": "#/definitions/TransactionMessageHeader"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PaymentMessage"
+          }
+        }
+      },
+      "title": "TransactionMessage"
+    },
+    "TransactionMessageHeader": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "title": "TransactionMessageHeader"
+    },
+    "View": {
+      "type": "object",
+      "properties": {
+        "contentType": {
+          "type": "string"
+        }
+      },
+      "title": "View"
+    }
+  }
+}

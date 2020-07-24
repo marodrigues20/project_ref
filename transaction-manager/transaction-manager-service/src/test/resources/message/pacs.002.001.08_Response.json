@@ -1,0 +1,57 @@
+{
+	"header": {
+		"paymentType": "FPS",
+		"messageType": "PACS008",
+		"url": "some url",
+		"messageHash": "some hash"
+	},
+	"message": {
+		"Document": {
+			"FIToFIPmtStsRpt": {
+				"GrpHdr": {
+					"MsgId": "Msg00200108",
+					"CreDtTm": "2016-11-18T05:00:51"
+				},
+				"OrgnlGrpInfAndSts": {
+					"OrgnlMsgId": "Msg00800106",
+					"OrgnlMsgNmId": "pacs.002.001.08",
+					"OrgnlCreDtTm": "2016-11-18T05:00:51",
+					"OrgnlNbOfTxs": "1"
+				},
+				"TxInfAndSts": {
+					"OrgnlInstrId": "InstrIdTest",
+					"OrgnlTxId": "TxIdTest",
+					"TxSts": "ACTC",
+					"AccptncDtTm": "2016-11-18T05:00:51",
+					"ClrSysRef": "ClrSysRefTest",
+					"InstgAgt": {
+						"FinInstnId": {
+							"ClrSysMmbId": {
+								"MmbId": "InstgAgtClrSysMmbId"
+							}
+						}
+					},
+					"InstdAgt": {
+						"FinInstnId": {
+							"ClrSysMmbId": {
+								"MmbId": "InstdAgtClrSysMmbId"
+							}
+						}
+					},
+					"OrgnlTxRef": {
+						"IntrBkSttlmAmt": {
+							"value": 1111.22,
+							"Ccy": "EUR"
+						},
+						"IntrBkSttlmDt": "2016-11-18T00:00:00"
+					}
+				}
+			}
+		}
+	},
+
+	"additionalInfo": {
+		"REQUEST_CORRELATION_ID": "5001"
+	}
+
+}

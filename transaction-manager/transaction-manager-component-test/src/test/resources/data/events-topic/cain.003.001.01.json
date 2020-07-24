@@ -1,0 +1,51 @@
+{
+  "header": {
+    "paymentType": "PAYMENT_AUTH",
+    "messageType": "CAIN004",
+    "url": null,
+    "messageHash": null
+  },
+  "message": {
+    "Document": {
+      "AcqrrFinRspn": {
+        "SctyTrlr": {
+        },
+        "Hdr": {
+          "Tracblt": [
+            {
+              "RlayId": {}
+            }
+          ],
+          "CreDtTm": "2035-01-01T01:01:01.000+0000",
+          "InitgPty": {},
+          "RcptPty": {}
+        },
+        "FinRspn": {
+          "Envt": {
+            "PmtTkn": {},
+            "AccptrId": "Tesco Supermarkets",
+            "Card": {
+              "PlainCardData": {
+                "PAN": "5584345930798931",
+                "TrckData": [
+                  {}
+                ]
+              }
+            },
+            "ShppgAdr": {}
+          },
+          "Cntxt": {
+            "TxCntxt": {
+              "SpclConds": [
+                {}
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalInfo": {
+
+  }
+}

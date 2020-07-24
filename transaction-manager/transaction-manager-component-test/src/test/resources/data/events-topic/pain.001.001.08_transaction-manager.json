@@ -1,0 +1,15 @@
+{
+  "header": {
+    "paymentType": "FPS",
+    "messageType": "PAIN001_ACK",
+    "url": "some url",
+    "messageHash": "some hash"
+  },
+  "message": {},
+  "additionalInfo": {
+    "PARTY_KEY": "102",
+    "REQUEST_CORRELATION_ID": "ascdhhjhgsajxha",
+    "DIGITAL_SERVICE_KEY": "703",
+    "REQUEST_ID": "ascdhhjhgsajxha"
+  }
+}

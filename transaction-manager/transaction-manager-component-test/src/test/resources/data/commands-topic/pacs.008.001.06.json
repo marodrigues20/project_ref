@@ -1,0 +1,1458 @@
+{
+  "header": {
+    "paymentType": "FPS",
+    "messageType": "PACS008",
+    "url": "some url",
+    "messageHash": "some hash"
+  },
+  "message": {
+    "Document": {
+      "FIToFICstmrCdtTrf": {
+        "GrpHdr": {
+          "MsgId": "Msg00800106",
+          "CreDtTm": "2025-12-13T12:12:12.000+0000",
+          "BtchBookg": true,
+          "NbOfTxs": "str1234",
+          "CtrlSum": 123.45,
+          "TtlIntrBkSttlmAmt": {
+            "Ccy": "EUR",
+            "value": 12345.45
+          },
+          "IntrBkSttlmDt": "2012-12-13",
+          "SttlmInf": {
+            "SttlmMtd": "INDA",
+            "SttlmAcct": {
+              "Id": {},
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            },
+            "ClrSys": {},
+            "InstgRmbrsmntAgt": {
+              "FinInstnId": {
+                "BICFI": "str1234",
+                "ClrSysMmbId": {
+                  "ClrSysId": {},
+                  "MmbId": "str1234"
+                },
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                },
+                "Othr": {
+                  "Id": "str1234",
+                  "SchmeNm": {},
+                  "Issr": "str1234"
+                }
+              },
+              "BrnchId": {
+                "Id": "str1234",
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                }
+              }
+            },
+            "InstgRmbrsmntAgtAcct": {
+              "Id": {},
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            },
+            "InstdRmbrsmntAgt": {
+              "FinInstnId": {
+                "BICFI": "str1234",
+                "ClrSysMmbId": {
+                  "ClrSysId": {},
+                  "MmbId": "str1234"
+                },
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                },
+                "Othr": {
+                  "Id": "str1234",
+                  "SchmeNm": {},
+                  "Issr": "str1234"
+                }
+              },
+              "BrnchId": {
+                "Id": "str1234",
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                }
+              }
+            },
+            "InstdRmbrsmntAgtAcct": {
+              "Id": {},
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            },
+            "ThrdRmbrsmntAgt": {
+              "FinInstnId": {
+                "BICFI": "str1234",
+                "ClrSysMmbId": {
+                  "ClrSysId": {},
+                  "MmbId": "str1234"
+                },
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                },
+                "Othr": {
+                  "Id": "str1234",
+                  "SchmeNm": {},
+                  "Issr": "str1234"
+                }
+              },
+              "BrnchId": {
+                "Id": "str1234",
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                }
+              }
+            },
+            "ThrdRmbrsmntAgtAcct": {
+              "Id": {},
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            }
+          },
+          "PmtTpInf": {
+            "InstrPrty": "HIGH",
+            "ClrChanl": "RTGS",
+            "SvcLvl": {},
+            "LclInstrm": {},
+            "CtgyPurp": {}
+          },
+          "InstgAgt": {
+            "FinInstnId": {
+              "BICFI": "str1234",
+              "ClrSysMmbId": {
+                "ClrSysId": {},
+                "MmbId": "str1234"
+              },
+              "Nm": "str1234",
+              "PstlAdr": {
+                "AdrTp": "ADDR",
+                "Dept": "str1234",
+                "SubDept": "str1234",
+                "StrtNm": "str1234",
+                "BldgNb": "str1234",
+                "PstCd": "str1234",
+                "TwnNm": "str1234",
+                "CtrySubDvsn": "str1234",
+                "Ctry": "str1234",
+                "AdrLine": [
+                  "str1234"
+                ]
+              },
+              "Othr": {
+                "Id": "str1234",
+                "SchmeNm": {},
+                "Issr": "str1234"
+              }
+            },
+            "BrnchId": {
+              "Id": "str1234",
+              "Nm": "str1234",
+              "PstlAdr": {
+                "AdrTp": "ADDR",
+                "Dept": "str1234",
+                "SubDept": "str1234",
+                "StrtNm": "str1234",
+                "BldgNb": "str1234",
+                "PstCd": "str1234",
+                "TwnNm": "str1234",
+                "CtrySubDvsn": "str1234",
+                "Ctry": "str1234",
+                "AdrLine": [
+                  "str1234"
+                ]
+              }
+            }
+          },
+          "InstdAgt": {
+            "FinInstnId": {
+              "BICFI": "str1234",
+              "ClrSysMmbId": {
+                "ClrSysId": {},
+                "MmbId": "str1234"
+              },
+              "Nm": "str1234",
+              "PstlAdr": {
+                "AdrTp": "ADDR",
+                "Dept": "str1234",
+                "SubDept": "str1234",
+                "StrtNm": "str1234",
+                "BldgNb": "str1234",
+                "PstCd": "str1234",
+                "TwnNm": "str1234",
+                "CtrySubDvsn": "str1234",
+                "Ctry": "str1234",
+                "AdrLine": [
+                  "str1234"
+                ]
+              },
+              "Othr": {
+                "Id": "str1234",
+                "SchmeNm": {},
+                "Issr": "str1234"
+              }
+            },
+            "BrnchId": {
+              "Id": "str1234",
+              "Nm": "str1234",
+              "PstlAdr": {
+                "AdrTp": "ADDR",
+                "Dept": "str1234",
+                "SubDept": "str1234",
+                "StrtNm": "str1234",
+                "BldgNb": "str1234",
+                "PstCd": "str1234",
+                "TwnNm": "str1234",
+                "CtrySubDvsn": "str1234",
+                "Ctry": "str1234",
+                "AdrLine": [
+                  "str1234"
+                ]
+              }
+            }
+          }
+        },
+        "CdtTrfTxInf": [
+          {
+            "PmtId": {
+              "InstrId": "str1234",
+              "EndToEndId": "str1234",
+              "TxId": "str1234",
+              "ClrSysRef": "str1234"
+            },
+            "PmtTpInf": {
+              "InstrPrty": "HIGH",
+              "ClrChanl": "RTGS",
+              "SvcLvl": {},
+              "LclInstrm": {},
+              "CtgyPurp": {}
+            },
+            "IntrBkSttlmAmt": {
+              "Ccy": "str1234",
+              "value": 123.45
+            },
+            "IntrBkSttlmDt": "2012-12-13",
+            "SttlmPrty": "URGT",
+            "SttlmTmIndctn": {
+              "DbtDtTm": "2012-12-13T12:12:12",
+              "CdtDtTm": "2012-12-13T12:12:12"
+            },
+            "SttlmTmReq": {
+              "CLSTm": "12:12:12",
+              "TillTm": "12:12:12",
+              "FrTm": "12:12:12",
+              "RjctTm": "12:12:12"
+            },
+            "AccptncDtTm": "2035-01-25T12:12:12.000+0000",
+            "PoolgAdjstmntDt": "2012-12-13",
+            "InstdAmt": {
+              "Ccy": "str1234",
+              "value": 12345.45
+            },
+            "XchgRate": 2,
+            "ChrgBr": "DEBT",
+            "ChrgsInf": [
+              {
+                "Amt": {
+                  "Ccy": "str1234",
+                  "value": 123.45
+                },
+                "Agt": {
+                  "FinInstnId": {
+                    "BICFI": "str1234",
+                    "ClrSysMmbId": {
+                      "ClrSysId": {},
+                      "MmbId": "str1234"
+                    },
+                    "Nm": "str1234",
+                    "PstlAdr": {
+                      "AdrTp": "ADDR",
+                      "Dept": "str1234",
+                      "SubDept": "str1234",
+                      "StrtNm": "str1234",
+                      "BldgNb": "str1234",
+                      "PstCd": "str1234",
+                      "TwnNm": "str1234",
+                      "CtrySubDvsn": "str1234",
+                      "Ctry": "str1234",
+                      "AdrLine": [
+                        "str1234"
+                      ]
+                    },
+                    "Othr": {
+                      "Id": "str1234",
+                      "SchmeNm": {},
+                      "Issr": "str1234"
+                    }
+                  },
+                  "BrnchId": {
+                    "Id": "str1234",
+                    "Nm": "str1234",
+                    "PstlAdr": {
+                      "AdrTp": "ADDR",
+                      "Dept": "str1234",
+                      "SubDept": "str1234",
+                      "StrtNm": "str1234",
+                      "BldgNb": "str1234",
+                      "PstCd": "str1234",
+                      "TwnNm": "str1234",
+                      "CtrySubDvsn": "str1234",
+                      "Ctry": "str1234",
+                      "AdrLine": [
+                        "str1234"
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "PrvsInstgAgt": {
+              "FinInstnId": {
+                "BICFI": "str1234",
+                "ClrSysMmbId": {
+                  "ClrSysId": {},
+                  "MmbId": "str1234"
+                },
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                },
+                "Othr": {
+                  "Id": "str1234",
+                  "SchmeNm": {},
+                  "Issr": "str1234"
+                }
+              },
+              "BrnchId": {
+                "Id": "str1234",
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                }
+              }
+            },
+            "PrvsInstgAgtAcct": {
+              "Id": {},
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            },
+            "InstgAgt": {
+              "FinInstnId": {
+                "BICFI": "str1234",
+                "ClrSysMmbId": {
+                  "ClrSysId": {},
+                  "MmbId": "str1234"
+                },
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                },
+                "Othr": {
+                  "Id": "str1234",
+                  "SchmeNm": {},
+                  "Issr": "str1234"
+                }
+              },
+              "BrnchId": {
+                "Id": "str1234",
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                }
+              }
+            },
+            "InstdAgt": {
+              "FinInstnId": {
+                "BICFI": "str1234",
+                "ClrSysMmbId": {
+                  "ClrSysId": {},
+                  "MmbId": "str1234"
+                },
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                },
+                "Othr": {
+                  "Id": "str1234",
+                  "SchmeNm": {},
+                  "Issr": "str1234"
+                }
+              },
+              "BrnchId": {
+                "Id": "str1234",
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                }
+              }
+            },
+            "IntrmyAgt1": {
+              "FinInstnId": {
+                "BICFI": "str1234",
+                "ClrSysMmbId": {
+                  "ClrSysId": {},
+                  "MmbId": "str1234"
+                },
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                },
+                "Othr": {
+                  "Id": "str1234",
+                  "SchmeNm": {},
+                  "Issr": "str1234"
+                }
+              },
+              "BrnchId": {
+                "Id": "str1234",
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                }
+              }
+            },
+            "IntrmyAgt1Acct": {
+              "Id": {},
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            },
+            "IntrmyAgt2": {
+              "FinInstnId": {
+                "BICFI": "str1234",
+                "ClrSysMmbId": {
+                  "ClrSysId": {},
+                  "MmbId": "str1234"
+                },
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                },
+                "Othr": {
+                  "Id": "str1234",
+                  "SchmeNm": {},
+                  "Issr": "str1234"
+                }
+              },
+              "BrnchId": {
+                "Id": "str1234",
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                }
+              }
+            },
+            "IntrmyAgt2Acct": {
+              "Id": {},
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            },
+            "IntrmyAgt3": {
+              "FinInstnId": {
+                "BICFI": "str1234",
+                "ClrSysMmbId": {
+                  "ClrSysId": {},
+                  "MmbId": "str1234"
+                },
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                },
+                "Othr": {
+                  "Id": "str1234",
+                  "SchmeNm": {},
+                  "Issr": "str1234"
+                }
+              },
+              "BrnchId": {
+                "Id": "str1234",
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                }
+              }
+            },
+            "IntrmyAgt3Acct": {
+              "Id": {},
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            },
+            "UltmtDbtr": {
+              "Nm": "str1234",
+              "PstlAdr": {
+                "AdrTp": "ADDR",
+                "Dept": "str1234",
+                "SubDept": "str1234",
+                "StrtNm": "str1234",
+                "BldgNb": "str1234",
+                "PstCd": "str1234",
+                "TwnNm": "str1234",
+                "CtrySubDvsn": "str1234",
+                "Ctry": "str1234",
+                "AdrLine": [
+                  "str1234"
+                ]
+              },
+              "Id": {},
+              "CtryOfRes": "str1234",
+              "CtctDtls": {
+                "NmPrfx": "DOCT",
+                "Nm": "str1234",
+                "PhneNb": "str1234",
+                "MobNb": "str1234",
+                "FaxNb": "str1234",
+                "EmailAdr": "str1234",
+                "Othr": "str1234"
+              }
+            },
+            "InitgPty": {
+              "Nm": "str1234",
+              "PstlAdr": {
+                "AdrTp": "ADDR",
+                "Dept": "str1234",
+                "SubDept": "str1234",
+                "StrtNm": "str1234",
+                "BldgNb": "str1234",
+                "PstCd": "str1234",
+                "TwnNm": "str1234",
+                "CtrySubDvsn": "str1234",
+                "Ctry": "str1234",
+                "AdrLine": [
+                  "str1234"
+                ]
+              },
+              "Id": {},
+              "CtryOfRes": "str1234",
+              "CtctDtls": {
+                "NmPrfx": "DOCT",
+                "Nm": "str1234",
+                "PhneNb": "str1234",
+                "MobNb": "str1234",
+                "FaxNb": "str1234",
+                "EmailAdr": "str1234",
+                "Othr": "str1234"
+              }
+            },
+            "Dbtr": {
+              "Nm": "str1234",
+              "PstlAdr": {
+                "AdrTp": "ADDR",
+                "Dept": "str1234",
+                "SubDept": "str1234",
+                "StrtNm": "str1234",
+                "BldgNb": "str1234",
+                "PstCd": "str1234",
+                "TwnNm": "str1234",
+                "CtrySubDvsn": "str1234",
+                "Ctry": "str1234",
+                "AdrLine": [
+                  "str1234"
+                ]
+              },
+              "Id": {},
+              "CtryOfRes": "str1234",
+              "CtctDtls": {
+                "NmPrfx": "DOCT",
+                "Nm": "str1234",
+                "PhneNb": "str1234",
+                "MobNb": "str1234",
+                "FaxNb": "str1234",
+                "EmailAdr": "str1234",
+                "Othr": "str1234"
+              }
+            },
+            "DbtrAcct": {
+              "Id": {
+                "Other": {
+                  "Id": 46373892034012
+                }
+              },
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            },
+            "DbtrAgt": {
+              "FinInstnId": {
+                "BICFI": "str1234",
+                "ClrSysMmbId": {
+                  "ClrSysId": {},
+                  "MmbId": "str1234"
+                },
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                },
+                "Othr": {
+                  "Id": "str1234",
+                  "SchmeNm": {},
+                  "Issr": "str1234"
+                }
+              },
+              "BrnchId": {
+                "Id": "str1234",
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                }
+              }
+            },
+            "DbtrAgtAcct": {
+              "Id": {},
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            },
+            "CdtrAgt": {
+              "FinInstnId": {
+                "BICFI": "str1234",
+                "ClrSysMmbId": {
+                  "ClrSysId": {},
+                  "MmbId": "123456"
+                },
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                },
+                "Othr": {
+                  "Id": "str1234",
+                  "SchmeNm": {},
+                  "Issr": "str1234"
+                }
+              },
+              "BrnchId": {
+                "Id": "str1234",
+                "Nm": "str1234",
+                "PstlAdr": {
+                  "AdrTp": "ADDR",
+                  "Dept": "str1234",
+                  "SubDept": "str1234",
+                  "StrtNm": "str1234",
+                  "BldgNb": "str1234",
+                  "PstCd": "str1234",
+                  "TwnNm": "str1234",
+                  "CtrySubDvsn": "str1234",
+                  "Ctry": "str1234",
+                  "AdrLine": [
+                    "str1234"
+                  ]
+                }
+              }
+            },
+            "CdtrAgtAcct": {
+              "Id": {},
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            },
+            "Cdtr": {
+              "Nm": "str1234",
+              "PstlAdr": {
+                "AdrTp": "ADDR",
+                "Dept": "str1234",
+                "SubDept": "str1234",
+                "StrtNm": "str1234",
+                "BldgNb": "str1234",
+                "PstCd": "str1234",
+                "TwnNm": "str1234",
+                "CtrySubDvsn": "str1234",
+                "Ctry": "str1234",
+                "AdrLine": [
+                  "str1234"
+                ]
+              },
+              "Id": {},
+              "CtryOfRes": "str1234",
+              "CtctDtls": {
+                "NmPrfx": "DOCT",
+                "Nm": "str1234",
+                "PhneNb": "str1234",
+                "MobNb": "str1234",
+                "FaxNb": "str1234",
+                "EmailAdr": "str1234",
+                "Othr": "str1234"
+              }
+            },
+            "CdtrAcct": {
+              "Id": {
+                "Othr": {
+                  "Id": 41373681
+                }
+              },
+              "Tp": {},
+              "Ccy": "str1234",
+              "Nm": "str1234"
+            },
+            "UltmtCdtr": {
+              "Nm": "str1234",
+              "PstlAdr": {
+                "AdrTp": "ADDR",
+                "Dept": "str1234",
+                "SubDept": "str1234",
+                "StrtNm": "str1234",
+                "BldgNb": "str1234",
+                "PstCd": "str1234",
+                "TwnNm": "str1234",
+                "CtrySubDvsn": "str1234",
+                "Ctry": "str1234",
+                "AdrLine": [
+                  "str1234"
+                ]
+              },
+              "Id": {},
+              "CtryOfRes": "str1234",
+              "CtctDtls": {
+                "NmPrfx": "DOCT",
+                "Nm": "str1234",
+                "PhneNb": "str1234",
+                "MobNb": "str1234",
+                "FaxNb": "str1234",
+                "EmailAdr": "str1234",
+                "Othr": "str1234"
+              }
+            },
+            "InstrForCdtrAgt": [
+              {
+                "Cd": "CHQB",
+                "InstrInf": "str1234"
+              }
+            ],
+            "InstrForNxtAgt": [
+              {
+                "Cd": "PHOA",
+                "InstrInf": "str1234"
+              }
+            ],
+            "Purp": {},
+            "RgltryRptg": [
+              {
+                "DbtCdtRptgInd": "CRED",
+                "Authrty": {
+                  "Nm": "str1234",
+                  "Ctry": "str1234"
+                },
+                "Dtls": [
+                  {
+                    "Tp": "str1234",
+                    "Dt": "2012-12-13",
+                    "Ctry": "str1234",
+                    "Cd": "str1234",
+                    "Amt": {
+                      "Ccy": "str1234",
+                      "value": 123.45
+                    },
+                    "Inf": [
+                      "str1234"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "Tax": {
+              "Cdtr": {
+                "TaxId": "str1234",
+                "RegnId": "str1234",
+                "TaxTp": "str1234"
+              },
+              "Dbtr": {
+                "TaxId": "str1234",
+                "RegnId": "str1234",
+                "TaxTp": "str1234",
+                "Authstn": {
+                  "Titl": "str1234",
+                  "Nm": "str1234"
+                }
+              },
+              "AdmstnZn": "str1234",
+              "RefNb": "str1234",
+              "Mtd": "str1234",
+              "TtlTaxblBaseAmt": {
+                "Ccy": "str1234",
+                "value": 123.45
+              },
+              "TtlTaxAmt": {
+                "Ccy": "str1234",
+                "value": 123.45
+              },
+              "Dt": "2012-12-13",
+              "SeqNb": 123.45,
+              "Rcrd": [
+                {
+                  "Tp": "str1234",
+                  "Ctgy": "str1234",
+                  "CtgyDtls": "str1234",
+                  "DbtrSts": "str1234",
+                  "CertId": "str1234",
+                  "FrmsCd": "str1234",
+                  "Prd": {
+                    "Yr": "2012-12-13",
+                    "Tp": "MM01",
+                    "FrToDt": {
+                      "FrDt": "2012-12-13",
+                      "ToDt": "2012-12-13"
+                    }
+                  },
+                  "TaxAmt": {
+                    "Rate": 123.45,
+                    "TaxblBaseAmt": {
+                      "Ccy": "str1234",
+                      "value": 123.45
+                    },
+                    "TtlAmt": {
+                      "Ccy": "str1234",
+                      "value": 123.45
+                    },
+                    "Dtls": [
+                      {
+                        "Prd": {
+                          "Yr": "2012-12-13",
+                          "Tp": "MM01",
+                          "FrToDt": {
+                            "FrDt": "2012-12-13",
+                            "ToDt": "2012-12-13"
+                          }
+                        },
+                        "Amt": {
+                          "Ccy": "str1234",
+                          "value": 123.45
+                        }
+                      }
+                    ]
+                  },
+                  "AddtlInf": "str1234"
+                }
+              ]
+            },
+            "RltdRmtInf": [
+              {
+                "RmtId": "str1234",
+                "RmtLctnDtls": [
+                  {
+                    "Mtd": "FAXI",
+                    "ElctrncAdr": "str1234",
+                    "PstlAdr": {
+                      "Nm": "str1234",
+                      "Adr": {
+                        "AdrTp": "ADDR",
+                        "Dept": "str1234",
+                        "SubDept": "str1234",
+                        "StrtNm": "str1234",
+                        "BldgNb": "str1234",
+                        "PstCd": "str1234",
+                        "TwnNm": "str1234",
+                        "CtrySubDvsn": "str1234",
+                        "Ctry": "str1234",
+                        "AdrLine": [
+                          "str1234"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "RmtInf": {
+              "Ustrd": [
+                "str1234"
+              ],
+              "Strd": [
+                {
+                  "RfrdDocInf": [
+                    {
+                      "Tp": {
+                        "CdOrPrtry": {},
+                        "Issr": "str1234"
+                      },
+                      "Nb": "str1234",
+                      "RltdDt": "2012-12-13",
+                      "LineDtls": [
+                        {
+                          "Id": [
+                            {
+                              "Tp": {
+                                "CdOrPrtry": {},
+                                "Issr": "str1234"
+                              },
+                              "Nb": "str1234",
+                              "RltdDt": "2012-12-13"
+                            }
+                          ],
+                          "Desc": "str1234",
+                          "Amt": {
+                            "DuePyblAmt": {
+                              "Ccy": "str1234",
+                              "value": 123.45
+                            },
+                            "DscntApldAmt": [
+                              {
+                                "Tp": {},
+                                "Amt": {
+                                  "Ccy": "str1234",
+                                  "value": 123.45
+                                }
+                              }
+                            ],
+                            "CdtNoteAmt": {
+                              "Ccy": "str1234",
+                              "value": 123.45
+                            },
+                            "TaxAmt": [
+                              {
+                                "Tp": {},
+                                "Amt": {
+                                  "Ccy": "str1234",
+                                  "value": 123.45
+                                }
+                              }
+                            ],
+                            "AdjstmntAmtAndRsn": [
+                              {
+                                "Amt": {
+                                  "Ccy": "str1234",
+                                  "value": 123.45
+                                },
+                                "CdtDbtInd": "CRDT",
+                                "Rsn": "str1",
+                                "AddtlInf": "str1234"
+                              }
+                            ],
+                            "RmtdAmt": {
+                              "Ccy": "str1234",
+                              "value": 123.45
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "RfrdDocAmt": {
+                    "DuePyblAmt": {
+                      "Ccy": "str1234",
+                      "value": 123.45
+                    },
+                    "DscntApldAmt": [
+                      {
+                        "Tp": {},
+                        "Amt": {
+                          "Ccy": "str1234",
+                          "value": 123.45
+                        }
+                      }
+                    ],
+                    "CdtNoteAmt": {
+                      "Ccy": "str1234",
+                      "value": 123.45
+                    },
+                    "TaxAmt": [
+                      {
+                        "Tp": {},
+                        "Amt": {
+                          "Ccy": "str1234",
+                          "value": 123.45
+                        }
+                      }
+                    ],
+                    "AdjstmntAmtAndRsn": [
+                      {
+                        "Amt": {
+                          "Ccy": "str1234",
+                          "value": 123.45
+                        },
+                        "CdtDbtInd": "CRDT",
+                        "Rsn": "str1",
+                        "AddtlInf": "str1234"
+                      }
+                    ],
+                    "RmtdAmt": {
+                      "Ccy": "str1234",
+                      "value": 123.45
+                    }
+                  },
+                  "CdtrRefInf": {
+                    "Tp": {
+                      "CdOrPrtry": {},
+                      "Issr": "str1234"
+                    },
+                    "Ref": "str1234"
+                  },
+                  "Invcr": {
+                    "Nm": "str1234",
+                    "PstlAdr": {
+                      "AdrTp": "ADDR",
+                      "Dept": "str1234",
+                      "SubDept": "str1234",
+                      "StrtNm": "str1234",
+                      "BldgNb": "str1234",
+                      "PstCd": "str1234",
+                      "TwnNm": "str1234",
+                      "CtrySubDvsn": "str1234",
+                      "Ctry": "str1234",
+                      "AdrLine": [
+                        "str1234"
+                      ]
+                    },
+                    "Id": {},
+                    "CtryOfRes": "str1234",
+                    "CtctDtls": {
+                      "NmPrfx": "DOCT",
+                      "Nm": "str1234",
+                      "PhneNb": "str1234",
+                      "MobNb": "str1234",
+                      "FaxNb": "str1234",
+                      "EmailAdr": "str1234",
+                      "Othr": "str1234"
+                    }
+                  },
+                  "Invcee": {
+                    "Nm": "str1234",
+                    "PstlAdr": {
+                      "AdrTp": "ADDR",
+                      "Dept": "str1234",
+                      "SubDept": "str1234",
+                      "StrtNm": "str1234",
+                      "BldgNb": "str1234",
+                      "PstCd": "str1234",
+                      "TwnNm": "str1234",
+                      "CtrySubDvsn": "str1234",
+                      "Ctry": "str1234",
+                      "AdrLine": [
+                        "str1234"
+                      ]
+                    },
+                    "Id": {},
+                    "CtryOfRes": "str1234",
+                    "CtctDtls": {
+                      "NmPrfx": "DOCT",
+                      "Nm": "str1234",
+                      "PhneNb": "str1234",
+                      "MobNb": "str1234",
+                      "FaxNb": "str1234",
+                      "EmailAdr": "str1234",
+                      "Othr": "str1234"
+                    }
+                  },
+                  "TaxRmt": {
+                    "Cdtr": {
+                      "TaxId": "str1234",
+                      "RegnId": "str1234",
+                      "TaxTp": "str1234"
+                    },
+                    "Dbtr": {
+                      "TaxId": "str1234",
+                      "RegnId": "str1234",
+                      "TaxTp": "str1234",
+                      "Authstn": {
+                        "Titl": "str1234",
+                        "Nm": "str1234"
+                      }
+                    },
+                    "UltmtDbtr": {
+                      "TaxId": "str1234",
+                      "RegnId": "str1234",
+                      "TaxTp": "str1234",
+                      "Authstn": {
+                        "Titl": "str1234",
+                        "Nm": "str1234"
+                      }
+                    },
+                    "AdmstnZone": "str1234",
+                    "RefNb": "str1234",
+                    "Mtd": "str1234",
+                    "TtlTaxblBaseAmt": {
+                      "Ccy": "str1234",
+                      "value": 123.45
+                    },
+                    "TtlTaxAmt": {
+                      "Ccy": "str1234",
+                      "value": 123.45
+                    },
+                    "Dt": "2012-12-13",
+                    "SeqNb": 123.45,
+                    "Rcrd": [
+                      {
+                        "Tp": "str1234",
+                        "Ctgy": "str1234",
+                        "CtgyDtls": "str1234",
+                        "DbtrSts": "str1234",
+                        "CertId": "str1234",
+                        "FrmsCd": "str1234",
+                        "Prd": {
+                          "Yr": "2012-12-13",
+                          "Tp": "MM01",
+                          "FrToDt": {
+                            "FrDt": "2012-12-13",
+                            "ToDt": "2012-12-13"
+                          }
+                        },
+                        "TaxAmt": {
+                          "Rate": 123.45,
+                          "TaxblBaseAmt": {
+                            "Ccy": "str1234",
+                            "value": 123.45
+                          },
+                          "TtlAmt": {
+                            "Ccy": "str1234",
+                            "value": 123.45
+                          },
+                          "Dtls": [
+                            {
+                              "Prd": {
+                                "Yr": "2012-12-13",
+                                "Tp": "MM01",
+                                "FrToDt": {
+                                  "FrDt": "2012-12-13",
+                                  "ToDt": "2012-12-13"
+                                }
+                              },
+                              "Amt": {
+                                "Ccy": "str1234",
+                                "value": 123.45
+                              }
+                            }
+                          ]
+                        },
+                        "AddtlInf": "str1234"
+                      }
+                    ]
+                  },
+                  "GrnshmtRmt": {
+                    "Tp": {
+                      "CdOrPrtry": {},
+                      "Issr": "str1234"
+                    },
+                    "Grnshee": {
+                      "Nm": "str1234",
+                      "PstlAdr": {
+                        "AdrTp": "ADDR",
+                        "Dept": "str1234",
+                        "SubDept": "str1234",
+                        "StrtNm": "str1234",
+                        "BldgNb": "str1234",
+                        "PstCd": "str1234",
+                        "TwnNm": "str1234",
+                        "CtrySubDvsn": "str1234",
+                        "Ctry": "str1234",
+                        "AdrLine": [
+                          "str1234"
+                        ]
+                      },
+                      "Id": {},
+                      "CtryOfRes": "str1234",
+                      "CtctDtls": {
+                        "NmPrfx": "DOCT",
+                        "Nm": "str1234",
+                        "PhneNb": "str1234",
+                        "MobNb": "str1234",
+                        "FaxNb": "str1234",
+                        "EmailAdr": "str1234",
+                        "Othr": "str1234"
+                      }
+                    },
+                    "GrnshmtAdmstr": {
+                      "Nm": "str1234",
+                      "PstlAdr": {
+                        "AdrTp": "ADDR",
+                        "Dept": "str1234",
+                        "SubDept": "str1234",
+                        "StrtNm": "str1234",
+                        "BldgNb": "str1234",
+                        "PstCd": "str1234",
+                        "TwnNm": "str1234",
+                        "CtrySubDvsn": "str1234",
+                        "Ctry": "str1234",
+                        "AdrLine": [
+                          "str1234"
+                        ]
+                      },
+                      "Id": {},
+                      "CtryOfRes": "str1234",
+                      "CtctDtls": {
+                        "NmPrfx": "DOCT",
+                        "Nm": "str1234",
+                        "PhneNb": "str1234",
+                        "MobNb": "str1234",
+                        "FaxNb": "str1234",
+                        "EmailAdr": "str1234",
+                        "Othr": "str1234"
+                      }
+                    },
+                    "RefNb": "str1234",
+                    "Dt": "2012-12-13",
+                    "RmtdAmt": {
+                      "Ccy": "str1234",
+                      "value": 123.45
+                    },
+                    "FmlyMdclInsrncInd": true,
+                    "MplyeeTermntnInd": true
+                  },
+                  "AddtlRmtInf": [
+                    "str1234"
+                  ]
+                }
+              ]
+            },
+            "SplmtryData": [
+              {
+                "PlcAndNm": "str1234",
+                "Envlp": {}
+              }
+            ]
+          }
+        ],
+        "SplmtryData": [
+          {
+            "PlcAndNm": "str1234",
+            "Envlp": {}
+          }
+        ]
+      }
+    }
+  },
+  "additionalInfo": {
+  }
+}

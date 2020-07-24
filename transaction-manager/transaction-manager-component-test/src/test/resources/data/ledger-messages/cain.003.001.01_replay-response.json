@@ -1,0 +1,19 @@
+{
+  "header":{
+    "type":"APPLICATION_ADJUSTMENTS",
+    "url":null
+  },
+  "messages":[
+    {
+      "type":"APPLICATION_ADJUSTMENTS",
+      "message":{
+        "VALUE_DATE_TIME":"2012-12-13T12:12:12.000+0000",
+        "AMOUNT":10.00,
+        "BASE_CURRENCY_CODE":"GBP"
+      },
+      "additionalInfo":{
+        "SUBSCRIPTION_KEY":"17c5b5c16-5aea-440d-adec-49cb56c6f637"
+      }
+    }
+  ]
+}

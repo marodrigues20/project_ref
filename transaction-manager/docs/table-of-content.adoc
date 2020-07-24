@@ -1,0 +1,24 @@
+= Transaction Manager Table of Content
+== <<failures.adoc#, Click here for more details>>
+
+== <<overview.adoc#, Overview>>
+
+== <<team.adoc#, Team>>
+
+== <<decisions.adoc#, Decisions>>
+
+== <<development.adoc#, Development>>
+
+== <<operations.adoc#, Operations>>
+
+== <<glossary.adoc#, Glossary>>
+
+== <<production-ready-checklist.adoc#, Checklist>>
+
+== <<dependencies.adoc#, Dependencies>>
+
+== <<scope.adoc#, Scope>>
+
+== <<service_tests.adoc#, Service Tests>>
+
+== <<faq.adoc#, Faq>>

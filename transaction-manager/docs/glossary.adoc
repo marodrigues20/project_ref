@@ -1,0 +1,14 @@
+= Glossary
+
+This page will represent a collection of terms that the development team uses on a daily basis to describe the domain the
+microservice operates within.
+
+    | PDF  | Payment Decision Framework
+
+    | TM   | Transaction Manager / Transaction Message
+
+    | LM   | Ledger Manager
+
+    | PP   | Payment Proxy
+
+    |===

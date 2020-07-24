@@ -1,0 +1,68 @@
+{
+  "header": {
+    "paymentType": "FPS",
+    "messageType": "PACS008",
+    "url": "some url",
+    "messageHash": "some hash"
+  },
+  "message": {
+    "Document": {
+      "FIToFICstmrCdtTrf": {
+        "GrpHdr": {
+          "TtlIntrBkSttlmAmt": {
+            "Ccy": "EUR",
+            "value": 12345.45
+          },
+          "BtchBookg": true,
+          "PmtTpInf": {
+            "InstrPrty": "HIGH",
+            "CtgyPurp": {},
+            "ClrChanl": "RTGS",
+            "LclInstrm": {},
+            "SvcLvl": {}
+          },
+          "CreDtTm": "2017-11-24T12:12:12.000+0000",
+          "CtrlSum": 123.45,
+          "NbOfTxs": "str1234",
+          "MsgId": "Msg00800106",
+          "IntrBkSttlmDt": "2012-12-13"
+        },
+        "CdtTrfTxInf": [
+          {
+            "PoolgAdjstmntDt": "2012-12-13",
+            "SttlmTmIndctn": {
+              "CdtDtTm": "2012-12-13T12:12:12",
+              "DbtDtTm": "2012-12-13T12:12:12"
+            },
+            "InstdAmt": {
+              "Ccy": "str1234",
+              "value": 12345.45
+            },
+            "ChrgBr": "DEBT",
+            "SplmtryData": [
+              {
+                "Envlp": {},
+                "PlcAndNm": "str1234"
+              }
+            ],
+            "AccptncDtTm": "2017-01-25T12:12:12.000+0000",
+            "IntrBkSttlmDt": "2012-12-13",
+            "XchgRate": 2
+          }
+        ],
+        "SplmtryData": [
+          {
+            "Envlp": {},
+            "PlcAndNm": "str1234"
+          }
+        ]
+      }
+    }
+  },
+  "additionalInfo": {
+    "PARTY_KEY": "102",
+    "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637",
+    "DIGITAL_SERVICE_KEY": "703",
+    "TENANT_PARTY_KEY": "10000"
+  }
+}

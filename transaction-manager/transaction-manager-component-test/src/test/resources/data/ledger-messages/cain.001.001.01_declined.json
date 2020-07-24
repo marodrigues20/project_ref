@@ -1,0 +1,49 @@
+{
+  "header": {
+    "paymentType": "PAYMENT_AUTH",
+    "messageType": "CAIN002",
+    "url": null,
+    "messageHash": null
+  },
+  "message": {
+    "Document": {
+      "AcqrrAuthstnRspn": {
+        "SctyTrlr": {
+
+        },
+        "AuthstnRspn": {
+          "Tx": {
+            "TxDtls": {
+              "TxAmts": {
+                "TtlAmt": {
+                  "value": 123.45,
+                  "Ccy": "GBP"
+                }
+              }
+            },
+            "AuthstnRslt": {
+              "TxRspn": {
+                "Rslt": "DECL"
+              }
+            },
+            "AccptrTxDtTm": "2017-01-25T01:01:01.000+0000"
+          },
+          "Envt": {
+            "AccptrId": "ASDASUPERSTORE_04315",
+            "Card": {
+              "PlainCardData": {
+                "PAN": "5584345930798931"
+              }
+            }
+          }
+        },
+        "Hdr": {
+          "CreDtTm": "2017-01-25T01:01:01.000+0000"
+        }
+      }
+    }
+  },
+  "additionalInfo": {
+    "SUBSCRIPTION_KEY": "17c5b5c16-5aea-440d-adec-49cb56c6f637"
+  }
+}

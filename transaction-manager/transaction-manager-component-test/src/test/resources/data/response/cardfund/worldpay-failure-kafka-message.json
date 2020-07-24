@@ -1,0 +1,45 @@
+{
+  "header": {
+    "type": "TOP_UP_BY_CARD",
+    "url": ""
+  },
+  "messages": [
+    {
+      "type": "CAAA002",
+      "message": {
+        "TOKEN_EXPIRY_MONTH": 12,
+        "AUTHORISATION_RESULT_RESPONSE": "REFUSED",
+        "TOKEN_EXPIRY_DAY": 4,
+        "TOKEN_EXPIRY_YEAR": 2018,
+        "SHOPPER_ID": "ec8956637a99787bd197eacd77acce5e",
+        "TOKENDATA_REASON": "VeboFundAccount",
+        "AMOUNT_EXPONENT": 2,
+        "CURRENCY_CODE": "GBP",
+        "CARD_ADDR_LINE1": "5 Howick Place",
+        "AMOUNT_DEBIT_CREDIT_INDICATOR": "credit",
+        "TOKEN_CHRTC": "CONFLICT",
+        "CARD_SUB_BRAND": "VISA_CREDIT",
+        "TOKENDATA_EVENT_REFERENCE": "TOK201804454581491",
+        "CARD_POST_CODE": "SW1P 1WG",
+        "TOKEN_EXPIRY_HOUR": 17,
+        "TOKEN_EXPIRY_SECOND": 30,
+        "MASKED_PAN": "4444********1111",
+        "CARD_COUNTRY_CODE": "N/A",
+        "TOKEN": "9983120081601617572",
+        "CARD_BRAND": "VISA",
+        "CARD_ADDR_CITY": "London",
+        "TOKEN_EXPIRY_MINUTE": 38,
+        "TOTAL_AMOUNT": 31000
+      },
+      "additionalInfo": {
+        "PRODUCT_KEY": "703",
+        "PARTY_KEY": "102",
+        "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637"
+      }
+    }
+  ],
+  "additionalInfo": {
+    "x-b3-traceid": "5c41b539181035048daf8df39b94f2fd",
+    "l5d-test": "test123"
+  }
+}

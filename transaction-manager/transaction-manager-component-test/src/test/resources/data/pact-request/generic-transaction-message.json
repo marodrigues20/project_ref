@@ -1,0 +1,42 @@
+{
+  "header": {
+    "type": "CARD_AUTH",
+    "url" : null
+  },
+  "messages": [
+    {
+      "type": "CAIN002",
+      "message": {
+        "TOTAL_AMOUNT": "12.0",
+        "AMOUNT": "12.0",
+        "TRANSACTION_CURRENCY_CODE": "GBP",
+        "TRANSACTION_DATE": "2018-05-11T13:14:30.893+0000",
+        "CARD_ACCEPTOR_ID": "string",
+        "MERCHANT_CATEGORY_CODE": "string",
+        "PAN_NUMBER": "5584345930798931",
+        "CARD_ACCEPTOR_NAME": "string",
+        "TRANSACTION_TYPE": "string",
+        "CARD_DATA_ENTRY_MODE": "string",
+        "TRANSACTION_AMOUNT_QUALIFIER": "string",
+        "EXCHANGE_RATE": "2.0",
+        "CARDHOLDER_PRESENT": true,
+        "TRANSACTION_RESPONSE_CODE": "APPR"
+
+      },
+      "additionalInfo": {
+        "PARTY_KEY": "string",
+        "DIGITAL_SERVICE_KEY": "string",
+        "SUBSCRIPTION_KEY": "a72cb8ca-e1c4-45f0-9de0-c20c40cd5569",
+        "TRANSACTION_ID": "01aced38-849e-4820-b734-a9542134eb14155592457122",
+        "PAYMENT_METHOD_TYPE" : "string",
+        "TRANSACTION_CODE" : "string"
+      }
+    }
+  ],
+  "additionalInfo": {
+    "REQUEST_ID": "string",
+    "TENANT_PARTY_KEY": "10000",
+    "TRANSACTION_CORRELATION_ID": "5306671493",
+    "TRANSACTION_STATUS": "SUCCESS"
+  }
+}

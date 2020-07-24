@@ -1,0 +1,38 @@
+{
+  "data": {
+    "27c5b516-5aea-540d-adec-59cb56c6f637": [
+      {
+        "creditDebitIndicator": "CREDIT",
+        "type": "InterimBooked",
+        "datetime": "2019-03-12T11:15:41.528+0000",
+        "accountId": "6b4a7699-d3cc-4687-9517-2b2153872654",
+        "amount": {
+          "value": 9980.288,
+          "currency": "GBP"
+        }
+      },
+      {
+        "creditDebitIndicator": "CREDIT",
+        "type": "InterimAvailable",
+        "datetime": "2019-03-12T11:15:41.528+0000",
+        "accountId": "27c5b516-5aea-540d-adec-59cb56c6f637",
+        "amount": {
+          "value": 9957.828,
+          "currency": "GBP"
+        }
+      }
+    ]
+  },
+  "links": {
+    "self": null,
+    "first": null,
+    "prev": null,
+    "next": null,
+    "last": null
+  },
+  "meta": {
+    "totalPages": null,
+    "firstAvailableDateTime": null,
+    "lastAvailableDateTime": null
+  }
+}

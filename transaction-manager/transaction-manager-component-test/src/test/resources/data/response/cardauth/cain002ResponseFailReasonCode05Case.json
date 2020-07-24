@@ -1,0 +1,46 @@
+{
+  "paymentStatus":"FAILED",
+  "reason":{
+    "code":2100,
+    "message":"Transaction failed"
+  },
+  "transactionMessage":{
+    "header":{
+      "type":"CARD_AUTH",
+      "url":null
+    },
+    "messages":[
+      {
+        "type":"CAIN002",
+        "message":{
+          "TRANSACTION_DATE":"2018-05-11T13:14:30.893+0000",
+          "MERCHANT_CATEGORY_CODE":"ASDA",
+          "TRANSACTION_RESPONSE_REASON_CODE":"05",
+          "INITIATOR_PARTY_ID":"101",
+          "TRANSACTION_CURRENCY_CODE":"GBP",
+          "TRANSACTION_TYPE":"CRDP",
+          "CARDHOLDER_PRESENT":true,
+          "TRANSACTION_RESPONSE_CODE":"DECL",
+          "TRANSACTION_AMOUNT_QUALIFIER":"ACTL",
+          "AMOUNT":"123",
+          "CARD_ACCEPTOR_NAME":"ASDA",
+          "CARD_DATA_ENTRY_MODE":"CICC",
+          "TOTAL_AMOUNT":"123"
+        },
+        "additionalInfo":{
+          "PRODUCT_KEY":"703",
+          "PARTY_KEY":"102",
+          "SUBSCRIPTION_KEY":"27c5b516-5aea-540d-adec-59cb56c6f637",
+          "TRANSACTION_ID":"4898733729"
+        }
+      }
+    ],
+    "additionalInfo":{
+      "TRANSACTION_CORRELATION_ID":"3587447214",
+      "REQUEST_ID":"ecfc6c00-3cab-11e8-98d3-7f99b9a03939",
+      "TENANT_PARTY_KEY":"10000",
+      "TRANSACTION_STATUS":"FAILED",
+      "POSTED_BALANCE": 100
+    }
+  }
+}

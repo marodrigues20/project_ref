@@ -1,0 +1,11 @@
+rootProject.name = 'transaction-manager'
+include 'transaction-manager-service',
+        'transaction-manager-component-test',
+        'payment-decision-framework-client',
+        'payment-proxy-client',
+        'interest-calculator-client',
+        'worldpay-adapter-client',
+        'ledger-manager-client',
+        'fund-account-manager-client',
+        'platform-payment-manager-client'
+

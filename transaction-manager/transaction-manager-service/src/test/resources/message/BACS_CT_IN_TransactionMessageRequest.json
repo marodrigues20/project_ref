@@ -1,0 +1,28 @@
+{
+  "additionalInfo": {
+    "REQUEST_ID": "ecfc6c00-3cab-11e8-98d3-7f99b9a03939",
+    "TENANT_PARTY_KEY": "10000"
+  },
+  "header": {
+    "type": "BACS_CT_IN",
+    "url": ""
+  },
+  "messages": [
+    {
+      "additionalInfo": {
+        "PRODUCT_KEY": "704",
+        "PARTY_KEY": "103",
+        "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f622"
+      },
+      "message": {
+        "BASE_CURRENCY_CODE": "GBP",
+        "CREDITOR_ACCOUNT_NUMBER": "87798989",
+        "CREDITOR_SORT_CODE": "12345678",
+        "INSTRUCTED_AMOUNT": "10",
+        "TRANSACTION_DATE": "2018-05-11T13:14:30.893Z",
+        "VALUE_DATE_TIME": "2018-05-11T13:14:30.893Z"
+      },
+      "type": "PACS008"
+    }
+  ]
+}

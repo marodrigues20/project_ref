@@ -1,0 +1,168 @@
+{
+  "header": {
+    "paymentType": "PAYMENT_AUTH",
+    "messageType": "CAIN001",
+    "url": "",
+    "messageHash": ""
+  },
+  "message": {
+    "Document": {
+      "AcqrrAuthstnInitn": {
+        "Hdr": {
+          "MsgFctn": "AUTQ",
+          "PrtcolVrsn": "1",
+          "XchgId": "001",
+          "ReTrnsmssnCntr": "000",
+          "CreDtTm": "1900-01-01T01:01:01.000+0000",
+          "InitgPty": {
+            "Id": "World Pay Acuiring Svcs",
+            "Tp": "ACQR",
+            "Issr": "CSCH",
+            "ShrtNm": "WorldPay"
+          },
+          "RcptPty": {
+            "Id": "Virgin Money Digital Bank",
+            "Tp": "CISS",
+            "Issr": "CSCH",
+            "ShrtNm": "VMDB"
+          }
+        },
+        "AuthstnInitn": {
+          "Envt": {
+            "Acqrr": {
+              "Id": "World Pay Acuiring Svcs",
+              "Issr": "CSCH"
+            },
+            "CardSchmeId": "MasterCard",
+            "Accptr": {
+              "Id": {
+                "Id": "ASDASUPERSTORE_04315",
+                "Tp": "MERC",
+                "Issr": "ACQR",
+                "ShrtNm": "ASDA"
+              },
+              "CmonNm": "ASDA"
+            },
+            "Termnl": {
+              "Id": {
+                "Id": "12312312",
+                "Tp": "OPOI",
+                "Issr": "MERC",
+                "ShrtNm": "12312312"
+              },
+              "Cpblties": {
+                "CardRdngCpblties": [
+                  "CICC",
+                  "ECTL",
+                  "MGST"
+                ],
+                "CardWrttgCpblties": [
+                  "ECTL",
+                  "CICC"
+                ],
+                "CrdhldrVrfctnCpblties": [
+                  "APKI",
+                  "NPIN"
+                ],
+                "PINLngthCpblties": "6",
+                "ApprvlCdLngth": "6",
+                "MxScrptLngth": "512",
+                "CardCaptrCpbl": "true",
+                "OnLineCpblties": "ONLN",
+                "MsgCpblties": [
+                  {
+                    "Dstn": "CDSP",
+                    "AvlblFrmt": "TEXT",
+                    "NbOfLines": "1",
+                    "LineWidth": "40",
+                    "AvlblLang": "en-GB"
+                  },
+                  {
+                    "Dstn": "CRCP",
+                    "AvlblFrmt": "TEXT",
+                    "NbOfLines": "1",
+                    "LineWidth": "40",
+                    "AvlblLang": "en-GB"
+                  },
+                  {
+                    "Dstn": "MDSP",
+                    "AvlblFrmt": "TEXT",
+                    "NbOfLines": "1",
+                    "LineWidth": "40",
+                    "AvlblLang": "en-GB"
+                  }
+                ]
+              }
+            },
+            "Card": {
+              "PlainCardData": {
+                "PAN": "5584345930798931",
+                "CardSeqNb": "001",
+                "XpryDt": "1801",
+                "TrckData": [
+                  {
+                    "TrckNb": "1",
+                    "TrckVal": "%B5584345930798931^Bloggs/Fred^1801^?"
+                  },
+                  {
+                    "TrckNb": "2",
+                    "TrckVal": ";B5584345930798931=1801=?"
+                  }
+                ],
+                "CrdhldrNm": "Mr Fred Bloggs"
+              },
+              "IssrBIN": "123412",
+              "CardCcyCd": "GBP"
+            }
+          },
+          "Cntxt": {
+            "TxCntxt": {
+              "CardPres": "true",
+              "CrdhldrPres": "true",
+              "LctnCtgy": "FIXD",
+              "AttndncCntxt": "ATTD",
+              "TxEnvt": "PUBL",
+              "HstgCtgy": "MERC",
+              "CardDataNtryMd": "CICC",
+              "FllbckInd": "NFLB",
+              "SpprtdOptn": "MSRV",
+              "TxChanl": "SECM"
+            },
+            "SaleCntxt": {
+              "SaleRefNb": "sale reference"
+            }
+          },
+          "Tx": {
+            "TxTp": "CRDP",
+            "MrchntCtgyCd": "5411",
+            "Rcncltn": {
+              "RcncltnDt": "1900-01-01"
+            },
+            "AccptrTxDtTm": "2017-01-25T01:01:01.000+0000",
+            "AccptrTxId": "1234 Field 37 ID",
+            "InitrTxId": "1234 field 11 id",
+            "TxLifeCyclSeqNb": "1",
+            "TxLifeCyclSeqCntr": "1",
+            "TxDtls": {
+              "TxAmts": {
+                "TtlAmt": {
+                  "Ccy": "GBP",
+                  "Value": "123.45"
+                },
+                "AmtQlfr": "ACTL"
+              },
+              "VldtyDt": "1900-01-01"
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalInfo": {
+    "TRACE_ID": "1-5759e988-bd862e3fe1be46a994272793",
+    "TRANSACTION_ID": "96199533-1aed-4527-a29e-9e530183020f",
+    "SUBSCRIPTION_KEY": "17c5b5c16-5aea-440d-adec-49cb56c6f637",
+    "CORRELATION_ID": "d79914e3-9a3b-4a32-9220-2a76f2c8ec0b",
+    "TRACE_SEGMENT_PARENT": "7c09ada7013ac908"
+  }
+}

@@ -1,0 +1,156 @@
+server:
+ port: 8099
+
+lion:
+ application:
+  name: transaction-manager
+
+redis:
+ host: "localhost"
+ port: 6379
+
+spring:
+  profiles:
+    active: ${DATABASE_TYPE:mysql}
+  application:
+    name: transaction-manager
+  main:
+    banner-mode: "off"
+  jmx:
+    enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  sleuth.traceId128: true
+
+management:
+  endpoints:
+    web:
+      base-path: "/"
+      path-mapping:
+        prometheus: "metrics"
+      exposure:
+        include: ["health", "info", "prometheus", "httptrace"]
+  endpoint:
+    prometheus:
+      enabled: true
+  info:
+    git:
+      mode: full
+  metrics:
+    binders:
+      jvm.enabled: true
+      logback.enabled: true
+    export:
+      prometheus:
+        descriptions: true
+        enabled: true
+        step: 1m
+    distribution:
+      percentiles-histogram[http.server.requests]: true
+      percentiles:
+        http.server.requests: 0.50, 0.75, 0.95, 0.99
+      sla:
+        http.server.requests: 10ms,100ms
+
+downstream:
+  http-headers-forward: "x-ray-trace,x-b3-*,l5d-*"
+
+endpoints:
+  enabled: true
+
+kafka:
+  headers-forward: "x-ray-trace,X-Amzn-Trace-Id,traceId,spanId,parentId,spanExportable,X-,l5d-"
+  security.protocol: SASL_SSL
+  consumer:
+    interest:
+      thread:
+        count: 1
+      client:
+        id:
+          prefix: tm-interest-consumer
+      group:
+        id: tm-interest-group
+      topics: transaction-interest-commands-topic
+      poll:
+        timeout:
+          ms: 200
+        max:
+          records: 5
+  producer:
+    client:
+      id:
+        prefix:  tm-producer
+    transaction-enrichment:
+      topic:
+        name: transaction-enrichment-commands-topic
+    ledger-manager:
+      topic:
+        name: ledger-manager-commands-topic
+      payment-messages:
+        topic:
+          name: payment-messages-topic
+    payment-messages:
+      topic:
+        name: payment-messages-topic
+---
+spring:
+  profiles: mysql
+  datasource:
+    url: ${MYSQL_DATASOURCE_URL}
+    username: ${MYSQL_DATASOURCE_USERNAME}
+    password: ${MYSQL_DATASOURCE_PASSWORD}
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        use_sql_comments: false
+        format_sql: false
+          #jdbc:
+          #  lob:
+          #    non_contextual_creation: true
+      open-in-view: true
+      show-sql: true
+  flyway:
+    locations: classpath:db/migration/mysql
+
+
+reconciliation:
+  datasource:
+    url: ${RECONCILIATION_DB_URL}
+    username: ${RECONCILIATION_DB_USERNAME}
+    password: ${RECONCILIATION_DB_PASSWORD}
+
+---
+spring:
+  profiles: cockroachdb
+  datasource:
+    url: jdbc:postgresql://cockroach.db.svc.cluster.local:26257/${transactionmanager_database}?sslmode=verify-full&sslcert=/cockroach-certs-transactionmanager/client.${transactionmanager_dbUsername}.crt&sslkey=/cockroach-certs-transactionmanager/client.${transactionmanager_dbUsername}.pk8&sslrootcert=/cockroach-certs-transactionmanager/ca.crt
+    username: ${transactionmanager_dbUsername}
+    password:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        use_sql_comments: true
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+      show-sql: false
+  flyway:
+    schemas:
+    locations: classpath:db/migration/cockroachdb
+
+downstream:
+  debit-card-manager:
+    rest:
+      url: http://debitcardmanager.cards
+
+reconciliation:
+  datasource:
+    url: jdbc:postgresql://cockroach.db.svc.cluster.local:26257/${tmreconuser_database}?sslmode=verify-full&sslcert=/cockroach-certs-tmreconuser/client.${tmreconuser_dbUsername}.crt&sslkey=/cockroach-certs-tmreconuser/client.${tmreconuser_dbUsername}.pk8&sslrootcert=/cockroach-certs-tmreconuser/ca.crt
+    username: ${tmreconuser_dbUsername}
+    

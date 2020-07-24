@@ -1,0 +1,142 @@
+{
+	"header": {
+		"paymentType": "FPS",
+		"messageType": "PACS008",
+		"url": "some url",
+		"messageHash": "some hash"
+	},
+	"message": {
+  "Document": {
+    "FIToFICstmrCdtTrf": {
+      "GrpHdr": {
+        "MsgId": "9200102012345123451234170714",
+        "CreDtTm": "2012-12-13T12:12:12",
+        "BtchBookg": "false",
+        "NbOfTxs": "1",
+        "CtrlSum": "123.45",
+        "TtlIntrBkSttlmAmt": {
+          "-Ccy": "GBP",
+          "#text": "123.45"
+        },
+        "IntrBkSttlmDt": "2012-12-13",
+        "SttlmInf": {
+          "SttlmMtd": "CLRG",
+          "ClrSys": { "Prtry": "001" },
+          "InstgRmbrsmntAgt": {
+            "FinInstnId": {
+              "Othr": {
+                "Id": "01204141",
+                "SchmeNm": { "Prtry": "FPS" }
+              }
+            }
+          },
+          "InstdRmbrsmntAgt": {
+            "FinInstnId": {
+              "Othr": { "Id": "01233243" }
+            }
+          }
+        },
+        "PmtTpInf": {
+          "CtgyPurp": { "Prtry": "999999" }
+        }
+      },
+      "CdtTrfTxInf": {
+        "PmtId": {
+          "EndToEndId": "191919119Unique end to end id19191",
+          "TxId": "Unique id for trans, from pain 001 or above"
+        },
+        "PmtTpInf": {
+          "SvcLvl": { "Prtry": "1" },
+          "LclInstrm": { "Prtry": "10" },
+          "CtgyPurp": { "Prtry": "002" }
+        },
+        "IntrBkSttlmAmt": {
+          "-Ccy": "GBP",
+          "#text": "123.45"
+        },
+        "IntrBkSttlmDt": "2012-12-13",
+        "AccptncDtTm": "2012-12-13T00:00:00",
+        "ChrgBr": "DEBT",
+       
+        "InstgAgt": {
+          "FinInstnId": {
+            "ClrSysMmbId": {
+              "ClrSysId": { "Code": "GBDSC" },
+              "MmbId": "402121"
+            },
+            "Othr": { "Id": "20" }
+          }
+        },
+        "InstdAgt": {
+          "FinInstnId": {
+            "Othr": {
+              "Id": "str1234",
+              "Issr": "str1234"
+            }
+          },
+          "BrnchId": { "Id": "00" }
+        },
+        "Dbtr": {
+          "PstlAdr": {
+            "AdrLine": [
+              "Customer Address 1",
+              "Address 2",
+              "Address town",
+              "Post code",
+              "str1234"
+            ]
+          }
+        },
+        "DbtrAcct": {
+          "Id": {
+            "Othr": { "Id": "12312399" }
+          },
+          "Nm": "Mr Customer Name"
+        },
+        "DbtrAgt": {
+          "FinInstnId": {
+            "BICFI": "402121",
+            "ClrSysMmbId": {
+              "ClrSysId": { "Code": "GBDSC" },
+              "MmbId": "402121"
+            }
+          }
+        },
+        "DbtrAgtAcct": {
+          "Id": {
+            "Othr": {
+              "Id": "1234566",
+              "Issr": "342323"
+            }
+          }
+        },
+        "CdtrAgt": {
+          "FinInstnId": {
+            "ClrSysMmbId": {
+              "ClrSysId": { "Code": "GBDSC" },
+              "MmbId": "543232"
+            }
+          }
+        },
+        "Cdtr": {
+          "Id": {
+            "Othr": { "Id": "12312377" }
+          }
+        },
+        "CdtrAcct": {
+          "Tp": { "Prtry": "Payment Reference" },
+          "Nm": "Mr Payee Name"
+        }
+      }
+    }
+  }
+},
+	"additionalInfo": {
+		"PARTY_KEY": "102",
+		"SUBSCRIPTION_ID": "12345",
+		"CORRELATION_ID": "234454",
+		"TRANSACTION_ID": "345667",
+		 "DIGITAL_SERVICE_KEY":"3338827890"
+
+	}
+}

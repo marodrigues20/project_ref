@@ -1,0 +1,22 @@
+{
+  "additionalInfo": {
+    "REQUEST_ID": "ecfc6c00-3cab-11e8-98d3-7f99b9a03939"
+  },
+  "header": {
+    "type": "TOP_UP_BY_CARD",
+    "url": ""
+  },
+  "messages": [{
+    "additionalInfo": {
+      "PRODUCT_KEY": "703",
+      "PARTY_KEY": "102",
+      "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637",
+      "TRANSACTION_CODE": "PMNT.MCRD.OTFU"
+    },
+    "message": {
+      "TOKEN": "1234567890987654",
+      "TOTAL_AMOUNT": 1234.00
+    },
+    "type": "CAAA001"
+  }]
+}

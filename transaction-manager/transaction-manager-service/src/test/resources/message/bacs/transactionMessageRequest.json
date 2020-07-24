@@ -1,0 +1,31 @@
+{
+  "header": {
+    "type": "BACS_IN",
+    "url": ""
+  },
+  "messages": [{
+    "type": "PACS008",
+    "message": {
+      "INTERBANK_SETTLEMENT_AMOUNT": "100",
+      "INTERBANK_SETTLEMENT_CURRENCY": "GBP",
+      "TRANSACTION_DATE": "2018-05-17T13:14:30.893+0000",
+      "VALUE_DATE_TIME": "2018-05-17T13:14:30.893+0000",
+      "CREDITOR_ACCOUNT_NUMBER": "41373689",
+      "CREDITOR_SORT_CODE": "603653",
+      "TRANSACTION_REFERENCE": "transaction ref",
+      "DEBTOR_NAME": "William Parker"
+    },
+    "additionalInfo": {
+      "PARTY_KEY": "105",
+      "DIGITAL_SERVICE_KEY": "701",
+      "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637",
+      "SUBSCRIPTION_STATUS": "ACTIVE",
+      "TRANSACTION_ID": "1749682280"
+    }
+  }],
+  "additionalInfo": {
+    "REQUEST_ID": "ecfc6c00-3cab-11e8-98d3-7f99b9a03930",
+    "TRANSACTION_CORRELATION_ID": "5306671490",
+    "TENANT_PARTY_KEY": "10000"
+  }
+}

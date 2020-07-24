@@ -1,0 +1,8 @@
+@Library('10x-SharedLib@helm/v2.8') _
+
+runPipeline(
+  repositoryName: 'transaction-manager',
+  serviceName: 'transactionmanager',
+  primaryBranch: 'develop',
+  namespace: 'corepayments'
+)

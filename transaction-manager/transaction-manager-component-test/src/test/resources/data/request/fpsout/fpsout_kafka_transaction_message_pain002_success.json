@@ -1,0 +1,45 @@
+{
+  "header": {
+    "type": "FPS_OUT",
+    "url": null
+  },
+  "messages": [
+    {
+      "type": "PAIN002",
+      "message": {
+        "DEBTOR_ACCOUNT_NUMBER_CODE": "BBAN",
+        "TRANSACTION_DATE": "2019-02-19T18:24:23.272+0530",
+        "REQUESTED_EXECUTION_DATE": "2019-02-19T18:24:23.272+0530",
+        "OUTCOME": "SUCCESS",
+        "DEBTOR_ACCOUNT_NUMBER": "43405348",
+        "CREDITOR_ACCOUNT_NUMBER_CODE": "BBAN",
+        "CREDITOR_ACCOUNT_NUMBER": "66374958",
+        "DEBTOR_CLEARING_SYSTEM_IDENTIFICATION": "GBDSC",
+        "CREDITOR_BANK_ID": "089999",
+        "TRANSACTION_STARTDATETIME": "2019-02-27T16:00:00.226+0000",
+        "SUBMISSION_DATETIME": "2019-02-27T16:00:00.232+0000",
+        "CREDITOR_CLEARING_SYSTEM_IDENTIFICATION": "GBDSC",
+        "CREDITOR_COUNTRY_CODE": "GB",
+        "CREDITOR_NAME": "Sangamitra",
+        "INSTRUCTION_ID": "39b8c989-e332-4d07-8fcf-5d03fafb3aac",
+        "DEBTOR_COUNTRY_CODE": "GB",
+        "DEBTOR_BANK_ID": "040081",
+        "DEBTOR_NAME": "Mr Sending Test"
+      },
+      "additionalInfo": {
+        "PAYMENT_METHOD_TYPE": "FPS_OUT",
+        "SUBSCRIPTION_STATUS": "ACTIVE",
+        "SUBSCRIPTION_KEY": "6b4a7699-d3cc-4687-9517-2b2153872654",
+        "TRANSACTION_ID": "5737084051",
+        "TRANSACTION_CODE": "PMNT.IRCT.FPDB"
+      }
+    }
+  ],
+  "additionalInfo": {
+    "TRANSACTION_CORRELATION_ID": "9515957460",
+    "REQUEST_ID": "8157342812",
+    "TRANSACTION_STATUS": "COMPLETE",
+    "x-b3-traceid": "5c41b539181035048daf8df39b94f2fd",
+    "l5d-test": "test123"
+  }
+}

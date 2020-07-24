@@ -1,0 +1,42 @@
+{
+	"header": {
+		"statusCode": 200
+	},
+	"decisionResponse": "SUCCESS",
+	"transactionMessage": {
+		"header":{
+			"type":"BACS_DD_IN",
+			"url":null
+		},
+		"messages":[
+			{
+				"type":"PACS003",
+				"message":{
+					"PROCESSING_DATE":"2019-05-22T00:00:00.000+0530",
+					"BACS_DD_SERVICE_USER_NUMBER":"123456",
+					"AMOUNT":10.00000,
+					"CREDITOR_ACCOUNT_NAME":"ABC",
+					"CREDITOR_SORT_CODE":"123456",
+					"DEBTOR_SORT_CODE":"123456",
+					"DEBTOR_ACCOUNT_NUMBER":"12345678",
+					"DEBTOR_ACCOUNT_NAME":"PQR",
+					"BACS_DD_REF":"BX4GRJX8",
+					"PSP_NONCE":null
+				},
+				"additionalInfo":{
+					"SUBSCRIPTION_KEY":"abc",
+					"TRANSACTION_CODE":"PMNT.IDDT.PMDD",
+					"TRANSACTION_ID": "Tid"
+				}
+			}
+		],
+		"additionalInfo":{
+			"REQUEST_ID":"05e056db86-e933-4f34-ae5e-11629990cce51558535469387",
+			"TENANT_PARTY_KEY":"10000",
+			"TRANSACTION_STATUS":"NEW",
+			"TRANSACTION_CORRELATION_ID":"TCid",
+			"AVAILABLE_BALANCE": 20.00000
+		}
+	}
+
+}

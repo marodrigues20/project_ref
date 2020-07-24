@@ -1,0 +1,49 @@
+{
+  "cain002Response": {
+    "header": {
+      "type": "CARD_AUTH_VIA_ADVICE",
+      "url": null
+    },
+    "messages": [
+      {
+        "type": "CAIN002",
+        "message": {
+          "TRANSACTION_DATE": "2018-05-11T13:14:30.893+0000",
+          "MERCHANT_CATEGORY_CODE": "5411",
+          "CARD_PROCESSOR_ACCOUNT_ID": null,
+          "CARD_ACCEPTOR_POST_CODE": null,
+          "INITIATOR_PARTY_ID": "101",
+          "TRANSACTION_TYPE": "CRDP",
+          "CARDHOLDER_PRESENT": true,
+          "CARD_ACCEPTOR_CITY": null,
+          "TRANSACTION_AMOUNT_QUALIFIER": "ACTL",
+          "AMOUNT": "123",
+          "CARD_ACCEPTOR_NAME": "ASDA",
+          "CARD_DATA_ENTRY_MODE": "CICC",
+          "CARD_ACCEPTOR_COUNTRY_CODE": null,
+          "TRANSACTION_CURRENCY_CODE": "GBP",
+          "TOTAL_AMOUNT": "123",
+          "BANKNET_REFERENCE_NUMBER": "1000"
+        },
+        "additionalInfo": {
+          "PRODUCT_KEY": "703",
+          "PARTY_KEY": "102",
+          "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637",
+          "TRANSACTION_ID": "12345",
+          "PAYMENT_METHOD_TYPE": "DOMESTIC_POS_CHIP_AND_PIN"
+        }
+      }
+    ],
+    "additionalInfo": {
+      "REQUEST_ID": "ecfc6c00-3cab-11e8-98d3-7f99b9a03939",
+      "TRANSACTION_CORRELATION_ID": "123456",
+      "TENANT_PARTY_KEY": "10000",
+      "TRANSACTION_STATUS": "FAILED",
+      "AVAILABLE_BALANCE": 9957.828,
+      "x-b3-spanid": "347998c8e09d2e3c",
+      "x-b3-traceid": "5c41b539181035048daf8df39b94f2fd",
+      "x-b3-sampled": "1",
+      "l5d-test": "test123"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+= Document
+
+Following features associated to the Transaction Manager microservice is covered
+
+* Dependencies
+* Deployment
+* Functionalities
+* Endpoints
+* Failures
+* Confluence References
+

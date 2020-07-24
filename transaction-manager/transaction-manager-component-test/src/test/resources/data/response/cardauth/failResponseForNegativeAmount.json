@@ -1,0 +1,52 @@
+{
+  "reason": {
+    "code": 5302,
+    "message": "Total amount must be greater than or equal to zero"
+  },
+  "cardAuthStatus": "FAILED",
+  "cain002Response": {
+    "header": {
+      "type": "CARD_AUTH",
+      "url": null
+    },
+    "messages": [
+      {
+        "type": "CAIN002",
+        "message": {
+          "TRANSACTION_DATE": "2018-05-11T13:14:30.893+0000",
+          "MERCHANT_CATEGORY_CODE": "5411",
+          "CARD_PROCESSOR_ACCOUNT_ID": null,
+          "CARD_ACCEPTOR_POST_CODE": null,
+          "INITIATOR_PARTY_ID": "101",
+          "TRANSACTION_TYPE": "CRDP",
+          "CARDHOLDER_PRESENT": true,
+          "CARD_ACCEPTOR_CITY": null,
+          "TRANSACTION_RESPONSE_CODE": "DECL",
+          "TRANSACTION_AMOUNT_QUALIFIER": "ACTL",
+          "AMOUNT": "123",
+          "CARD_ACCEPTOR_NAME": "ASDA",
+          "CARD_DATA_ENTRY_MODE": "CICC",
+          "CARD_ACCEPTOR_COUNTRY_CODE": null,
+          "TRANSACTION_CURRENCY_CODE": "GBP",
+          "TOTAL_AMOUNT": "-10",
+          "BANKNET_REFERENCE_NUMBER": "1000"
+        },
+        "additionalInfo": {
+          "PRODUCT_KEY": "703",
+          "PARTY_KEY": "102",
+          "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637",
+          "PAYMENT_METHOD_TYPE": "DOMESTIC_POS_CHIP_AND_PIN",
+          "TRANSACTION_ID": "7727625841",
+          "TRANSACTION_CODE": "PMNT.CCRD.POSD"
+        }
+      }
+    ],
+    "additionalInfo": {
+      "TRANSACTION_CORRELATION_ID": "1268594127",
+      "REQUEST_ID": "ecfc6c00-3cab-11e8-98d3-7f99b9a03939",
+      "TENANT_PARTY_KEY": "10000",
+      "AVAILABLE_BALANCE": 0,
+      "TRANSACTION_STATUS": "FAILED"
+    }
+  }
+}

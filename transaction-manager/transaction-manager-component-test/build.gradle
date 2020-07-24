@@ -1,0 +1,79 @@
+plugins {
+    id 'java'
+    id 'maven'
+    id 'eclipse'
+    id 'idea'
+
+    id "io.spring.dependency-management" version "1.0.7.RELEASE"
+    id "au.com.dius.pact" version "3.5.24"
+}
+
+apply from: '../dependencies.gradle'
+
+group 'com.tenx.universalbanking.transactionmanager'
+version '0.1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    maven { url "http://nexus.internal.10x.mylti3gh7p4x.net/repository/maven-public/" }
+    jcenter()
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-sleuth:2.1.1.RELEASE'
+    }
+}
+dependencies {
+    compile libs.wiremockTest
+    compile libs.guava
+    compile libs.kafka2
+    compile libs.kafkaClients
+    compile libs.awaitility
+    compile libs.commonsIO
+
+    testCompile project(':transaction-manager-service')
+    
+    testCompile libs.awaitility
+    testCompile libs.springBootStarterTest
+    testCompile libs.h2
+    testCompile "$libs.kafka2:test"
+    testCompile "$libs.kafkaClients:test"
+    testCompile "org.apache.kafka:kafka-streams:$versions.kafka:test"
+    testCompile "au.com.dius:pact-jvm-consumer-java8_2.12:3.5.24"
+    testCompile group: 'org.assertj', name: 'assertj-core'
+
+}
+
+test {
+    systemProperties['pact.rootDir'] = "$buildDir/pacts"
+
+    afterTest { desc, result ->
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            println "\nTest result: ${result.resultType}"
+            println "Test summary: ${result.testCount} tests, " +
+                    "${result.successfulTestCount} succeeded, " +
+                    "${result.failedTestCount} failed, " +
+                    "${result.skippedTestCount} skipped"
+        }
+    }
+}
+
+pact {
+    publish {
+        pactBrokerUrl = project.pactBrokerUrl
+        pactBrokerUsername = project.pactBrokerUser
+        pactBrokerPassword = project.pactBrokerPassword
+    }
+}
+
+pactPublish.dependsOn(check)

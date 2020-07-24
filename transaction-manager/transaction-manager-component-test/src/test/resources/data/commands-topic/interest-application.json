@@ -1,0 +1,19 @@
+{
+  "header": {
+    "type": "INTEREST_APPLICATION"
+  },
+  "messages": [
+    {
+      "type": "INTEREST_APPLICATION",
+      "message": {
+        "TRANSACTION_DATE": "2018-04-09T17:08:59.310+0100",
+        "VALUE_DATE_TIME": "2018-04-09T18:08:59.310+0100",
+        "AMOUNT": 123.450,
+        "BASE_CURRENCY_CODE": "GBP"
+      },
+      "additionalInfo": {
+        "SUBSCRIPTION_KEY": "a72cb8ca-e1c4-45f0-9de0-c20c40cd5569"
+      }
+    }
+  ]
+}

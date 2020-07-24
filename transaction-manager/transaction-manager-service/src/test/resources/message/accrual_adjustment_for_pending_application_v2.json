@@ -1,0 +1,27 @@
+{
+  "header": {
+    "type": "ACCRUAL_ADJUSTMENTS_PENDING_APPLICATION",
+    "url": null
+  },
+  "messages": [
+    {
+      "type": "ACCRUAL_ADJUSTMENTS_PENDING_APPLICATION",
+      "message": {
+        "TRANSACTION_DATE": "2018-05-22T18:42:37.000+0100",
+        "VALUE_DATE_TIME": "2018-05-22T18:59:18.000+0100",
+        "AMOUNT": 10.1234,
+        "INTEREST_ACCRUED_DATE": "2018-05-22T19:15:58.200+0100",
+        "INTEREST_APPLICATION_DATE": "2018-05-23T19:15:58.100+0100",
+        "INTEREST_COMPOUND_DATE": "2018-05-22T19:15:58.100+0100",
+        "BASE_CURRENCY_CODE": "GBP"
+      },
+      "additionalInfo": {
+        "TRANSACTION_ID": "72c5b516-5aea-540d-adec-59cb56c6f637",
+        "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637"
+      }
+    }
+  ],
+  "additionalInfo": {
+    "TRANSACTION_CORRELATION_ID": "123456"
+  }
+}

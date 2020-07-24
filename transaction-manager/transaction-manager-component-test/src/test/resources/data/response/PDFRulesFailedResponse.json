@@ -1,0 +1,11 @@
+{
+  "decisionReason": {
+    "code": 8006,
+    "message": "Rules failed"
+  },
+  "decisionResponse": "FAILED",
+  "header": {
+    "errors": null,
+    "statusCode": 200
+  }
+}

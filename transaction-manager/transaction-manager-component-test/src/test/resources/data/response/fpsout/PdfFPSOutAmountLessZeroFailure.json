@@ -1,0 +1,7 @@
+{
+  "decisionResponse": "FAILED",
+  "decisionReason": {
+    "code": 8027,
+    "message": "Payment amount must be greater than zero"
+  }
+}

@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart describing the transaction-manager service for k8s
+name: transaction-manager
+version: 1.14.0-SNAPSHOT

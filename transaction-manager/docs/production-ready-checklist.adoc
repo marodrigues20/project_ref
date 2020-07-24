@@ -1,0 +1,60 @@
+= Production Ready Checklist
+:toc:
+
+This checklist must be completed _before_ the microservice is deployed into a production-like environment.
+
+The contents of this checklist is from Production-Ready Microservices by Susan Fowler.
+
+== Stable and Reliable
+
+* <<development/pipelines.adoc#, Does the service have an automated pipeline?>>
+* <<service_tests.adoc#, Does the service contain unit and end-to-end tests?>>
+* <<overview.adoc#, Are the users of the microservice known?>>
+* <<overview/request-flows.adoc#, Are the dependencies known?>>
+* <<overview/failures.adoc#, Are there backups, alternatives, fallbacks and caching in place in case of failures?>>
+
+* Can the service be routed to correctly?
+
+== Scalable and Performant
+
+* What are the qualatative growth scales and how do they relate to this microservice?
+* What are the quantative growth scales for this microservice, keeping the qualatative growth scales in mind?
+* Have the resource bottlenecks are requirements been identified?
+* Is capacity planning automated and performed on a scheduled basis?
+* Will the dependencies scale with the microservice?
+* Will the microservice scale with the clients?
+* Has the microservice been written in a programming language that allows it to be performant and scalable
+* Is the way tasks are being handled performant?
+* Is the way data is being stored performant and scalable?
+
+== Fault Tolerance
+
+* Are there any single points of failure?
+* <<overview/failures.adoc#, Have all failure scenarios and catastrophes been identified>>
+* Is failure detection and remediation automated?
+* <<operations/04-runbooks.adoc#, What are the standard incident and outage procedures?>>
+
+== Monitoring
+
+* <<development/metrics.adoc#_expose_metrics, Have the key metrics been identified and are they being monitored?>>
+* <<monitoring/monitoring.adoc#, Do the logs accurately reflect the past states of the microservice?>>
+* <<operations/01-dashboards.adoc#, Do the dashboards for the microservice contain all key metrics and are they easy to interpret?>>
+* <<monitoring/alerts.adoc#, Are the alerts for the microservice actionable and are they defined by signal-providing thresholds?>>
+* <<team.adoc#, What is the on-call procedure for handling incidents and outages?>>
+
+== Documentation
+
+* <<documentation/comprehensive.adoc#, Is the documentation sufficiently comprehensive?>>
+* <<documentation/uptodate.adoc#, Is the documentation up-to-date?>>
+* Does the documentation contain:
+    ** <<documentation/description.adoc#, A description of the microservice>>
+    ** link:https://confluence.10x.mylti3gh7p4x.net/display/Arch/Transaction+Manager+-+Ledger+Manager+interface+options[An architecture diagram]
+    ** <<team.adoc#, Contact and on-call information>>
+    ** <<development/getting-started.adoc#, An onboarding and development guide>>
+    ** <<overview/request-flows.adoc#, Information about the service's request flows, endpoints and dependencies>>
+    ** <<operations/04-runbooks.adoc#,On-call runbook?>>
+
+* <<team.adoc#, Is it well understood at a developer, team and organisational level?>>
+* <<production-ready-checklist.adoc#,Does it meet the standard for a production-ready microservice?>>
+
+* Has the architecture been reviewed and is it audited frequently?

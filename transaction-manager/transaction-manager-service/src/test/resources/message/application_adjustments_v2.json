@@ -1,0 +1,24 @@
+{
+  "header": {
+    "type": "APPLICATION_ADJUSTMENTS",
+    "url": null
+  },
+  "messages": [
+    {
+      "type": "APPLICATION_ADJUSTMENTS",
+      "message": {
+        "TRANSACTION_DATE":"2018-05-22T18:42:37.000+0100",
+        "VALUE_DATE_TIME":"2018-05-22T18:59:37.000+0100",
+        "AMOUNT":10.1234,
+        "BASE_CURRENCY_CODE":"GBP"
+      },
+      "additionalInfo": {
+        "TRANSACTION_ID": "72c5b516-5aea-540d-adec-59cb56c6f637",
+        "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637"
+      }
+    }
+  ],
+  "additionalInfo": {
+    "TRANSACTION_CORRELATION_ID": "123456"
+  }
+}

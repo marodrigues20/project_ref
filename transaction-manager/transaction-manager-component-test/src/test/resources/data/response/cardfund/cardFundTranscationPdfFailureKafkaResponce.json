@@ -1,0 +1,25 @@
+{
+  "additionalInfo": {
+    "x-b3-traceid": "5c41b539181035048daf8df39b94f2fd",
+    "l5d-test": "test123"
+  },
+  "header": {
+    "type": "TOP_UP_BY_CARD",
+    "url": ""
+  },
+  "messages": [{
+    "additionalInfo": {
+      "PARTY_KEY": "102",
+      "PRODUCT_KEY": "703",
+      "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637"
+    },
+    "message": {
+      "AUTHORISATION_RESULT_RESPONSE": "FAILED",
+      "BALANCE_AMOUNT": "200",
+      "MASKED_PAN": "444433XXXXXX1111",
+      "PDF_ERROR_CODE": 2100,
+      "PDF_ERROR_DESC": "Decision failed"
+    },
+    "type": "CAAA002"
+  }]
+}

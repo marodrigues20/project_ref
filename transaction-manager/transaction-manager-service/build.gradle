@@ -1,0 +1,201 @@
+buildscript {
+  repositories {
+    maven { url "http://nexus.internal.10x.mylti3gh7p4x.net/repository/maven-public/" }
+    jcenter()
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.20.RELEASE")
+  }
+}
+
+plugins {
+  id 'java'
+  id 'application'
+  id 'idea'
+  id 'jacoco'
+  id "io.spring.dependency-management" version "1.0.7.RELEASE"
+  id "com.gorylenko.gradle-git-properties" version "1.4.21"
+  //id 'net.ltgt.apt-idea' version '0.21'
+  //id 'net.ltgt.apt' version '0.21'
+}
+
+apply plugin: 'org.springframework.boot'
+apply from: "http://nexus.internal.10x.mylti3gh7p4x.net/repository/maven-releases/com/tenx/security/security-plugins/0.1.21/security-plugins-0.1.21.gradle"
+apply from: '../dependencies.gradle'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = 'com.tenx.universalbanking.transactionmanager.TransactionManagerApp'
+
+defaultTasks 'run'
+
+test {
+  afterTest { desc, result ->
+    logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+  }
+  afterSuite { desc, result ->
+    if (!desc.parent) {
+      println "\nTest result: ${result.resultType}"
+      println "Test summary: ${result.testCount} tests, " +
+              "${result.successfulTestCount} succeeded, " +
+              "${result.failedTestCount} failed, " +
+              "${result.skippedTestCount} skipped"
+    }
+  }
+}
+
+jacoco {
+  toolVersion = "$versions.jacoco"
+  reportsDir = file("$buildDir/reports/jacoco")
+}
+
+jacocoTestReport {
+  reports {
+    xml.enabled true
+    csv.enabled true
+    html.destination file("$buildDir/reports/jacoco/html")
+  }
+}
+
+configurations {
+  all*.exclude module: 'tomcat-annotations-api'
+}
+
+dependencies {
+  compile project(':payment-decision-framework-client')
+  compile project(':payment-proxy-client')
+  compile project(':interest-calculator-client')
+  compile project(':worldpay-adapter-client')
+  compile project(':ledger-manager-client')
+  compile project(':fund-account-manager-client')
+  compile project(':platform-payment-manager-client')
+
+  compile libs.tomcatJDBC
+  compile libs.tomcatEmbedCore
+  compile libs.tomcatEmbedWebsocket
+  compile libs.swaggerAnnotations
+  compile libs.springBootWeb
+  compile libs.springBootActuator
+  compile libs.springJPA
+  compile libs.springfoxSwagger2
+  compile libs.springStarterSleuth
+  compile libs.springfoxSwaggerUi
+  compile libs.springCloudFeign
+  compile libs.guava
+  compile libs.awsJavaSdk
+  compile libs.commonsIO
+  compile libs.lombok
+  compile libs.kafkaClients
+  compile libs.logStash
+  compile libs.zipkinAws
+  compile libs.micrometerCore
+  compile libs.micrometerPrometheus
+  compile libs.json
+  compile libs.flyway
+  compile libs.mysql
+  compile libs.httpcomponents
+  compile libs.jacksonDatatypeJDK
+  compile libs.awsXrayRecorderMysql
+  compile libs.mapstruct
+  compile libs.mapstructProcessor
+  compile libs.jacksonDatabind
+  compile libs.jacksonDatatype
+  compile libs.jacksonCore
+  compile libs.hdrHistogram
+  compile libs.hikariCP
+  //Some libraries below are excluded and upgraded to new version for fixing aquasec-vulnerabilities
+  compile libs.owasp
+  compile libs.commonsBeanutils
+  compile libs.commonsFileUpload
+  compile libs.xmlGraphicsBatikUtil
+  compile libs.xmlGraphicsBatikExt
+  compile libs.xmlGraphicsBatikCss
+  compile libs.owaspAntisamy
+  compile libs.nekohtml
+  compile libs.bshCore
+  compile libs.xom
+  compile libs.xalan
+  compile libs.xerces
+  compile libs.springSecurityRSA
+  compile libs.postgresql
+
+  // 10x Libraries
+  compile "com.tenx.digital-universal-banking:transaction-message:0.2.78"
+  compile "com.tenx.digital-universal-banking.enums:transaction-type-enum:0.1.0"
+  compile "com.tenx.digital-universal-banking.enums:pos-entry-mode-enum:0.1.0"
+  compile "com.tenx.digital-universal-banking.enums:cain002-enum:0.1.5"
+  compile "com.tenx.digital-universal-banking.enums:cain001-enum:0.1.13"
+  compile "com.tenx.digital-universal-banking.enums:pacs002-enum:0.1.1"
+  compile "com.tenx.digital-universal-banking.enums:pacs003-enum:0.0.2"
+  compile "com.tenx.digital-universal-banking.enums:pacs008-enum:0.0.7"
+  compile "com.tenx.digital-universal-banking.enums:pain001-ack-enum:0.1.0"
+  compile "com.tenx.digital-universal-banking.enums:pain002-enum:0.1.6"
+  compile "com.tenx.digital-universal-banking.enums:pain001-enum:0.2.2"
+  compile "com.tenx.digital-universal-banking.enums:cain003-enum:0.2.8"
+  compile "com.tenx.digital-universal-banking.enums:cain005-enum:0.0.8"
+  compile "com.tenx.digital-universal-banking.enums:expired-auth-enum:0.1.0"
+  compile "com.tenx.utility:rest-idempotency-util:0.2.8"
+  compile "com.tenx.utility:rest-idempotency-client-util:0.1.1"
+  compile "com.tenx.digital-universal-banking.enums:interest-accrual-adjustment-applied-enum:0.0.1"
+  compile "com.tenx.digital-universal-banking.enums:interest-accrual-adjustment-pending-enum:0.0.1"
+  compile "com.tenx.digital-universal-banking.enums:interest-application-adjustment-enum:0.0.1"
+  compile "com.tenx.digital-universal-banking.enums:interest-accrual-enum:0.0.1"
+  compile "com.tenx.digital-universal-banking.enums:interest-application-enum:0.0.1"
+  compile "com.tenx.utility:rest-http-header-forward-util:0.3.2"
+  compile "com.tenx.digital-universal-banking.enums:debit-credit-indicator-enum:0.1.0"
+  compile ('com.tenx.utility:spring-rest-jsr-validation:0.7.2'){
+    exclude group:"com.fasterxml.jackson.core", module:"jackson-databind"
+  }
+  compile "com.tenx.digital-universal-banking.enums:caaa002-enum:0.0.7"
+  compile "com.tenx.reconciliation:reconciliation-logger:0.1.16"
+  // End of 10x Libraries
+
+  testCompile libs.powermockApiMockito2
+  testCompile libs.powermockModuleJunit4
+  testCompile libs.jsonUnit
+  testCompile libs.jsonUnitFluent
+
+  compileOnly libs.springBootConfigurationProcessor
+  runtimeOnly libs.guava
+  runtime libs.slf4j
+
+  testRuntime libs.junitJupiterEngine
+  testRuntime libs.junitPlatformLanucher
+  testCompile libs.springBootStarterTest
+  testCompile libs.springBootTest
+  testCompile libs.junit4
+  testCompile libs.mockitoCore
+  testCompile libs.awaitility
+  testCompile libs.lombok
+  testCompile libs.h2
+  testCompile libs.junitJupiterApi
+  testCompile libs.mockitoJunitJupiter
+  testAnnotationProcessor libs.lombok
+
+  annotationProcessor libs.lombok
+  annotationProcessor libs.mapstructProcessor
+}
+
+compileJava {
+  options.compilerArgs = [
+          '-Amapstruct.defaultComponentModel=spring'
+  ]
+}
+
+dependencyManagement {
+  imports {
+    mavenBom "org.springframework.cloud:spring-cloud-sleuth:$versions.springCloud"
+  }
+}
+
+applicationDefaultJvmArgs = ["-Dspring.profiles.active=dev"]
+
+/*
+dependencyCheck {
+  data {
+    directory='nvd'
+  }
+}
+*/

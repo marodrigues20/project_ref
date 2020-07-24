@@ -1,0 +1,7 @@
+{
+  "decisionResponse": "FAILED",
+  "decisionReason": {
+    "code": 8028,
+    "message": "FPS OUT Payment amount must be less than £250,000"
+  }
+}

@@ -1,0 +1,104 @@
+server:
+ port: 28080
+
+lion:
+ application:
+  name: transaction-manager
+
+redis:
+ host: "localhost"
+ port: 6379
+
+spring:
+  application:
+    name: transaction-manager
+  main:
+    banner-mode: "off"
+  jmx:
+    enabled: false
+  datasource:
+  url: jdbc:mysql://localhost:3306/transaction_manager
+  username: root
+  password: Admin10X
+    driver-class-name: com.mysql.jdbc.Driver
+
+#lion.security.application_key.server.keys=
+
+#management.security.enabled=false
+
+management:
+  endpoints:
+    web:
+      base-path: "/"
+      path-mapping:
+        prometheus: "metrics"
+      exposure:
+        include: ["health", "info", "prometheus", "httptrace"]
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    binders:
+      jvm.enabled: true
+      logback.enabled: true
+    export:
+      prometheus:
+        descriptions: true
+        enabled: true
+        step: 1m
+    distribution:
+      percentiles-histogram[http.server.requests]: true
+      percentiles:
+        http.server.requests: 0.50, 0.75, 0.95, 0.99
+      sla:
+        http.server.requests: 10ms,100ms
+
+downstream:
+  interest-calculator:
+    rest:
+      url: http://docker-manager.devblue.mylti3gh7p4x.net:28081
+  payment-decision:
+    rest:
+      url: http://paymentdecisionframework-cards.svc.devblue.mylti3gh7p4x.net
+  payment-proxy:
+    rest:
+      url: http://docker-manager.devblue.mylti3gh7p4x.net:8097
+  http-headers-forward: "x-ray-trace,ld5-*"
+
+endpoints:
+  enabled: true
+
+kafka: 
+  bootstrap:
+    servers: localhost:32795,localhost:32796,localhost:32797
+  consumer:
+    interest:
+      thread:
+        count: 1
+      client:
+        id:
+          prefix: tm-interest-consumer
+      group:
+        id: tm-interest-group
+      topics: transaction-interest-commands-topic
+      poll:
+        timeout:
+          ms: 200
+        max:
+          records: 5
+  producer:
+    client:
+      id:
+        prefix:  tm-producer
+    transaction-enrichment:
+      topic:
+        name: transaction-enrichment-commands-topic
+    ledger-manager:
+      topic:
+        name: ledger-manager-commands-topic
+      payment-messages:
+        topic:
+          name: payment-messages-topic
+    payment-messages:
+      topic:
+        name: payment-messages-topic

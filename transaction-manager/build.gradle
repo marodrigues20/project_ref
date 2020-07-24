@@ -1,0 +1,43 @@
+plugins {
+  id 'org.asciidoctor.convert' version '1.5.8.1'
+  id 'maven'
+}
+
+allprojects {
+  repositories {
+    maven { url "http://nexus.internal.10x.mylti3gh7p4x.net/repository/maven-public/" }
+    jcenter()
+    mavenCentral()
+    mavenLocal()
+  }
+}
+
+
+subprojects {
+  apply from: "../dependencies.gradle"
+  
+  group = 'com.tenx.universalbanking'
+  version = '0.0.1-SNAPSHOT'
+
+  uploadArchives {
+    repositories {
+      mavenDeployer {
+        snapshotRepository(url: "http://nexus.internal.10x.mylti3gh7p4x.net/repository/maven-snapshots/") {
+          authentication(userName: "${nexusUsername}", password: "${nexusPassword}")
+        }
+        repository(url: "http://nexus.internal.10x.mylti3gh7p4x.net/repository/maven-releases/") {
+          authentication(userName: "${nexusUsername}", password: "${nexusPassword}")
+        }
+      }
+    }
+  }
+}
+
+asciidoctor {
+  sourceDir = file('docs')
+  outputDir = file('build/operating-manual')
+
+  sources {
+    include '**/*.adoc'
+  }
+}

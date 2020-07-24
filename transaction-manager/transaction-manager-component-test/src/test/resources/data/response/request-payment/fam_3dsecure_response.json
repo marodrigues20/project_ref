@@ -1,0 +1,63 @@
+{
+  "header":{
+    "type":"REQUEST_PAYMENT_BY_CARD",
+    "url":""
+  },
+  "messages":[
+    {
+      "type": "CAAA001",
+      "message": {
+        "CARD_HOLDER_CITY": "test",
+        "CARD_HOLDER_COUNTRY": "test",
+        "CARD_HOLDER_ADDRESS1": "test",
+        "CARD_HOLDER_POST_CODE": "test",
+        "TRANSACTION_CURRENCY_CODE": "GBP",
+        "TOTAL_AMOUNT": 40.28,
+        "EXPIRY_MONTH": "11",
+        "EXPIRY_YEAR": "2020",
+        "CARD_HOLDER_NAME": "test",
+        "PAN_NUMBER": "424242******4242",
+        "START_MONTH": "12",
+        "START_YEAR": "2019",
+        "REFERENCE": "rrr",
+        "PROCESSOR_AGREED_FEE_AMOUNT": 2,
+        "PROCESSOR_AGREED_FEE_AMOUNT_CURRENCY": "GBP"
+      },
+      "additionalInfo": {
+        "TRANSACTION_ID": "7759595681"
+      }
+    },
+    {
+      "type":"CAAA002",
+      "message":{
+        "MESSAGE_ID":"0024",
+        "INSTRUCTED_AMOUNT":"7",
+        "TRANSACTION_CURRENCY_CODE":"GBP",
+        "MESSAGE_CREATION_DATE_TIME":"2018-11-15T11:22:30.893+0000",
+        "REQUESTED_EXECUTION_DATE":"2018-11-15T11:22:30.893+0000",
+        "DEBTOR_ACCOUNT_NUMBER":"26632688",
+        "DEBTOR_SORT_CODE":"040081",
+        "TRANSACTION_REMARKS":"Request payment call",
+        "CREDITOR_NAME":"Steve McQueen",
+        "INSTRUCTION_ID":"CBS0000002000228",
+        "CREDITOR_ACCOUNT_NUMBER":"12345678",
+        "CREDITOR_SORT_CODE":"110515",
+        "PAYMENT_STATUS": "REQUIRES_3D",
+        "THREE_DS_REDIRECT_URL" : "http://threedsecure.com"
+      },
+      "additionalInfo":{
+        "PARTY_KEY":"7a53c9ce-2208-451a-a66b-30e50db4c13d",
+        "PRODUCT_KEY":"ec3151ab-c2a6-44d2-a892-a6a5c1d2a9d2",
+        "SUBSCRIPTION_KEY":"5bc7a718-c141-472b-99f9-b1955725fab6",
+        "TRANSACTION_ID":"3358882340",
+        "SUBSCRIPTION_STATUS":"ACTIVE",
+        "MAXIMUM_PAYMENT_LIMIT":"10000"
+      }
+    }
+  ],
+  "additionalInfo":{
+    "REQUEST_ID":"ecfc6c00-3cab-11e8-98d3-7f99b9b77938",
+    "TENANT_PARTY_KEY":"10000",
+    "TRANSACTION_CORRELATION_ID":"53066099695"
+  }
+}

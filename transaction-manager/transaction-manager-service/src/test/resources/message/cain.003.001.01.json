@@ -1,0 +1,150 @@
+{
+  "Document": {
+    "-xmlns": "urn:iso:std:iso:20022:tech:xsd:cain.003.001.01",
+    "AcqrrFinInitn": {
+      "Hdr": {
+        "MsgFctn": "FNCN",
+        "PrtcolVrsn": "1",
+        "XchgId": "001",
+        "ReTrnsmssnCntr": "000",
+        "CreDtTm": "2017-01-01T01:01:01.000+0000",
+        "InitgPty": {
+          "Id": "World Pay Acuiring Svcs",
+          "Tp": "ACQR",
+          "Issr": "CSCH",
+          "ShrtNm": "WorldPay"
+        },
+        "RcptPty": {
+          "Id": "Virgin Money Digital Bank",
+          "Tp": "CISS",
+          "Issr": "CSCH",
+          "ShrtNm": "VMDB"
+        }
+      },
+      "FinInitn": {
+        "Envt": {
+          "Acqrr": {
+            "Id": "World Pay Acuiring Svcs",
+            "Issr": "CSCH"
+          },
+          "CardSchmeId": "MasterCard",
+          "Accptr": {
+            "Id": {
+              "Id": "Tesco Supermarkets",
+              "Tp": "MERC",
+              "Issr": "ACQR",
+              "ShrtNm": "Tesco"
+            },
+            "CmonNm": "Tesco"
+          },
+          "Termnl": {
+            "Id": {
+              "Id": "12312312",
+              "Tp": "OPOI",
+              "Issr": "MERC",
+              "ShrtNm": "12312312"
+            },
+            "Cpblties": {
+              "CardRdngCpblties": [
+                "CICC",
+                "ECTL",
+                "MGST"
+              ],
+              "CardWrttgCpblties": [
+                "ECTL",
+                "CICC"
+              ],
+              "CrdhldrVrfctnCpblties": [
+                "APKI",
+                "NPIN"
+              ],
+              "PINLngthCpblties": "6",
+              "ApprvlCdLngth": "6",
+              "MxScrptLngth": "512",
+              "CardCaptrCpbl": "true",
+              "OnLineCpblties": "ONLN",
+              "MsgCpblties": [
+                {
+                  "Dstn": "CDSP",
+                  "AvlblFrmt": "TEXT",
+                  "NbOfLines": "1",
+                  "LineWidth": "40",
+                  "AvlblLang": "en-GB"
+                },
+                {
+                  "Dstn": "CRCP",
+                  "AvlblFrmt": "TEXT",
+                  "NbOfLines": "1",
+                  "LineWidth": "40",
+                  "AvlblLang": "en-GB"
+                },
+                {
+                  "Dstn": "MDSP",
+                  "AvlblFrmt": "TEXT",
+                  "NbOfLines": "1",
+                  "LineWidth": "40",
+                  "AvlblLang": "en-GB"
+                }
+              ]
+            }
+          },
+          "Card": {
+            "PlainCardData": {
+              "PAN": "5584345930798931",
+              "CardSeqNb": "001",
+              "XpryDt": "1801",
+              "TrckData": [
+                {
+                  "TrckNb": "1",
+                  "TrckVal": "%B5584345930798931^Bloggs/Fred^1801^?"
+                },
+                {
+                  "TrckNb": "2",
+                  "TrckVal": ";B5584345930798931=1801=?"
+                }
+              ],
+              "CrdhldrNm": "Mr Fred Bloggs"
+            },
+            "IssrBIN": "123412",
+            "CardCcyCd": "GBP"
+          }
+        },
+        "Cntxt": {
+          "TxCntxt": {
+            "CardPres": "true",
+            "CrdhldrPres": "true",
+            "LctnCtgy": "FIXD",
+            "AttndncCntxt": "ATTD",
+            "TxEnvt": "PUBL",
+            "HstgCtgy": "MERC",
+            "CardDataNtryMd": "CICC",
+            "FllbckInd": "NFLB",
+            "SpprtdOptn": "MSRV",
+            "TxChanl": "SECM"
+          },
+          "SaleCntxt": { "SaleRefNb": "sale reference" }
+        },
+        "Tx": {
+          "TxTp": "CRDP",
+          "MrchntCtgyCd": "1098",
+          "Rcncltn": { "RcncltnDt": "2017-01-01" },
+          "AccptrTxDtTm": "2017-01-01T01:01:01.000+0000",
+          "AccptrTxId": "1234 Field 37 ID",
+          "InitrTxId": "1234 field 11 id",
+          "TxLifeCyclSeqNb": "1",
+          "TxLifeCyclSeqCntr": "1",
+          "TxDtls": {
+            "TxAmts": {
+              "TtlAmt": {
+                "Ccy": "GBP",
+                "content": "123.45"
+              },
+              "AmtQlfr": "ACTL"
+            },
+            "VldtyDt": "2017-01-01"
+          }
+        }
+      }
+    }
+  }
+}

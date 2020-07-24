@@ -1,0 +1,4 @@
+FROM openjdk:8 AS build
+ADD . /src
+WORKDIR /src
+RUN ./gradlew --no-daemon clean build

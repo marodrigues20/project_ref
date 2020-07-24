@@ -1,0 +1,10 @@
+FROM openjdk:8
+ADD . /src
+WORKDIR /src
+RUN groupadd -r postgres && useradd --no-log-init -r -g postgres postgres
+RUN mkdir /home/postgres
+ADD . /home/postgres/src
+WORKDIR /home/postgres/src
+RUN chown postgres -R /home/postgres
+USER postgres
+CMD ["./gradlew", "transaction-manager-component-test:build", "--info"]

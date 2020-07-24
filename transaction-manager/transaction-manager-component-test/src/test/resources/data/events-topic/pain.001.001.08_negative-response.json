@@ -1,0 +1,17 @@
+{
+  "header": {
+    "paymentType": "FPS",
+    "messageType": "PAIN001_ACK",
+    "url": null,
+    "messageHash": null
+  },
+  "message": {
+    "errors": {
+      "statusCode": 200
+    },
+    "status": "PAYMENT_FAILED"
+  },
+  "additionalInfo": {
+    "REQUEST_CORRELATION_ID": "ascdhhjhgsajxha"
+  }
+}

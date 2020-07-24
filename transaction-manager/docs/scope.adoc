@@ -1,0 +1,25 @@
+= Overview
+:toc:
+
+== Scope of the microservive
+
+* What areas of the system is this microservice responsible for?
+
+** Transaction manager is the transaction that occurs between parties that are internal or external to the 10x platform.
+** Transaction manager send Transaction Message to the PDF and generate a decision and post the message to the kafka.
+
+* What areas of the system is the microservice NOT responsible for?
+
+** Transaction Failures
+
+== Api Specifications
+
+* <<overview/api-specifications.adoc#, Click here for more details>>
+
+== Failures
+
+* <<overview/failures.adoc#, Click here for more details>>
+
+== Request flows
+
+* <<overview/request-flows.adoc#, Click here for more details>>

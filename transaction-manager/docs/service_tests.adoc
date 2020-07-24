@@ -1,0 +1,8 @@
+= Service Tests
+
+== Unit Test
+** Ensure all the scenarios covered in Unit Test and average should be above 80%. link:https://confluence.10x.mylti3gh7p4x.net/x/FWbTAQ[REF-0]
+
+== ComponentTest
+** Component tests test the functionality of the micro-service with all the downstream APIs mocked. Create a new submodule under the main repository in git for the component tests.link:https://confluence.10x.mylti3gh7p4x.net/x/P1fTAQ[DOCS] ,
+link:https://bitbucket.10x.mylti3gh7p4x.net/projects/FT8/repos/transaction-manager/browse/transaction-manager-component-test/src/main/java/com/tenx/universalbanking/transactionmanager/componenttest[REF-REPO]

@@ -1,0 +1,1 @@
+alter table authorisations add expired boolean AFTER matched;

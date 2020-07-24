@@ -1,0 +1,44 @@
+= Metrics
+:toc:
+
+This document details the metrics exposed by Transaction Manager
+
+== Expose metrics
+
+**What is it?**
+
+Metrics endpoint returns Prometheus line protocol format
+
+**Why is it important?**
+
+Prometheus be able to scrape services metrics effectively, in a way that does not require authentication, at /metrics.
+link:http://docker-manager.devblue.mylti3gh7p4x.net:8099/metrics[Link]
+
+== HighLatency
+
+**What is it?**
+
+Latency is the amount of time taken for the API to receive a request and gives a respond.
+
+**Why is it important?**
+This property is used to check the delay in responds time.
+
+== Errors
+
+**What is it?**
+
+An error is an information displayed when an unexpected condition occurs.
+
+**Why is it important?**
+
+This property is used to identify the error messages
+
+== CPUUsage
+
+**What is it?**
+
+CPUUsage is the processing power a single program requires.
+
+**Why is it important?**
+
+This property is used to check the the cpu usage of containers.

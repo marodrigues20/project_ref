@@ -1,0 +1,57 @@
+{
+  "header" : {
+    "type" : "CARD_AUTH",
+    "url" : null
+  },
+  "messages" : [ {
+    "type" : "CAIN001",
+    "message" : {
+      "TOTAL_AMOUNT" : "1",
+      "TRANSACTION_CURRENCY_CODE" : "GBP",
+      "TRANSACTION_DATE" : "2019-08-23T23:00:00.000+0000",
+      "CARD_ACCEPTOR_ID" : "999999999999999",
+      "MERCHANT_CATEGORY_CODE" : "6010",
+      "CARD_ACCEPTOR_NAME" : "TESCO",
+      "TRANSACTION_TYPE" : "CRDP",
+      "CARD_DATA_ENTRY_MODE" : "CICC",
+      "CARDHOLDER_PRESENT" : "true",
+      "CARD_ACCEPTOR_COUNTRY_CODE" : "GBR",
+      "TRANSACTION_AMOUNT_QUALIFIER" : "ACTL",
+      "EXCHANGE_RATE" : "2.0",
+      "CARD_ACCEPTOR_TERMINAL_ID" : "Term ID",
+      "ACCOUNT_TYPE" : "DFLT",
+      "CURRENCY_CODE_CARD" : "GBP",
+      "MESSAGE_CREATION_DATE_TIME" : "2018-09-23T08:19:53.000+0000",
+      "EXPIRY_DATE" : "2022-21-10",
+      "CARD_SEQ_NO" : 1,
+      "AMOUNT" : 1.0,
+      "INITIATOR_TRANSACTION_ID" : 1255,
+      "TRANSACTION_TIME" : "09:19:53",
+      "CARD_ACCEPTOR_CONDITION_CODE" : 0,
+      "ICC_TERMINAL_COUNTRY_CODE" : "GBP",
+      "CARD_ACCEPTOR_TERMINAL_TYPE" : 0,
+      "CARD_TOKEN" : "5357240020617387",
+      "CARD_ACCEPTOR_POST_CODE" : "HA1 2TU",
+      "VALUE_DATE" : "2018-09-21T08:19:55.000+0000",
+      "RECONCILIATION_DATE" : "2018-02-08",
+      "CARD_ACCEPTOR_CITY" : "London",
+      "TRANSACTION_COUNTRY_CODE" : "GBR",
+      "ACQUIRER_COUNTRY_CODE" : "GBP",
+      "QUOTATION_DATE" : "2018-02-08",
+      "BANKNET_REFERENCE_NUMBER" : "MNW794480"
+    },
+    "additionalInfo" : {
+      "SUBSCRIPTION_KEY" : "3df2c7d7-b8d4-42d9-a599-c40abd8824b6",
+      "PARTY_KEY" : "abb03427-7889-4a41-a477-f48201f0a392",
+      "PRODUCT_KEY" : "ac6d4ed5-3f58-4d11-bdc1-5bfdd42e9c7a",
+      "SUBSCRIPTION_STATUS" : "ACTIVE",
+      "DEBIT_CREDIT_INDICATOR" : "DEBIT",
+      "PAYMENT_METHOD_TYPE" : "POS_MAG_STRIPE",
+      "CARD_PROCESSOR_ACCOUNT_ID" : "12380"
+    }
+  } ],
+  "additionalInfo" : {
+    "TENANT_PARTY_KEY" : "10000",
+    "REQUEST_ID" : "67777055"
+  }
+}

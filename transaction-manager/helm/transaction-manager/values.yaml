@@ -1,0 +1,14 @@
+microservice:
+  replicaCount: 3
+  namespace: corepayments
+  nameOverride: transactionmanager
+  image:
+    repository: transaction-manager
+    tag: __TAG__
+  service:
+    targetPort: 8099
+  cockroachdbs:
+    - user: transactionmanager
+      dbname: transactionmanagerdb
+    - user: tmreconuser
+      dbname: reconciliation

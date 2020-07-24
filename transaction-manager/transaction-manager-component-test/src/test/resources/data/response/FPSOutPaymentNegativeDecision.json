@@ -1,0 +1,10 @@
+{
+        "header": {
+                "statusCode": 200
+        },
+        "decisionResponse": "FAILED",
+        "decisionReason": {
+                "code": 8000,
+                "message": "Payment Decision failed"
+        }
+}

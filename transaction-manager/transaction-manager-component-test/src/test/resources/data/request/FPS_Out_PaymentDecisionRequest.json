@@ -1,0 +1,30 @@
+{
+    "additionalInfo": {
+        "REQUEST_ID": "ecfc6c00-3cab-11e8-98d3-7f99b9a03939",
+        "TENANT_PARTY_KEY": "10000",
+        "TRANSACTION_CORRELATION_ID": "5306671493"
+    },
+    "header": {
+        "type": "FPS_OUT",
+        "url": ""
+    },
+    "messages": [
+        {
+            "additionalInfo": {
+                "PRODUCT_KEY": "703",
+                "PARTY_KEY": "102",
+                "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637",
+                "TRANSACTION_ID": "1749682283"
+            },
+            "message": {
+                "BASE_CURRENCY_CODE": "GBP",
+                "DEBTOR_ACCOUNT_NUMBER": "4568904",
+                "DEBTOR_SORT_CODE": "12345578",
+                "INSTRUCTED_AMOUNT": "10",
+                "TRANSACTION_DATE": "2018-05-11T13:14:30.893Z",
+                "VALUE_DATE_TIME": "2018-05-11T13:14:30.893Z"
+            },
+            "type": "PAIN001"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+  "additionalInfo": {
+    "TENANT_PARTY_KEY": "10000",
+    "TRANSACTION_CORRELATION_ID": "5306671493"
+  },
+  "header": {
+    "type": "TOP_UP_BY_CARD",
+    "url": ""
+  },
+  "messages": [
+    {
+      "additionalInfo": {
+        "PRODUCT_KEY": "703",
+        "PARTY_KEY": "102",
+        "SUBSCRIPTION_KEY": "27c5b516-5aea-540d-adec-59cb56c6f637"
+      },
+      "message": {
+        "TOTAL_AMOUNT": "200",
+        "PAN_NUMBER": "4444333322221111"
+      },
+      "type": "CAAA002"
+    }
+  ]
+}

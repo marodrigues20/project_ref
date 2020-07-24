@@ -1,0 +1,32 @@
+{
+  "header":{
+    "type":"BACS_CT_IN"
+  },
+  "messages":[
+    {
+      "type":"PACS008",
+      "message":{
+        "INTERBANK_SETTLEMENT_AMOUNT":"100000.00",
+        "INTERBANK_SETTLEMENT_CURRENCY":"GBP",
+        "CREDITOR_ACCOUNT_NUMBER": "28858967",
+        "CREDITOR_SORT_CODE": "040081",
+        "VALUE_DATE_TIME":"2018-07-17T19:52:43.000+0000",
+        "TRANSACTION_DATE":"2018-07-17T19:52:43.000+0000",
+        "TRANSACTION_REFERENCE":"FPSIN payment Transaction_Test",
+        "DEBTOR_NAME":"TestUser sender"
+      },
+      "additionalInfo":{
+        "PARTY_KEY": "47fce2c1-7f38-44e9-8fc6-f89dc6e79f02",
+        "PRODUCT_KEY": "8a7c4548-a4ac-4124-8eb9-7122e57f4781",
+        "SUBSCRIPTION_KEY": "fe598ee6-ccc0-400e-996a-42156658154f",
+        "SUBSCRIPTION_STATUS" : "ACTIVE",
+        "MAXIMUM_PAYMENT_LIMIT" : "10000"
+      }
+    }
+  ],
+  "additionalInfo":{
+    "REQUEST_ID":"ecfc6c00-3cab-11e8-98d3-7g99b9a04000",
+    "TENANT_PARTY_KEY":"10000",
+    "TRANSACTION_STATUS":"NEW"
+  }
+}

@@ -1,0 +1,36 @@
+{
+	"header": {
+		"statusCode": 200
+	},
+	"subscriptionDTO": {
+		"subscriptionKey": "17c5b5c16-5aea-440d-adec-49cb56c6f637",
+		"sortCode": "603652",
+		"partyKey": 102,
+		"pan": "5584345930798931",
+		"digitalServiceKey": 703,
+		"tenantKey": 10000,
+		"createdDate": 140720172000,
+		"accountNumber": "41373681",
+		"associatedAttributes": {
+			"digitalServiceKey": null,
+			"subscriptionId": null,
+			"productType": null,
+			"digitalServiceName": null,
+			"servicePackageKey": null,
+			"expiryDate": null,
+			"isActive": null,
+			"productAttributes": {
+				"bankInfo": {
+					"accountNumber": null,
+					"iban": null,
+					"bban": null,
+					"panNumber": null,
+					"sortCode": null
+				},
+				"termsConditions": null,
+				"poolInfo": null,
+				"virtualAccountInfo": null
+			}
+		}
+	}
+}

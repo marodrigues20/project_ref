@@ -1,0 +1,19 @@
+{
+	"header": {
+		"messageType": "FEES_AND_CHARGES"
+	},
+	"message": {
+		"TRANSACTION_DATE": "2012-12-13T12:12:12",
+		"TRANSACTION_CURRENCY_CODE": "GBP",
+		"BASE_CURRENCY_CODE": "GBP",
+		"AMOUNT": "100",
+		"EXCHANGE_RATE": "2",
+		"DEBTOR_ACCOUNT_NUMBER": "123456789"
+	},
+	"additionalInfo": {
+		"PARTY_KEY": "102",
+		"TRANSACTION_ID": "1555666777",
+		"DIGITAL_SERVICE_KEY": "300",
+		"SUBSCRIPTION_ID" : "D300"
+	}
+}

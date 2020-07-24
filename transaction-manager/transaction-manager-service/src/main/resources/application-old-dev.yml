@@ -1,0 +1,48 @@
+downstream:
+  interest-calculator:
+    rest:
+      url: https://interestcalculator-corebanking.svc.solution-testblue.mylti3gh7p4x.net
+  payment-decision:
+    rest:
+      url: https://paymentdecisionframework-corepayments.svc.solution-testblue.mylti3gh7p4x.net
+  payment-proxy:
+    rest:
+      url: https://paymentproxy-corepayments.svc.solution-testblue.mylti3gh7p4x.net
+  worldpay-adapter:
+    rest:
+      url: https://worldpayadapter-corepayments.svc.solution-testblue.mylti3gh7p4x.net
+  ledger-manager:
+    rest:
+      url: https://ledgermanager-corebanking.svc.solution-testblue.mylti3gh7p4x.net
+  fam:
+    rest:
+      url: https://fundaccountmanager-cards.svc.solution-testblue.mylti3gh7p4x.net
+  platform-payment-manager:
+    rest:
+      url: https://platformpaymentmanager-corepayments.svc.devblue.mylti3gh7p4x.net
+
+reconciliation:
+  log:
+    console: false
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/tm?createDatabaseIfNotExist=true
+    username: root
+    password: 
+    driver-class-name: com.mysql.jdbc.Driver
+    jdbc-interceptors: ConnectionState;StatementFinalizer;ResetAbandonedTimer
+  h2:
+    console:
+      enabled: true
+kafka:
+  bootstrap:
+    servers: localhost:9093
+  security.protocol: PLAINTEXT
+  api:
+    key: apiKey
+    password: apiPassword
+
+RECONCILIATION_DB_URL: jdbc:postgresql://localhost:5432/reconciliation
+RECONCILIATION_DB_USERNAME: postgres
+RECONCILIATION_DB_PASSWORD:
