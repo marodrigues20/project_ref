@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'jacoco'
+}
+version = ''
+
+defaultTasks 'test'
+
+
+jacoco {
+    toolVersion = "0.8.3"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled true
+        html.destination file("$buildDir/reports/jacoco/html")
+    }
+}
+
+dependencies {
+    testCompile project(':tsys-proxy-batch-service')
+
+    testCompile libs.springBootStarterTest
+    testCompile libs.assertJ
+    testCompile libs.wiremock
+    testCompile libs.commonsIO
+    compile libs.kafka2
+    compile libs.kafkaClients
+    compile libs.awaitility
+
+    testCompile libs.awaitility
+    testCompile "$libs.kafka2:test"
+    testCompile "$libs.kafkaClients:test"
+    testCompile "$libs.kafkaStreams:test"
+}
+
+

@@ -1,0 +1,4 @@
+= Glossary
+
+This page will represent a collection of terms that the development team uses on a daily basis to describe the domain the
+microservice operates within.

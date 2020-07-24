@@ -1,0 +1,89 @@
+server:
+  port: 9088
+redis:
+  host: "localhost"
+
+spring:
+  application:
+    name: tsys-proxy-batch
+  main:
+    banner-mode: "off"
+
+logging:
+  level:
+    root: WARN
+    com.tenx: INFO
+
+kafka:
+  bootstrap:
+    servers: localhost:32774, localhost:32775, localhost:32776, localhost:9092
+  producer:
+    repair:
+      topic:
+        name: repair-topic
+    client:
+      id:
+        prefix: tsysproxybatch-producer
+  security:
+    protocol: PLAINTEXT
+
+  api:
+    key: apiKey
+    password: apiPassword
+
+management:
+  endpoints:
+    web:
+      base-path: "/"
+      path-mapping:
+        prometheus: "metrics"
+      exposure:
+        include: ["health", "info", "prometheus"]
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      enabled:  true
+  info:
+    git:
+      mode: full
+  metrics:
+    binders:
+      jvm.enabled: true
+      logback.enabled: true
+    export:
+      prometheus:
+        descriptions: true
+        enabled: true
+        step: 1m
+    distribution:
+      percentiles-histogram[http.server.requests]: true
+      percentiles:
+        http.server.requests: 0.50, 0.75, 0.95, 0.99
+      sla:
+        http.server.requests: 10ms,100ms
+date:
+  format:
+    julian: yyyyDDD
+    calendar: yyyy-MM-dd’T’HH:mm:ss.SSS+0000
+time:
+  zone:
+    utc: UTC
+
+transaction:
+  posted.time.position.in.map: 1
+
+indicator:
+  debit: D
+  credit: C
+  position: 214
+
+settlement.request.card.token:
+  start: 45
+  end: 63
+downstream:
+  debitcardmanager:
+    url: https://debitcardmanager-cards.svc.devblue.mylti3gh7p4x.net
+
+  transactionmanager:
+    url: https://transactionmanager-corepayments.svc.solution-testblue.mylti3gh7p4x.net

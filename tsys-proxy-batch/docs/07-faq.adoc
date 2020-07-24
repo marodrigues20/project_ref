@@ -1,0 +1,12 @@
+= Frequently Asked Questions
+
+The following represents a list of the most frequently asked questions about the service.
+
+* *Why does the system occasionally do this thing?*
+** Because the system is actually in this state, do this one thing to fix it
+
+* *Why the old choice of people in the contact information?*
+** Check the email addresses
+
+* *Aren't those real phone numbers?*
+** They are all fake phone numbers

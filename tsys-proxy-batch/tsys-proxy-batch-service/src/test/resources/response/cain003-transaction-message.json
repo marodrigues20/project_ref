@@ -1,0 +1,24 @@
+{
+  "additionalInfo": null,
+  "header": null,
+  "messages": [
+    {
+      "additionalInfo": {
+        "DEBIT_CREDIT_INDICATOR": "DEBIT",
+        "PAYMENT_METHOD_TYPE": "DOMESTIC_POS_CHIP_AND_PIN",
+        "PRODUCT_KEY": "TEST_PRODUCT_KEY",
+        "SUBSCRIPTION_KEY": "TEST_SUBSCRIPTION_KEY"
+      },
+      "message": {
+        "CARD_ACCEPTOR_STATE": "123",
+        "CASH_BACK_INDICATOR": "1",
+        "CARD_ACCEPTOR_TERMINAL_ID": "12345678",
+        "MERCHANT_CATEGORY_CODE": "DE26",
+        "TRANSACTION_AMOUNT_QUALIFIER": "ACTL",
+        "CARD_DATA_ENTRY_MODE": "05",
+        "COMMON_COUNTRY_CODE": "GBR"
+      },
+      "type": "CAIN003"
+    }
+  ]
+}

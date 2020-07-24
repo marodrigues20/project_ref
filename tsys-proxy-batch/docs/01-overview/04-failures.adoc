@@ -1,0 +1,27 @@
+= Dependency Failures
+
+This page documents the dependencies that this microservice has along with how failures are expected to be handled.
+
+== Apache Kafka
+Here is a description of how messages received from Kafka get handled when they are deemed to be
+unprocessable and the expectations from this. Should probably also include a bit on how a message
+gets deemed or marked as unprocessable.
+
+== Amazon DynamoDB
+DynamoDB being unavailable is not a catastrophic failure and the microservice is expected to still
+be healthy when it occurs.
+
+The microservice should handle such a failure by making the data up rather than relying on what is
+stored in the database.
+
+== Amazon Aurora PostgreSQL
+Lack of PostgreSQL is seen as a catastrophic failure and the microservice health check is expected
+to fail when this occurs.
+
+== Amazon ElastiCache
+ElastiCache being unavailable is not seen as a catastrophic failure. Lack of ElastiCache will cause
+all results to be calculated on-the-fly for every request rather than only for the first request.
+
+== Downstream Microservice 1
+A failure in the call to Downstream service 1 means that all requests to do _x_ will fail. This failure
+will be exposed to the client who is expected to try again after a short delay.

@@ -1,0 +1,32 @@
+= Ref 0 Use of decisions log agreed
+:toc:
+
+== Reference
+A unique value to reference in other documentation
+
+== Date
+When the decision was made.
+
+== Title
+A meaningful title that can be used in the decision log.
+
+== Who made the decision?
+Who was involved in the decision?  Was it a department, team/discipline or individual?
+
+== What is the decision?
+A detailed description of the decision.  The aim of this content is to allow the reader to fully understand the
+route the team has made.
+
+=== What other options considered?
+Were there any other options that were considered?
+
+=== What was the impact of the decision?
+Were there any impacts to the rest of the 10x Banking platform?
+
+=== Why was the decision was made?
+What was the rationale behind the decision?
+
+== Decision Changes
+
+Has there been any changes or refinement that overrides the decision?  Include a reference to any other decision log
+entries where appropriate.

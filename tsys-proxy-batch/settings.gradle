@@ -1,0 +1,6 @@
+rootProject.name = 'tsys-proxy-batch'
+
+include 'tsys-proxy-batch-service',
+        'tsys-proxy-batch-debitcard-manager-client',
+        'tsys-proxy-batch-component-test',
+        'tsys-proxy-batch-transaction-manager-client'

@@ -1,0 +1,34 @@
+= On Call Runbook Template
+:toc:
+
+The purpose of this document is to both provide guidance on production issues that have been previously experienced and to give general guidance on how to troubleshoot new errors.
+
+Remember that this document will probably be read at 2 a.m, so wording should be unambiguous and steps should be simple.
+
+== On Call Requirements & Procedures
+== Alerts
+// This section should only be present if there are alerts which may occur that haven't been fixed yet
+=== Alert Name 1 link:https://jira.10x.mylti3gh7p4x.net/browse/DEV-1234[DEV-1234]
+Severity: Red
+
+Outage: Yes
+
+Description of the alert
+
+Description of the problem
+
+==== Steps to resolve
+1. Step by step
+1. Guide on how
+1. To triage, mitigate
+1. and resolve the
+1. problem.
+
+==== Implications
+What implications are there once this alert has been raised?
+
+== Communication
+Detail who should be communicated outside of the team in the event of an alert or an outage
+
+== Troubleshooting and debugging
+This section should filled with various tips on how to deal with brand new problems in a strategic and methodical way.

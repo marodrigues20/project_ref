@@ -1,0 +1,4 @@
+.swagger-codegen/
+build/
+out/
+src/

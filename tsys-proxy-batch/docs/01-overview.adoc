@@ -1,0 +1,8 @@
+= Overview
+
+This microservice is responsible for batch processing card transaction files.
+
+
+The scope of the microservice:
+
+* Tsys settlement files are processed as a batch

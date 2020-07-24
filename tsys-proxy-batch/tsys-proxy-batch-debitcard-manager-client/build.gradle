@@ -1,0 +1,23 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "http://repo.mylti3gh7p4x.net/repository/maven-releases/" }
+    }
+    dependencies {
+        classpath "com.tenx.utility:swagger-codegen:1.0.6"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'com.tenx.utility.swagger-codegen'
+
+dependencies {
+    compile libs.jacksonDatabind
+    compile libs.jacksonCore
+}
+
+swagger {
+    inputSpec = 'api-spec.json'
+    basePackage = 'com.tenx.tsys.proxybatch.client.debitcardmanager'
+    additionalProperties = [ "dateLibrary": "legacy" ]
+}

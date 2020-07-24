@@ -1,0 +1,14 @@
+= Request Flows
+
+This page documents the request flows through the microservice.
+
+== Most requests
+
+All requests, except those outlined below, follow the standard 3 tier request flow of the
+controller layer forwarding to the service layer which makes use of a `JPARepository` interface
+in the repository layer to save the data.
+
+== POST `/api/v1/examples/`
+
+This request, while similar to most, is different in the fact that the Downstream Service is called
+once the data is saved to the database because _reasons_.

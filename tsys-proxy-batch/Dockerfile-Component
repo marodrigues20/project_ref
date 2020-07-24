@@ -1,0 +1,4 @@
+FROM openjdk:8
+ADD . /src
+WORKDIR /src
+CMD ["./gradlew", "clean", "tsys-proxy-batch-component-test:build", "--info"]

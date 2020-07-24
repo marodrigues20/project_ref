@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender class="ch.qos.logback.core.ConsoleAppender" name="STDOUT">
+    <springProfile name="!dev">
+      <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+        <customFields>{"app":"${spring.application.name}"}</customFields>
+        <providers>
+          <logLevel/>
+          <loggerName/>
+          <mdc/>
+          <message/>
+          <threadName/>
+          <timestamp/>
+          <version/>
+        </providers>
+      </encoder>
+    </springProfile>
+    <springProfile name="dev">
+      <encoder>
+        <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg %n</pattern>
+      </encoder>
+    </springProfile>
+  </appender>
+
+  <property resource="application.yml"/>
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>

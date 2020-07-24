@@ -1,0 +1,43 @@
+server:
+  port: 9088
+redis:
+  host: "localhost"
+
+date:
+  format:
+    julian: yyyyDDD
+    calendar : yyyy-MM-dd'T'HH:mm:ss.SSS+0000
+
+time:
+  zone:
+    utc: UTC
+
+indicator:
+    debit: D
+    credit: C
+    position: 214
+
+transaction:
+  posted.time.position.in.map: 1
+
+settlement.request.card.token:
+              start: 45
+              end: 63
+downstream:
+  debitcardmanager:
+    url: http://localhost:9090
+  transactionmanager:
+    url: http://localhost:9090
+kafka:
+  producer:
+    repair:
+      topic:
+        name: repair-topic
+    client:
+      id:
+        prefix: tsys-proxy-batch-producer
+  security.protocol: PLAINTEXT
+  api:
+    key: apiKey
+    password: apiPassword
+

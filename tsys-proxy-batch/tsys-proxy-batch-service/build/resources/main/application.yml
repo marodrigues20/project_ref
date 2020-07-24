@@ -1,0 +1,74 @@
+server:
+  port: 9088
+
+spring:
+  application:
+    name: tsys-proxy-batch
+  main:
+    banner-mode: "off"
+
+logging:
+  level:
+    root: WARN
+    com.tenx: INFO
+
+management:
+  endpoints:
+    web:
+      base-path: "/"
+      path-mapping:
+        prometheus: "metrics"
+      exposure:
+        include: ["health", "info", "prometheus"]
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      enabled:  true
+  info:
+    git:
+      mode: full
+  metrics:
+    binders:
+      jvm.enabled: true
+      logback.enabled: true
+    export:
+      prometheus:
+        descriptions: true
+        enabled: true
+        step: 1m
+    distribution:
+      percentiles-histogram[http.server.requests]: true
+      percentiles:
+        http.server.requests: 0.50, 0.75, 0.95, 0.99
+      sla:
+        http.server.requests: 10ms,100ms
+date:
+  format:
+    julian: yyyyDDD
+    calendar: yyyy-MM-dd'T'HH:mm:ss.SSS+0000
+time:
+  zone:
+    utc: UTC
+
+indicator:
+  debit: D
+  credit: C
+  position: 214
+
+transaction:
+  posted.time.position.in.map: 1
+
+settlement.request.card.token:
+  start: 45
+  end: 63
+kafka:
+  security:
+    protocol: SASL_SSL
+  producer:
+    repair:
+      topic:
+        name: repair-topic
+    client:
+      id:
+        prefix: tsysproxybatch-producer

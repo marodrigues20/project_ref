@@ -1,0 +1,127 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$versions.springBoot")
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
+
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'idea'
+    id 'jacoco'
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+    id "com.gorylenko.gradle-git-properties" version "1.4.21"
+    id 'net.ltgt.apt' version '0.21'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+apply from: "http://nexus.internal.10x.mylti3gh7p4x.net/repository/maven-releases/com/tenx/security/security-plugins/0.1.21/security-plugins-0.1.21.gradle"
+apply plugin: 'org.springframework.boot'
+
+mainClassName = 'com.tenx.TsysProxyBatchApplication'
+
+defaultTasks 'run'
+
+jacoco {
+    toolVersion = "0.8.3"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled true
+        html.destination file("$buildDir/reports/jacoco/html")
+    }
+}
+
+dependencies {
+    compile project(':tsys-proxy-batch-debitcard-manager-client')
+    compile project(':tsys-proxy-batch-transaction-manager-client')
+
+    compile libs.springBootWeb
+    compile libs.springBootActuator
+    compile libs.springSleuth
+    compile libs.springValidation
+    compile libs.logStash
+    compile libs.zipkinBrave
+    compile libs.zipkinAws
+    compile libs.micrometerCore
+    compile libs.micrometerPrometheus
+    compile libs.jacksonDataType
+    compile libs.jacksonDatabind
+    compile libs.jacksonCore
+    compile libs.jacksonScala
+    compile libs.springfoxSwagger2
+    compile libs.springfoxSwaggerUi
+    compile libs.springBootActuator
+    compile libs.swaggerAnnotations
+    compile libs.logStash
+    compile libs.httpcomponents
+    compile libs.powermockApiMockito2
+    compile libs.powermockModuleJunit4
+    compile libs.kafkaClients
+    compile libs.zstd
+    compile libs.guava
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+    testCompileOnly libs.lombok
+    testAnnotationProcessor libs.lombok
+
+    // 10x Libraries
+    compile libs.jsrValidation
+    compile libs.restIdempotencyClientUtil
+    compile libs.restIdempotencyUtil
+    compile 'com.tenx.digital-universal-banking:transaction-message:0.2.44'
+    compile 'com.tenx.digital-universal-banking.enums:cain003-enum:0.2.9'
+    compile 'com.tenx.digital-universal-banking.enums:cain005-enum:0.0.9'
+    // End of 10x Libraries
+
+    compile libs.tomcatEmbedCore
+    compile libs.tomcatEmbedWebsocket
+    testCompile libs.junitJupiterApi
+    testRuntime libs.junitJupiterEngine
+    testRuntime libs.junitVintageEngine
+    testCompile libs.springBootStarterTest
+    testCompile libs.assertJ
+    testCompile libs.commonsIO
+    testCompile libs.mockito
+
+
+}
+
+test { finalizedBy jacocoTestReport }
+
+jar {
+    enabled = true
+}
+
+sonarqube {
+    properties {
+        property 'sonar.exclusions', ["**/com/tenx/tsys/proxybatch/dto/request/*",
+                                      "**/com/tenx/tsys/proxybatch/config/*",
+                                      "**/com/tenx/TsysProxyBatchApplication.java"]
+
+    }
+}
+
+bootJar {
+    classifier = 'boot'
+}
+
+applicationDefaultJvmArgs = ["-Dspring.profiles.active=dev"]
+
+/*
+dependencyCheck {
+    data {
+        directory='nvd'
+    }
+}
+*/

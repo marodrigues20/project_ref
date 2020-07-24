@@ -1,0 +1,59 @@
+= Metrics
+
+This document details the metrics exposed by the microservice.
+
+== email.name.confusion
+**What KPI does it related to?**
+Number of confused people
+
+**What is it?**
+Number of confused people
+
+**Why is it important?**
+To give an example within the document tree
+
+**How is it measured?**
+Arbitrarily
+
+**What unit is it in?**
+Count
+
+== http.server.requests.histogram
+**What KPI does it related to?**
+API Latency
+
+**What is it?**
+Response time measured from the time of receiving a request to responding to it
+
+**Why is it important?**
+API latency directly impacts customer experience in multiple use cases
+
+**How is it measured?**
+P99, P90, P50
+
+**What unit is it in?**
+milliseconds
+
+== HighLatency
+**What is it?**
+Network connections which suffers from long delays are called high-latency networks
+
+**Why is it important?**
+To give an  alert for long  delay on  API calls
+
+== Errors
+**What is it?**
+Error that causes a program to abort and may therefore return the user to the operating system
+
+**Why is it important?**
+To show the count of fatal  errors  in  service
+
+== CPUUsage
+**What is it?**
+CPUUsage is used to check the power consumption of the CPU.
+
+**Why is it important?**
+To show an alert if service has high levels of CPU usage
+
+
+

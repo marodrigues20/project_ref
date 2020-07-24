@@ -1,0 +1,35 @@
+= Feature Team
+
+The following team is responsible for the development and support of the service.
+
+== Contact Information
+
+[cols="4", options="header"]
+|===
+| Name | Level | Email | Phone number
+| Vic Reeves
+| Team Lead
+| james.moir@example.com
+| 01632 312454
+
+| Charlie Sheen
+| SME
+| carlos.estevez@example.com
+| 4291
+
+| Bob Hope
+| SME
+| leslie.hope@example.com
+| 555-1235
+
+| Elton John
+| SME
+| reginald.dwight@example.com
+| 07700 900123
+|===
+SME - Subject Matter Expert
+
+
+== Out of Hours Support
+
+The support and escalation policy for the service is managed through link:https://www.pagerduty.com[PagerDuty]

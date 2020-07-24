@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart describing the tsys-proxy-batch service for k8s
+name: tsys-proxy-batch
+version: 1.14.0-SNAPSHOT

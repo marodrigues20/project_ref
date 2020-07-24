@@ -1,0 +1,8 @@
+= Build Pipelines
+
+The aim of this page is to provide a place of the team to understand the pipelines that are used to build the microservice.
+
+== Jenkins
+
+* list the build pipelines that are deployed to jenkins.
+* http://jenkins.10x.mylti3gh7p4x.net/job/example-service-that-should-be-changed/[Jenkins]

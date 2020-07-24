@@ -1,0 +1,20 @@
+= Decisions
+
+The following table details the key decisions that have been made about the project to date.  When a key decision has
+been reached then a summary should be placed in the table below with a link to to a detail page.
+
+* *Ref* - A unique reference value that links to the decision detail.
+* *Date* - The date when the decision was made.
+* *Contact* - The name of the team member that championed the decision within the project.
+* *Title* - A meaningful name given to the decision and can be used in project activities and meetings.
+* *Summary* - A small description/bullet points of the decision.  Communicates the key points of the decision.
+
+|===
+| Ref | Date | Contact | Title | Summary
+
+| <<04-decisions/ref-0-use-of-decisions-log-agreed.adoc#, REF-0>>
+| 2018/05/23
+| Jon Doe
+| Use of decisions log agreed.
+| This project will use a decision log to record key decisions made in the project.
+|===

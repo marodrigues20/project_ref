@@ -1,0 +1,11 @@
+= Logs
+
+This page focuses on the understandin of log entries as seen through supportive services.
+
+* Sumologic logs
+** https://service.eu.sumologic.com/ui/bento.html#/search/555[Dev]
+** https://service.eu.sumologic.com/ui/bento.html#/search/555[Solution Test]
+** https://service.eu.sumologic.com/ui/bento.html#/search/555[Production]
+
+AWS XRAY
+* https://eu-west-1.console.aws.amazon.com/xray/home?region=eu-west-1#/traces?filter=service(%22name-of-the-service%22)[X-Ray]

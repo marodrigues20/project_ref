@@ -1,0 +1,9 @@
+microservice:
+  replicaCount: 3
+  namespace: cards
+  nameOverride: tsysproxybatch
+  image:
+    repository: tsys-proxy-batch
+    tag: __TAG__
+  service:
+    targetPort: 9088

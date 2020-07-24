@@ -1,0 +1,16 @@
+= Platform Contracts
+
+This page documents the contracts of the microservice.  The aim of the page is to allow the development teams to understand the value of the
+microservice within the wider 10x platform.
+
+== Contracts Provided
+
+These are the contracts provided by the microservice to the wider 10x Platform.  These contracts represent the interactions that are supported by the
+microservice.  The main representation of the contract within the 10x platform is PACT, but this might not be the only resource that describes the commitments to other microservice.
+This subsection should be populated by content that informs the development team about the microservice's commitments to the wider platform.
+
+== Contracts Consumed
+
+These are the contract/dependencies that must be present witin a deployment of the 10x platform.  These contracts allow the service to function correctly.
+The main representation of the contract within the 10x platform is PACT, but this might not be the only resource that describes a dependency on another microservice.
+This subsection should be populated by content that informs the development team about what is required in the platform for the this microservice to function.

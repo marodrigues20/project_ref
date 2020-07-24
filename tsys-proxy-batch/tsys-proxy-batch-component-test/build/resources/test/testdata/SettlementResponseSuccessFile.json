@@ -1,0 +1,12 @@
+{
+  "header": {
+    "statusCode": 200
+  },
+  "parentSubscriptionKey": "string",
+  "partyKey": "string",
+  "productKey": "string",
+  "productVersion": 0,
+  "subscriptionKey": "TEST_SUBSCRIPTION_KEY",
+  "subscriptionStatus": "ACTIVE",
+  "tenantKey": "string"
+}

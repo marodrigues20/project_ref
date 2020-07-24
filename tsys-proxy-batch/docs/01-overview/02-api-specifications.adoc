@@ -1,0 +1,4 @@
+= Api Specifications
+
+This page represents interactive resources that will allow individuals to understand the contracts implemented by the
+microservice.  This page should link to resources such as swagger endpoints or other generated documentation.

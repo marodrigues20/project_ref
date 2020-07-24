@@ -1,0 +1,16 @@
+downstream:
+  debitcardmanager:
+    url: https://debitcardmanager-cards.svc.devblue.mylti3gh7p4x.net
+  transactionmanager:
+    url: https://transactionmanager-corepayments.svc.devblue.mylti3gh7p4x.net
+
+kafka:
+  bootstrap:
+    servers: localhost:32774, localhost:32775, localhost:32776, localhost:9092
+  security:
+    protocol: PLAINTEXT
+
+  api:
+    key: apiKey
+    password: apiPassword
+

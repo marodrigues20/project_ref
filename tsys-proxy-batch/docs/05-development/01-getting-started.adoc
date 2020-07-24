@@ -1,0 +1,13 @@
+= Getting Started
+
+This page represents the documentation that will allow a new team member to get this microservice up and running.  The aim
+is to allow a new team member, (new to the company or from another team) to start operating the code locally.  This will then form
+a basis to understand the rest of the operating manual.
+
+* Prerequisites - SDKs, tools, account setup
+* Repo location - Where the microservice source could can be found.
+* Commands - What command should be executed to build, test and run the microservice.
+* Extra reading - What other areas of the operating manual should be explored now the service is up and running.
+
+The content of this page is very specific to each team, but the aim is to bring a new team member up to speed so they can
+contribute.

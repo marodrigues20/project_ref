@@ -1,0 +1,8 @@
+= Dashboards
+
+This page focuses on the communication of dashboards that will help the team to understand a deployed and executing microservice.
+
+* Sumologic dashboards
+** https://service.eu.sumologic.com/ui/bento.html#/dashboard/randombase64string[Dev]
+** https://service.eu.sumologic.com/ui/bento.html#/dashboard/randombase64string[Solution Test]
+** https://service.eu.sumologic.com/ui/bento.html#/dashboard/randombase64string[Production]
