@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthTransactionEntityToDomainTransformer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.database.transformer</a> &gt; <span class="el_source">AuthTransactionEntityToDomainTransformer.java</span></div><h1>AuthTransactionEntityToDomainTransformer.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.database.transformer;
+
+import com.tenxbanking.cardrails.adapter.secondary.database.model.CardTransactionEntity;
+import com.tenxbanking.cardrails.domain.model.transaction.AuthTransaction;
+import com.tenxbanking.cardrails.domain.model.transaction.CardAdvice;
+import com.tenxbanking.cardrails.domain.model.transaction.CardAuth;
+import com.tenxbanking.cardrails.domain.model.transaction.CardAuthReversal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class AuthTransactionEntityToDomainTransformer {
+
+  private final Cain001EntityToDomainTransformer cain001Transformer;
+  private final Cain002EntityToDomainTransformer cain002Transformer;
+
+  @Autowired
+  public AuthTransactionEntityToDomainTransformer(
+      Cain001EntityToDomainTransformer cain001Transformer,
+<span class="nc" id="L20">      Cain002EntityToDomainTransformer cain002Transformer) {</span>
+<span class="nc" id="L21">    this.cain001Transformer = cain001Transformer;</span>
+<span class="nc" id="L22">    this.cain002Transformer = cain002Transformer;</span>
+<span class="nc" id="L23">  }</span>
+
+  public AuthTransaction transform(CardTransactionEntity entity) {
+
+<span class="nc bnc" id="L27" title="All 4 branches missed.">    switch (entity.getCardTransactionType()) {</span>
+      case AUTH:
+<span class="nc" id="L29">        return transformAuth(entity);</span>
+      case ADVICE:
+<span class="nc" id="L31">        return transformAdvice(entity);</span>
+      case REVERSAL:
+<span class="nc" id="L33">        return transformReversal(entity);</span>
+      default:
+<span class="nc" id="L35">        throw new IllegalArgumentException(String.format(&quot;No AuthTransaction transformation implemented for cardTransactionType=%s&quot;, entity.getCardTransactionType()));</span>
+    }
+  }
+
+  private AuthTransaction transformAuth(CardTransactionEntity entity) {
+<span class="nc" id="L40">    return new CardAuth(</span>
+<span class="nc" id="L41">        entity.getCardId(),</span>
+<span class="nc" id="L42">        entity.getSubscriptionKey(),</span>
+<span class="nc" id="L43">        entity.getPartyKey(),</span>
+<span class="nc" id="L44">        entity.getProductKey(),</span>
+<span class="nc" id="L45">        entity.getTenantKey(),</span>
+<span class="nc" id="L46">        cain001Transformer.transform(entity),</span>
+<span class="nc" id="L47">        cain002Transformer.transform(entity)</span>
+    );
+  }
+
+  private AuthTransaction transformAdvice(CardTransactionEntity entity) {
+<span class="nc" id="L52">    return new CardAdvice(</span>
+<span class="nc" id="L53">        entity.getCardId(),</span>
+<span class="nc" id="L54">        entity.getSubscriptionKey(),</span>
+<span class="nc" id="L55">        entity.getPartyKey(),</span>
+<span class="nc" id="L56">        entity.getProductKey(),</span>
+<span class="nc" id="L57">        entity.getTenantKey(),</span>
+<span class="nc" id="L58">        cain001Transformer.transform(entity),</span>
+<span class="nc" id="L59">        cain002Transformer.transform(entity)</span>
+    );
+  }
+
+  private AuthTransaction transformReversal(CardTransactionEntity entity) {
+<span class="nc" id="L64">    return new CardAuthReversal(</span>
+<span class="nc" id="L65">        entity.getCardId(),</span>
+<span class="nc" id="L66">        entity.getSubscriptionKey(),</span>
+<span class="nc" id="L67">        entity.getPartyKey(),</span>
+<span class="nc" id="L68">        entity.getProductKey(),</span>
+<span class="nc" id="L69">        entity.getTenantKey(),</span>
+<span class="nc" id="L70">        cain001Transformer.transform(entity),</span>
+<span class="nc" id="L71">        cain002Transformer.transform(entity)</span>
+    );
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Card.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.model.card</a> &gt; <span class="el_source">Card.java</span></div><h1>Card.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.model.card;
+
+import com.tenxbanking.cardrails.domain.model.subscription.SubscriptionStatus;
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+
+<span class="nc bnc" id="L14" title="All 94 branches missed.">@Data</span>
+<span class="nc bnc" id="L15" title="All 10 branches missed.">@AllArgsConstructor</span>
+<span class="nc bnc" id="L16" title="All 10 branches missed.">@Builder(toBuilder = true)</span>
+@RedisHash(&quot;Card&quot;)
+public class Card implements Serializable {
+
+  @Id
+  @NonNull
+<span class="nc" id="L22">  private final String panHash;</span>
+  @NonNull
+<span class="nc" id="L24">  private final Instant cardEffectiveDate;</span>
+  @NonNull
+<span class="nc" id="L26">  private final Instant cardExpiryDate;</span>
+  @NonNull
+<span class="nc" id="L28">  private final SubscriptionStatus subscriptionStatus;</span>
+  @NonNull
+<span class="nc" id="L30">  private final CardStatus cardStatus;</span>
+
+  //TODO#1: do we need these in our domain? shall we validate these details against subscription details???
+<span class="nc" id="L33">  private final UUID partyKey;</span>
+<span class="nc" id="L34">  private final String tenantKey;</span>
+<span class="nc" id="L35">  private final UUID subscriptionKey;</span>
+
+  //TODO#2: do we need these in our domain?
+<span class="nc" id="L38">  private final String cardCountryCode;</span>
+<span class="nc" id="L39">  private final String cardCurrencyCode;</span>
+
+  //  TODO#3: check if we need these extra fields in card-rails...
+  //  private String cardHolderName;
+  //  private String cardProcessorName;
+  //  private String panToken;
+<span class="nc" id="L45">  private String processorAccountId;</span>
+  //  private String processorAppId;
+  //  private String processorCustomerId;
+  //  private String productKey;
+  //  private String serviceCode;
+  //  private String tokenExpiryDate;
+  //  private String tokenProviderId;
+  //  private String tokenProviderName;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

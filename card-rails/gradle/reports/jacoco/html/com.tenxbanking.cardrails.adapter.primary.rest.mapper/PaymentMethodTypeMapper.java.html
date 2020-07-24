@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PaymentMethodTypeMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.primary.rest.mapper</a> &gt; <span class="el_source">PaymentMethodTypeMapper.java</span></div><h1>PaymentMethodTypeMapper.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.primary.rest.mapper;
+
+import static com.tenxbanking.cardrails.domain.model.PaymentMethodType.ATM_MAG_STRIPE;
+import static com.tenxbanking.cardrails.domain.model.PaymentMethodType.CONTACTLESS;
+import static com.tenxbanking.cardrails.domain.model.PaymentMethodType.DOMESTIC_CASH_WITHDRAWAL;
+import static com.tenxbanking.cardrails.domain.model.PaymentMethodType.DOMESTIC_POS_CHIP_AND_PIN;
+import static com.tenxbanking.cardrails.domain.model.PaymentMethodType.INTERNATIONAL_CASH_WITHDRAWAL;
+import static com.tenxbanking.cardrails.domain.model.PaymentMethodType.INTERNATIONAL_POS_CHIP_AND_PIN;
+import static com.tenxbanking.cardrails.domain.model.PaymentMethodType.MAIL_TELEPHONE_ORDER;
+import static com.tenxbanking.cardrails.domain.model.PaymentMethodType.ONLINE;
+import static com.tenxbanking.cardrails.domain.model.PaymentMethodType.POS_MAG_STRIPE;
+import static com.tenxbanking.cardrails.domain.model.PaymentMethodType.UNKNOWN;
+import static com.tenxbanking.cardrails.domain.model.PosEntryMode.CONTACTLESS_INPUT;
+import static com.tenxbanking.cardrails.domain.model.PosEntryMode.CONTACTLESS_USING_TRACK_RULES;
+import static com.tenxbanking.cardrails.domain.model.PosEntryMode.ICC_CONTACTLESS;
+import static com.tenxbanking.cardrails.domain.model.PosEntryMode.MAG_STRIPE;
+import static com.tenxbanking.cardrails.domain.model.PosEntryMode.MAG_STRIPE_FALL_BACK;
+import static com.tenxbanking.cardrails.domain.model.PosEntryMode.MAG_STRIPE_TRACK;
+import static com.tenxbanking.cardrails.domain.model.PosEntryMode.MANUAL_KEY_ENTRY;
+import static com.tenxbanking.cardrails.domain.model.PosEntryMode.PAN_ENTRY_VIA_CONTACTLESS;
+import static com.tenxbanking.cardrails.domain.model.PosEntryMode.PAN_VIA_ECOMMERCE;
+import static com.tenxbanking.cardrails.domain.model.TransactionType.PURCHASE;
+import static com.tenxbanking.cardrails.domain.model.TransactionType.WITHDRAWAL;
+
+import com.tenxbanking.cardrails.domain.model.PaymentMethodType;
+import org.springframework.stereotype.Component;
+
+@Component
+<span class="nc" id="L29">public class PaymentMethodTypeMapper {</span>
+
+  //TODO: fix this hard coded country code
+  private static final String COUNTRY_CODE = &quot;GBR&quot;;
+  private static final String POS_EXP = &quot;051&quot;;
+
+  public PaymentMethodType map(
+      String processingCode,
+      String countryCode,
+      String pointOfSaleEntryMode,
+      String conditionCode) {
+
+<span class="nc" id="L41">    processingCode = getShortProcessingCode(processingCode);</span>
+
+<span class="nc" id="L43">    PaymentMethodType paymentMethodTypeEnum = UNKNOWN;</span>
+
+<span class="nc bnc" id="L45" title="All 2 branches missed.">    if (isCashWithdrawal(processingCode, pointOfSaleEntryMode)) {</span>
+<span class="nc" id="L46">      paymentMethodTypeEnum = getCashWithdrawalType(countryCode);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">    } else if (isPurchase(processingCode, pointOfSaleEntryMode, conditionCode)) {</span>
+<span class="nc" id="L48">      paymentMethodTypeEnum = getPurchaseType(countryCode);</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">    } else if (isPosMagStripe(processingCode, pointOfSaleEntryMode, conditionCode)) {</span>
+<span class="nc" id="L50">      paymentMethodTypeEnum = POS_MAG_STRIPE;</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">    } else if (isAtmMagStripe(processingCode, pointOfSaleEntryMode, conditionCode)) {</span>
+<span class="nc" id="L52">      paymentMethodTypeEnum = ATM_MAG_STRIPE;</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    } else if (isMailTelephoneOrder(pointOfSaleEntryMode, conditionCode)) {</span>
+<span class="nc" id="L54">      paymentMethodTypeEnum = MAIL_TELEPHONE_ORDER;</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">    } else if (isOnline(pointOfSaleEntryMode, conditionCode)) {</span>
+<span class="nc" id="L56">      paymentMethodTypeEnum = ONLINE;</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">    } else if (isContactless(processingCode, pointOfSaleEntryMode)) {</span>
+<span class="nc" id="L58">      paymentMethodTypeEnum = CONTACTLESS;</span>
+    }
+
+<span class="nc" id="L61">    return paymentMethodTypeEnum;</span>
+  }
+
+  private boolean isCashWithdrawal(String transactionType, String cardDataEntryMode) {
+<span class="nc bnc" id="L65" title="All 2 branches missed.">    return (WITHDRAWAL.getTransactionId().equals(transactionType) &amp;&amp; POS_EXP</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        .equals(cardDataEntryMode));</span>
+  }
+
+  private PaymentMethodType getCashWithdrawalType(String countryCode) {
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    return COUNTRY_CODE.equalsIgnoreCase(countryCode) ? DOMESTIC_CASH_WITHDRAWAL</span>
+<span class="nc" id="L71">        : INTERNATIONAL_CASH_WITHDRAWAL;</span>
+  }
+
+  private boolean isPurchase(String transactionType, String cardDataEntryMode,
+      String conditionCode) {
+<span class="nc bnc" id="L76" title="All 2 branches missed.">    return ((PURCHASE.getTransactionId().equals(transactionType) &amp;&amp; POS_EXP</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        .equals(cardDataEntryMode) &amp;&amp; &quot;00&quot;.equals(conditionCode)));</span>
+  }
+
+  private PaymentMethodType getPurchaseType(String countryCode) {
+<span class="nc bnc" id="L81" title="All 2 branches missed.">    return COUNTRY_CODE.equalsIgnoreCase(countryCode) ? DOMESTIC_POS_CHIP_AND_PIN</span>
+<span class="nc" id="L82">        : INTERNATIONAL_POS_CHIP_AND_PIN;</span>
+  }
+
+  private boolean isPosMagStripe(String transactionType, String cardDataEntryModeExp,
+      String conditionCode) {
+<span class="nc bnc" id="L87" title="All 2 branches missed.">    return (PURCHASE.getTransactionId().equals(transactionType)</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        &amp;&amp; (MAG_STRIPE.getPosCode().equals(cardDataEntryModeExp)</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        || MAG_STRIPE_FALL_BACK.getPosCode().equals(cardDataEntryModeExp)</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        || MAG_STRIPE_TRACK.getPosCode().equals(cardDataEntryModeExp)) &amp;&amp; &quot;00&quot;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        .equals(conditionCode));</span>
+  }
+
+  private boolean isAtmMagStripe(String transactionType, String cardDataEntryModeExp,
+      String conditionCode) {
+<span class="nc bnc" id="L96" title="All 2 branches missed.">    return (WITHDRAWAL.getTransactionId().equals(transactionType)</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        &amp;&amp; (MAG_STRIPE.getPosCode().equals(cardDataEntryModeExp)</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        || MAG_STRIPE_FALL_BACK.getPosCode().equals(cardDataEntryModeExp)</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        || MAG_STRIPE_TRACK.getPosCode().equals(cardDataEntryModeExp)) &amp;&amp; &quot;00&quot;</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        .equals(conditionCode));</span>
+  }
+
+  private boolean isMailTelephoneOrder(String cardDataEntryModeExp, String conditionCode) {
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    return (MANUAL_KEY_ENTRY.getPosCode().equals(cardDataEntryModeExp)</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">        &amp;&amp; ((&quot;01&quot;.equals(conditionCode) || &quot;08&quot;.equals(conditionCode))));</span>
+  }
+
+  private boolean isOnline(String cardDataEntryModeExp, String conditionCode) {
+<span class="nc bnc" id="L109" title="All 2 branches missed.">    return (PAN_VIA_ECOMMERCE.getPosCode().equals(cardDataEntryModeExp)</span>
+<span class="nc bnc" id="L110" title="All 4 branches missed.">        &amp;&amp; ((&quot;01&quot;.equals(conditionCode) || &quot;08&quot;.equals(conditionCode))));</span>
+  }
+
+  private boolean isContactless(String transactionType, String cardDataEntryModeExp) {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">    return (PURCHASE.getTransactionId().equals(transactionType)</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        &amp;&amp; (PAN_ENTRY_VIA_CONTACTLESS.getPosCode().equals(cardDataEntryModeExp)</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">        || CONTACTLESS_USING_TRACK_RULES.getPosCode().equals(cardDataEntryModeExp)</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        || CONTACTLESS_INPUT.getPosCode().equals(cardDataEntryModeExp)</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">        || ICC_CONTACTLESS.getPosCode().equals(cardDataEntryModeExp)));</span>
+  }
+
+  private String getShortProcessingCode(String processingCode) {
+<span class="nc bnc" id="L122" title="All 2 branches missed.">    return processingCode.length() &gt;= 2 ? processingCode.substring(0, 2) : processingCode;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

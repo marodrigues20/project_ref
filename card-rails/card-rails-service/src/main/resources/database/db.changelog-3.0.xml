@@ -1,0 +1,52 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
+  logicalFilePath="db.changelog-3.0.xml">
+
+  <changeSet author="john.mccosker" id="1573032404-1">
+    <addColumn tableName="card_transaction">
+      <column name="reversal_transaction_amount" type="decimal(12,5)">
+        <constraints nullable="true"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="reversal_transaction_currency" type="varchar(3)">
+        <constraints nullable="true"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="reversal_settlement_amount" type="decimal(12,5)">
+        <constraints nullable="true"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="reversal_settlement_currency" type="varchar(3)">
+        <constraints nullable="true"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="reversal_billing_amount" type="decimal(12,5)">
+        <constraints nullable="true"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="reversal_billing_currency" type="varchar(3)">
+        <constraints nullable="true"/>
+      </column>
+    </addColumn>
+
+    <!--TODO - This is failing tests need to fix-->
+    <!--<modifyDataType tableName="card_transaction" columnName="transaction_amount" newDataType="decimal(12,5)"/>
+    <modifyDataType tableName="card_transaction" columnName="billing_amount" newDataType="decimal(12,5)"/>
+    <modifyDataType tableName="card_transaction" columnName="settlement_amount" newDataType="decimal(12,5)"/>
+    <modifyDataType tableName="card_transaction" columnName="conversion_rate" newDataType="decimal(12,5)"/>
+    <modifyDataType tableName="card_transaction" columnName="updated_balance" newDataType="decimal(12,5)"/>
+    <modifyDataType tableName="transaction_limit" columnName="amount" newDataType="decimal(12,5)"/>
+    <modifyDataType tableName="fee" columnName="amount" newDataType="decimal(12,5)"/>
+    <modifyDataType tableName="fee" columnName="tax_amount" newDataType="decimal(12,5)"/>-->
+
+
+  </changeSet>
+
+</databaseChangeLog>

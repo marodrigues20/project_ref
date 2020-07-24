@@ -1,0 +1,69 @@
+plugins {
+  id 'maven'
+  id 'idea'
+  id 'jacoco'
+  id 'checkstyle'
+  id 'org.springframework.boot' version '2.1.6.RELEASE' apply false
+  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+  id 'org.asciidoctor.jvm.convert' version '2.2.0'
+}
+
+allprojects {
+  repositories {
+    maven { url "http://nexus.internal.10x.mylti3gh7p4x.net/repository/maven-public/" }
+    maven { url "http://nexus.internal.10x.mylti3gh7p4x.net/repository/maven-releases/" }
+    maven { url "http://nexus.internal.10x.mylti3gh7p4x.net/repository/third-party/" }
+    maven { url "http://packages.confluent.io/maven/" }
+    jcenter()
+    mavenCentral()
+  }
+}
+
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'maven'
+  apply from: "${rootDir}/gradle/jacoco.gradle"
+  apply from: "${rootDir}/gradle/checkstyle.gradle"
+  apply from: "${rootDir}/gradle/dependencies.gradle"
+
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+
+  test {
+    useJUnitPlatform()
+    test {
+      afterTest { desc, result ->
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+      }
+      afterSuite { desc, result ->
+        if (!desc.parent) {
+          println "\nTest result: ${result.resultType}"
+          println "Test summary: ${result.testCount} tests, " +
+                  "${result.successfulTestCount} succeeded, " +
+                  "${result.failedTestCount} failed, " +
+                  "${result.skippedTestCount} skipped"
+        }
+      }
+    }
+  }
+
+  dependencies {
+    testImplementation libs.junitJupiterApi
+    testImplementation libs.junitJupiterEngine
+    testImplementation libs.junitJupiterParams
+    testImplementation libs.mockito
+    testImplementation libs.mockitoJunitJupiter
+    testImplementation libs.assertJ
+  }
+}
+
+defaultTasks 'clean', 'compileJava', 'build'
+
+asciidoctor {
+  sourceDir = file('docs')
+  outputDir = file('build/operating-manual')
+
+  sources {
+    include '**/*.adoc'
+  }
+}

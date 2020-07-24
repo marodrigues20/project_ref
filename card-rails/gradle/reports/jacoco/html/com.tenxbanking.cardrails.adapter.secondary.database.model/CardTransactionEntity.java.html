@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardTransactionEntity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.database.model</a> &gt; <span class="el_source">CardTransactionEntity.java</span></div><h1>CardTransactionEntity.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.database.model;
+
+import com.tenxbanking.cardrails.domain.model.AuthResponseCode;
+import com.tenxbanking.cardrails.domain.model.CardTransactionType;
+import com.tenxbanking.cardrails.domain.model.PaymentMethodType;
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.List;
+import java.util.UUID;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name = &quot;card_transaction&quot;)
+@Getter
+<span class="nc bnc" id="L33" title="All 314 branches missed.">@EqualsAndHashCode(exclude = {&quot;id&quot;})</span>
+<span class="nc" id="L34">@NoArgsConstructor</span>
+<span class="nc" id="L35">@AllArgsConstructor</span>
+<span class="nc" id="L36">@Builder(toBuilder = true)</span>
+public class CardTransactionEntity {
+
+  @Id
+  @GeneratedValue(generator = &quot;uuid_generator&quot;)
+  @GenericGenerator(name = &quot;uuid_generator&quot;, strategy = &quot;org.hibernate.id.UUIDGenerator&quot;)
+  @Column(nullable = false, updatable = false)
+<span class="nc" id="L43">  private UUID id;</span>
+
+  @Column(nullable = false, updatable = false, length = 64)
+<span class="nc" id="L46">  private String transactionId;</span>
+
+  @Column(nullable = false, updatable = false, length = 64)
+<span class="nc" id="L49">  private String correlationId;</span>
+
+  @Column(nullable = false, updatable = false)
+<span class="nc" id="L52">  private UUID subscriptionKey;</span>
+
+  @Column(nullable = false, updatable = false)
+<span class="nc" id="L55">  private UUID partyKey;</span>
+
+  @Column(nullable = false, updatable = false)
+<span class="nc" id="L58">  private UUID productKey;</span>
+
+  @Column(nullable = false, updatable = false)
+<span class="nc" id="L61">  private String tenantKey;</span>
+
+  @Column(nullable = false, updatable = false)
+<span class="nc" id="L64">  private Instant createdDate;</span>
+
+  @OneToMany(targetEntity = TransactionMessageEntity.class,
+      mappedBy = &quot;cardTransaction&quot;,
+      cascade = CascadeType.ALL,
+      fetch = FetchType.EAGER)
+<span class="nc" id="L70">  private List&lt;TransactionMessageEntity&gt; transactionMessages;</span>
+
+  @Column(updatable = false, length = 64)
+<span class="nc" id="L73">  private String authCode;</span>
+
+  @Column(updatable = false, length = 64)
+  @Enumerated(EnumType.STRING)
+<span class="nc" id="L77">  private AuthResponseCode authResponseCode;</span>
+
+  @Column(updatable = false, length = 32)
+<span class="nc" id="L80">  private String cardId;</span>
+
+  @Column(updatable = false, length = 32)
+<span class="nc" id="L83">  private String banknetReferenceNumber;</span>
+
+  @Column(updatable = false, length = 32)
+  @Enumerated(EnumType.STRING)
+<span class="nc" id="L87">  private CardTransactionType cardTransactionType;</span>
+
+  @Column(updatable = false, length = 32)
+<span class="nc" id="L90">  private String retrievalReferenceNumber;</span>
+
+  @Column(nullable = false)
+<span class="nc" id="L93">  private BigDecimal transactionAmount;</span>
+
+  @Column(nullable = false)
+<span class="nc" id="L96">  private String transactionCurrency;</span>
+
+  @Column(nullable = false)
+<span class="nc" id="L99">  private BigDecimal billingAmount;</span>
+
+  @Column(nullable = false)
+<span class="nc" id="L102">  private String billingCurrency;</span>
+
+  @Column
+<span class="nc" id="L105">  private BigDecimal settlementAmount;</span>
+
+  @Column
+<span class="nc" id="L108">  private String settlementCurrency;</span>
+
+  @Column
+<span class="nc" id="L111">  private BigDecimal reversalTransactionAmount;</span>
+
+  @Column
+<span class="nc" id="L114">  private String reversalTransactionCurrency;</span>
+
+  @Column
+<span class="nc" id="L117">  private BigDecimal reversalSettlementAmount;</span>
+
+  @Column
+<span class="nc" id="L120">  private String reversalSettlementCurrency;</span>
+
+  @Column
+<span class="nc" id="L123">  private BigDecimal reversalBillingAmount;</span>
+
+  @Column
+<span class="nc" id="L126">  private String reversalBillingCurrency;</span>
+
+  @Column
+<span class="nc" id="L129">  private String merchantCategoryCode;</span>
+
+  @Column
+<span class="nc" id="L132">  private String accountQualifier;</span>
+
+  @Column(nullable = false)
+<span class="nc" id="L135">  private String processingCode;</span>
+
+  @Column(nullable = false)
+<span class="nc" id="L138">  private BigDecimal conversionRate;</span>
+
+  @Column
+<span class="nc" id="L141">  private String cardExpiryDate;</span>
+
+  @Column
+<span class="nc" id="L144">  private String pointOfServiceEntryMode;</span>
+
+  @Column
+<span class="nc" id="L147">  private String pointOfServiceConditionCode;</span>
+
+  @Column
+<span class="nc" id="L150">  private String networkId;</span>
+
+  @Column
+<span class="nc" id="L153">  private String cardAcceptorCountryCode;</span>
+
+  @Column
+<span class="nc" id="L156">  private BigDecimal updatedBalance;</span>
+
+  @OneToOne
+  @JoinColumn(name = &quot;fee_id&quot;)
+<span class="nc" id="L160">  private FeeEntity fee;</span>
+
+  @Column
+<span class="nc" id="L163">  private boolean isSuccess;</span>
+
+  @Column(length = 64)
+  @Enumerated(EnumType.STRING)
+<span class="nc" id="L167">  private PaymentMethodType paymentMethodType;</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransactionLimit.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.database.model</a> &gt; <span class="el_source">TransactionLimit.java</span></div><h1>TransactionLimit.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.database.model;
+
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table
+@Getter
+<span class="nc bnc" id="L21" title="All 34 branches missed.">@EqualsAndHashCode(exclude = {&quot;id&quot;})</span>
+<span class="nc" id="L22">@NoArgsConstructor</span>
+<span class="nc" id="L23">@AllArgsConstructor</span>
+<span class="nc" id="L24">@Builder</span>
+public class TransactionLimit {
+
+  @Id
+  @GeneratedValue(generator = &quot;uuid_generator&quot;)
+  @GenericGenerator(name = &quot;uuid_generator&quot;, strategy = &quot;org.hibernate.id.UUIDGenerator&quot;)
+  @Column(nullable = false, updatable = false)
+<span class="nc" id="L31">  private UUID id;</span>
+
+  @Column(nullable = false, updatable = false)
+<span class="nc" id="L34">  private UUID subscriptionKey;</span>
+
+  @Column(nullable = false, updatable = false)
+<span class="nc" id="L37">  private BigDecimal amount;</span>
+
+  @Column(nullable = false, updatable = false)
+<span class="nc" id="L40">  private boolean isAtmWithdrawal;</span>
+
+  @Column(nullable = false, updatable = false)
+<span class="nc" id="L43">  private Instant transactionDatetime;</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

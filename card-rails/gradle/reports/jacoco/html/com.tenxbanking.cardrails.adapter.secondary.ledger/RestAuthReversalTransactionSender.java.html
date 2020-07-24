@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RestAuthReversalTransactionSender.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.ledger</a> &gt; <span class="el_source">RestAuthReversalTransactionSender.java</span></div><h1>RestAuthReversalTransactionSender.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.ledger;
+
+import com.tenx.universalbanking.transactionmessage.TransactionMessage;
+import com.tenxbanking.cardrails.adapter.secondary.ledger.model.BalanceResponse;
+import com.tenxbanking.cardrails.adapter.secondary.messagecreator.CardAuthTransactionMessageCreator;
+import com.tenxbanking.cardrails.domain.exception.BalanceReservationException;
+import com.tenxbanking.cardrails.domain.model.Cain001;
+import com.tenxbanking.cardrails.domain.model.Cain002;
+import com.tenxbanking.cardrails.domain.model.transaction.CardAuthReversal;
+import com.tenxbanking.cardrails.domain.port.sender.AuthReversalTransactionSender;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+
+<span class="nc" id="L17">@Slf4j</span>
+@Component
+public class RestAuthReversalTransactionSender implements AuthReversalTransactionSender {
+
+  private final LedgerManagerClient ledgerClient;
+  private final CardAuthTransactionMessageCreator messageMapper;
+
+  @Autowired
+  public RestAuthReversalTransactionSender(
+      LedgerManagerClient ledgerClient,
+<span class="nc" id="L27">      CardAuthTransactionMessageCreator messageMapper) {</span>
+<span class="nc" id="L28">    this.ledgerClient = ledgerClient;</span>
+<span class="nc" id="L29">    this.messageMapper = messageMapper;</span>
+<span class="nc" id="L30">  }</span>
+
+  @Override
+<span class="nc bnc" id="L33" title="All 2 branches missed.">  public Cain002 reverse(@NonNull CardAuthReversal cardAuthReversal) {</span>
+    try {
+<span class="nc" id="L35">      TransactionMessage message = messageMapper.create(cardAuthReversal);</span>
+<span class="nc" id="L36">      log.debug(&quot;Posting to ledger manager reverse endpoint with transactionMessage={} &quot;, message);</span>
+<span class="nc" id="L37">      ResponseEntity&lt;BalanceResponse&gt; reversal = ledgerClient.reversal(message);</span>
+<span class="nc" id="L38">      return createResult(reversal.getBody(), cardAuthReversal.getCain001());</span>
+<span class="nc" id="L39">    } catch (Exception ex) {</span>
+<span class="nc" id="L40">      log.error(&quot;Failed posting reversal on ledger&quot;, ex);</span>
+<span class="nc" id="L41">      throw new BalanceReservationException(String.format(&quot;Failed to post cardAuthReversal=%s&quot;, cardAuthReversal));</span>
+    }
+  }
+
+  private Cain002 createResult(BalanceResponse balanceResponse, Cain001 cain001) {
+<span class="nc" id="L46">    return buildCain002(balanceResponse, cain001);</span>
+  }
+
+  private Cain002 buildCain002(BalanceResponse balanceResponse, Cain001 cain001) {
+<span class="nc" id="L50">    return Cain002.successful(cain001, balanceResponse.getBalance().getAmount().getValue());</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SubscriptionEventListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.primary.consumer</a> &gt; <span class="el_source">SubscriptionEventListener.java</span></div><h1>SubscriptionEventListener.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.primary.consumer;
+
+import static java.util.Objects.isNull;
+
+import com.tenx.dub.subscription.event.v1.SubscriptionEvent;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
+import org.springframework.stereotype.Component;
+
+<span class="nc" id="L14">@Slf4j</span>
+@Component
+<span class="nc" id="L16">@AllArgsConstructor</span>
+public class SubscriptionEventListener {
+
+  private static final String GROUP = &quot;card-rails-group&quot;;
+  private static final String TOPIC = &quot;${kafka.consumer.topic.subscription}&quot;;
+
+  private SubscriptionEventHandler subscriptionEventHandler;
+
+  @KafkaListener(topics = TOPIC,
+      containerFactory = &quot;subscriptionEventContainerFactory&quot;,
+      groupId = GROUP,
+      autoStartup = &quot;false&quot;)
+<span class="nc bnc" id="L28" title="All 2 branches missed.">  public void onMessage(final @NonNull ConsumerRecord&lt;String, SubscriptionEvent&gt; record,</span>
+      final Acknowledgment acknowledgment) {
+
+<span class="nc" id="L31">    log.debug(&quot;Received subscription event with key {}&quot;, record.key());</span>
+
+<span class="nc" id="L33">    final SubscriptionEvent subscriptionEvent = record.value();</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">    if (isNull(subscriptionEvent)) {</span>
+<span class="nc" id="L35">      log.error(</span>
+          &quot;Could not parse subscription event on topic {}, partition {} and offset {} with record key {}&quot;,
+<span class="nc" id="L37">          record.topic(), record.partition(), record.offset(), record.key());</span>
+<span class="nc" id="L38">      subscriptionEventHandler.invalidateCache(record.key());</span>
+<span class="nc" id="L39">      acknowledgment.acknowledge();</span>
+<span class="nc" id="L40">      return;</span>
+    }
+
+    try {
+<span class="nc" id="L44">      subscriptionEventHandler.process(subscriptionEvent);</span>
+<span class="nc" id="L45">    } catch (Exception ex) {</span>
+<span class="nc" id="L46">      subscriptionEventHandler.invalidateCache(subscriptionEvent.getSubscriptionKey());</span>
+<span class="nc" id="L47">      log.error(&quot;Could not process subscription event for subscription key {}&quot;, subscriptionEvent.getSubscriptionKey(), ex);</span>
+    } finally {
+<span class="nc" id="L49">      acknowledgment.acknowledge();</span>
+    }
+<span class="nc" id="L51">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

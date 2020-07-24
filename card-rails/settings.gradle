@@ -1,0 +1,4 @@
+rootProject.name = 'card-rails'
+include 'card-rails-service'
+include 'card-rails-component-test'
+

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KafkaConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.config</a> &gt; <span class="el_source">KafkaConfig.java</span></div><h1>KafkaConfig.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.config;
+
+import static io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
+import static io.confluent.kafka.serializers.KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG;
+import static org.apache.kafka.clients.CommonClientConfigs.SECURITY_PROTOCOL_CONFIG;
+import static org.apache.kafka.clients.consumer.ConsumerConfig.AUTO_OFFSET_RESET_CONFIG;
+import static org.apache.kafka.clients.consumer.ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG;
+import static org.apache.kafka.clients.consumer.ConsumerConfig.CONNECTIONS_MAX_IDLE_MS_CONFIG;
+import static org.apache.kafka.clients.consumer.ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG;
+import static org.apache.kafka.clients.consumer.ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG;
+import static org.apache.kafka.clients.consumer.ConsumerConfig.REQUEST_TIMEOUT_MS_CONFIG;
+import static org.apache.kafka.clients.consumer.ConsumerConfig.RETRY_BACKOFF_MS_CONFIG;
+import static org.apache.kafka.clients.consumer.ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG;
+import static org.apache.kafka.common.config.SaslConfigs.SASL_JAAS_CONFIG;
+import static org.apache.kafka.common.config.SaslConfigs.SASL_MECHANISM;
+import static org.apache.kafka.common.config.SslConfigs.SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG;
+import static org.springframework.kafka.listener.ContainerProperties.AckMode.MANUAL_IMMEDIATE;
+
+import avro.shaded.com.google.common.collect.ImmutableMap;
+import com.tenx.dub.subscription.event.v1.SubscriptionEvent;
+import java.util.Map;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.config.KafkaListenerContainerFactory;
+import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
+
+@Configuration
+@EnableKafka
+public class KafkaConfig {
+
+  private static final long A_DAY_MILLIS = 24 * 60 * 60 * 1000;
+
+  private static final String SASL_JAAS_CONFIG_TEMPLATE =
+      &quot;org.apache.kafka.common.security.plain.PlainLoginModule required username=\&quot;%s\&quot; password=\&quot;%s\&quot;;&quot;;
+
+  private final Map&lt;String, Object&gt; kafkaProperties;
+
+  //TODO: this could all be extracted into application.yml
+  public KafkaConfig(
+      @Value(&quot;${kafka.ssl.algorithm}&quot;) String sslAlgorithm,
+      @Value(&quot;${kafka.sasl.mechanism}&quot;) String saslMechanism,
+      @Value(&quot;${kafka.sasl.api.key}&quot;) String saslApiKey,
+      @Value(&quot;${kafka.sasl.api.secret}&quot;) String saslApiSecret,
+      @Value(&quot;${kafka.request.timeout.ms}&quot;) String requestTimeoutMs,
+      @Value(&quot;${kafka.retry.backoff.ms}&quot;) String retryBackoffMs,
+      @Value(&quot;${kafka.security.protocol}&quot;) String securityProtocol,
+      @Value(&quot;${kafka.schema.registry.url}&quot;) String schemaRegistryUrl,
+<span class="nc" id="L53">      @Value(&quot;${kafka.bootstrap.servers}&quot;) String bootstrapServers) {</span>
+
+<span class="nc" id="L55">    kafkaProperties = new ImmutableMap.Builder&lt;String, Object&gt;()</span>
+<span class="nc" id="L56">        .put(BOOTSTRAP_SERVERS_CONFIG, bootstrapServers)</span>
+<span class="nc" id="L57">        .put(REQUEST_TIMEOUT_MS_CONFIG, requestTimeoutMs)</span>
+<span class="nc" id="L58">        .put(SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG, sslAlgorithm)</span>
+<span class="nc" id="L59">        .put(SASL_MECHANISM, saslMechanism)</span>
+<span class="nc" id="L60">        .put(SASL_JAAS_CONFIG, String.format(SASL_JAAS_CONFIG_TEMPLATE, saslApiKey, saslApiSecret))</span>
+<span class="nc" id="L61">        .put(SECURITY_PROTOCOL_CONFIG, securityProtocol)</span>
+<span class="nc" id="L62">        .put(RETRY_BACKOFF_MS_CONFIG, retryBackoffMs)</span>
+<span class="nc" id="L63">        .put(SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl)</span>
+<span class="nc" id="L64">        .build();</span>
+<span class="nc" id="L65">  }</span>
+
+  private Map&lt;String, Object&gt; consumerProperties() {
+<span class="nc" id="L68">    return new ImmutableMap.Builder&lt;String, Object&gt;()</span>
+<span class="nc" id="L69">        .put(SPECIFIC_AVRO_READER_CONFIG, true)</span>
+<span class="nc" id="L70">        .put(KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class)</span>
+<span class="nc" id="L71">        .put(VALUE_DESERIALIZER_CLASS_CONFIG, AvroDeserializer.class)</span>
+<span class="nc" id="L72">        .put(ENABLE_AUTO_COMMIT_CONFIG, false)</span>
+<span class="nc" id="L73">        .put(AUTO_OFFSET_RESET_CONFIG, &quot;latest&quot;)</span>
+<span class="nc" id="L74">        .put(CONNECTIONS_MAX_IDLE_MS_CONFIG, A_DAY_MILLIS)</span>
+<span class="nc" id="L75">        .putAll(kafkaProperties)</span>
+<span class="nc" id="L76">        .build();</span>
+  }
+
+  @Bean(&quot;subscriptionEventContainerFactory&quot;)
+  public KafkaListenerContainerFactory&lt;ConcurrentMessageListenerContainer&lt;String, SubscriptionEvent&gt;&gt; subscriptionEventContainerFactory() {
+<span class="nc" id="L81">    ConcurrentKafkaListenerContainerFactory&lt;String, SubscriptionEvent&gt; factory = new ConcurrentKafkaListenerContainerFactory&lt;&gt;();</span>
+<span class="nc" id="L82">    factory.setConsumerFactory(new DefaultKafkaConsumerFactory&lt;&gt;(consumerProperties()));</span>
+<span class="nc" id="L83">    factory.getContainerProperties().setAckMode(MANUAL_IMMEDIATE);</span>
+<span class="nc" id="L84">    factory.getContainerProperties().setSyncCommits(true);</span>
+<span class="nc" id="L85">    return factory;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

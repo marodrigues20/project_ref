@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PaymentTransactionCodeMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.messagecreator</a> &gt; <span class="el_source">PaymentTransactionCodeMapper.java</span></div><h1>PaymentTransactionCodeMapper.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.messagecreator;
+
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentsTransactionCodeEnum.PAYMENTS_CUSTOMER_CARD_TRANSACTION_CASH_WITHDRAWAL;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentsTransactionCodeEnum.PAYMENTS_CUSTOMER_CARD_TRANSACTION_CROSS_BORDER_CASH_WITHDRAWEL;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentsTransactionCodeEnum.PAYMENTS_CUSTOMER_CARD_TRANSACTION_POINT_OF_SALE_PAYMENT_DEBIT_CARD;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentsTransactionCodeEnum.PAYMENTS_CUSTOMER_MAG_STRIPE_TRANSACTION_CASH_WITHDRAWAL;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentsTransactionCodeEnum.UNKNOWN;
+
+import com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentsTransactionCodeEnum;
+import com.tenxbanking.cardrails.domain.model.PaymentMethodType;
+import org.springframework.stereotype.Component;
+
+@Component
+<span class="nc" id="L14">public class PaymentTransactionCodeMapper {</span>
+
+  public PaymentsTransactionCodeEnum map(PaymentMethodType paymentMethodType) {
+
+<span class="nc bnc" id="L18" title="All 5 branches missed.">    switch (paymentMethodType) {</span>
+      case DOMESTIC_CASH_WITHDRAWAL:
+<span class="nc" id="L20">        return PAYMENTS_CUSTOMER_CARD_TRANSACTION_CASH_WITHDRAWAL;</span>
+      case INTERNATIONAL_CASH_WITHDRAWAL:
+<span class="nc" id="L22">        return PAYMENTS_CUSTOMER_CARD_TRANSACTION_CROSS_BORDER_CASH_WITHDRAWEL;</span>
+      case DOMESTIC_POS_CHIP_AND_PIN:
+<span class="nc" id="L24">        return PAYMENTS_CUSTOMER_CARD_TRANSACTION_POINT_OF_SALE_PAYMENT_DEBIT_CARD;</span>
+      case POS_MAG_STRIPE:
+<span class="nc" id="L26">        return PAYMENTS_CUSTOMER_MAG_STRIPE_TRANSACTION_CASH_WITHDRAWAL;</span>
+      default:
+<span class="nc" id="L28">        return UNKNOWN;</span>
+    }
+  }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

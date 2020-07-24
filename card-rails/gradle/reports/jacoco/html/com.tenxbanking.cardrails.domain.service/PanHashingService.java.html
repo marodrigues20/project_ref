@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PanHashingService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.service</a> &gt; <span class="el_source">PanHashingService.java</span></div><h1>PanHashingService.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.service;
+
+import com.tenxbanking.cardrails.domain.exception.PanNotHashedException;
+import java.security.MessageDigest;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
+<span class="nc" id="L11">@Slf4j</span>
+public class PanHashingService {
+
+  private final String saltKey;
+
+<span class="nc" id="L16">  public PanHashingService(@Value(&quot;${hashpan.saltKey}&quot;) String saltKey) {</span>
+<span class="nc" id="L17">    this.saltKey = saltKey;</span>
+<span class="nc" id="L18">  }</span>
+
+<span class="nc bnc" id="L20" title="All 2 branches missed.">  public String hashCardId(@NonNull final String cardId) {</span>
+    try {
+<span class="nc" id="L22">      MessageDigest messageDigest = MessageDigest.getInstance(&quot;SHA-512&quot;);</span>
+<span class="nc" id="L23">      messageDigest.update(saltKey.getBytes());</span>
+<span class="nc" id="L24">      byte[] digest = messageDigest.digest(cardId.getBytes());</span>
+
+<span class="nc" id="L26">      StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">      for (byte b : digest) {</span>
+<span class="nc" id="L28">        sb.append(Integer.toString((b &amp; 0xff) + 0x100, 16).substring(1));</span>
+      }
+
+<span class="nc" id="L31">      return sb.toString();</span>
+<span class="nc" id="L32">    } catch (Exception e) {</span>
+<span class="nc" id="L33">      log.error(&quot;Error occurred while hashing string. Exception:&quot;, e);</span>
+<span class="nc" id="L34">      throw new PanNotHashedException(e);</span>
+    }
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

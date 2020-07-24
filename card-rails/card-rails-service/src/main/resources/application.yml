@@ -1,0 +1,121 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    banner_mode: "off"
+  application:
+    name: cardrails
+  jmx:
+    enabled: false
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_AUTH_TOKEN}
+    timeout: 1000
+    ssl: true
+  datasource:
+    url: jdbc:postgresql://cockroach.db.svc.cluster.local:26257/${database}?sslmode=verify-full&sslcert=/cockroach-certs/client.${dbUsername}.crt&sslkey=/cockroach-certs/client.${dbUsername}.pk8&sslrootcert=/cockroach-certs/ca.crt
+    username: ${dbUsername}
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      poolName: CockroachHikariCP
+      connectionTimeout: 1000
+      maximumPoolSize: 100 #TODO: think about tweaking this value
+  liquibase:
+    change-log: classpath:/database/changelog-master.xml
+  jpa:
+    database: default
+    hibernate:
+      ddl-auto: validate
+    #database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    properties:
+      hibernate:
+        #dialect: org.hibernate.dialect.PostgreSQLDialect
+        use_sql_comments: false
+        format_sql: false
+        jdbc:
+        batch_size: 5
+        order_inserts: true
+        order_updates: true
+    open-in-view: false
+    show-sql: false
+
+management:
+  endpoints:
+    web:
+      base-path: "/"
+      path-mapping:
+        health: health
+        prometheus: metrics
+      exposure:
+        include: ${MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE:health,prometheus,env,info}
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+  info:
+    git:
+      mode: full
+
+kafka:
+  ssl:
+    algorithm: https
+  sasl:
+    mechanism: PLAIN
+    api:
+      key: ${KAFKA_API_KEY}
+      secret: ${KAFKA_API_SECRET}
+  request:
+    timeout:
+      ms: 20000
+  retry:
+    backoff:
+      ms: 500
+  security:
+    protocol: SASL_SSL
+  schema:
+    registry:
+      url: "http://schemaregistry.analytics"
+  bootstrap:
+    servers: ${KAFKA_BOOTSTRAP_SERVERS}
+  consumer:
+    topic:
+      subscription: "subscription-event-v3"
+
+downstream:
+  debitcardmanager:
+    host: "http://debitcardmanager.cards"
+  feeschargescalculator:
+    host: "http://feeschargescalculator2.corebankingb"
+  ledgermanager:
+    host: "http://ledgermanager.corebanking"
+  subscriptionmanager2:
+    host: "http://subscriptionmanager2.interaction"
+  cardrailskafkaconnect:
+    host: "http://cardrailskafkaconnect.cards"
+
+feign:
+  client:
+    config:
+      feignName:
+        connectTimeout: 500
+        readTimeout: 1500
+
+hashpan:
+  saltKey: ${HASHPAN_SALT_KEY}
+
+cardAuthSourceConnector:
+  cronExpression: ${KAFKA_CONNECTOR_CRON_EXPRESSION:0 */2 * * * *}
+
+validation.defaultIsActive: true
+
+redis:
+  idempotent:
+    expire-time: 30d

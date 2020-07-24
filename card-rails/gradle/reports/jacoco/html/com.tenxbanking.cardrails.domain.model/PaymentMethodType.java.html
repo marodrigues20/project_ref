@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PaymentMethodType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.model</a> &gt; <span class="el_source">PaymentMethodType.java</span></div><h1>PaymentMethodType.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.model;
+
+import static com.tenxbanking.cardrails.domain.model.card.Channel.ATM;
+import static com.tenxbanking.cardrails.domain.model.card.Channel.CARD_HOLDER_NOT_PRESENT;
+import static com.tenxbanking.cardrails.domain.model.card.Channel.CHIP_AND_PIN;
+import static com.tenxbanking.cardrails.domain.model.card.Channel.INTERNATIONAL;
+import static com.tenxbanking.cardrails.domain.model.card.Channel.MAG_STRIPE;
+
+import com.tenxbanking.cardrails.domain.model.card.Channel;
+import java.util.List;
+import lombok.Getter;
+
+<span class="nc" id="L13">@Getter</span>
+public enum PaymentMethodType {
+<span class="nc" id="L15">  DOMESTIC_CASH_WITHDRAWAL(</span>
+      ATM
+  ),
+<span class="nc" id="L18">  INTERNATIONAL_CASH_WITHDRAWAL(</span>
+      ATM,
+      INTERNATIONAL
+  ),
+<span class="nc" id="L22">  CHIP_PIN(</span>
+      CHIP_AND_PIN
+  ),
+<span class="nc" id="L25">  CONTACTLESS(</span>
+      Channel.CONTACTLESS
+  ),
+<span class="nc" id="L28">  DOMESTIC_POS_CHIP_AND_PIN(</span>
+      CHIP_AND_PIN
+  ),
+<span class="nc" id="L31">  INTERNATIONAL_POS_CHIP_AND_PIN(</span>
+      CHIP_AND_PIN,
+      INTERNATIONAL
+  ),
+<span class="nc" id="L35">  POS_MAG_STRIPE(</span>
+      MAG_STRIPE
+  ),
+<span class="nc" id="L38">  ATM_MAG_STRIPE(</span>
+      MAG_STRIPE,
+      ATM
+  ),
+<span class="nc" id="L42">  MAIL_TELEPHONE_ORDER(</span>
+      CARD_HOLDER_NOT_PRESENT
+  ),
+<span class="nc" id="L45">  ONLINE,</span>
+<span class="nc" id="L46">  UNKNOWN;</span>
+
+<span class="nc" id="L48">  private final List&lt;Channel&gt; requiredChannels;</span>
+
+
+<span class="nc" id="L51">  PaymentMethodType(Channel... requiredChannels) {</span>
+<span class="nc" id="L52">    this.requiredChannels = List.of(requiredChannels);</span>
+<span class="nc" id="L53">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

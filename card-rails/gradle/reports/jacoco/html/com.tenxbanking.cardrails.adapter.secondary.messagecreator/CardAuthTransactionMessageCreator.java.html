@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardAuthTransactionMessageCreator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.messagecreator</a> &gt; <span class="el_source">CardAuthTransactionMessageCreator.java</span></div><h1>CardAuthTransactionMessageCreator.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.messagecreator;
+
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.AMOUNT;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.BANKNET_REFERENCE_NUMBER;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.CARDHOLDER_PRESENT;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.CARD_ACCEPTOR_CONDITION_CODE;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.CARD_DATA_ENTRY_MODE;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.CARD_TOKEN;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.EXCHANGE_RATE;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.INITIATOR_PARTY_ID;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.MERCHANT_CATEGORY_CODE;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.TOTAL_AMOUNT;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.TRANSACTION_AMOUNT_QUALIFIER;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.TRANSACTION_CURRENCY_CODE;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.TRANSACTION_DATE;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.TRANSACTION_TIME;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.VALUE_DATE;
+import static com.tenx.universalbanking.transactionmessage.enums.FeesChargesEnum.FEE_AMOUNT;
+import static com.tenx.universalbanking.transactionmessage.enums.FeesChargesEnum.FEE_CURRENCY_CODE;
+import static com.tenx.universalbanking.transactionmessage.enums.FeesChargesEnum.FEE_DESCRIPTION;
+import static com.tenx.universalbanking.transactionmessage.enums.FeesChargesEnum.VALUE_DATE_TIME;
+import static com.tenx.universalbanking.transactionmessage.enums.TaxEnum.DESCRIPTION;
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageAdditionalInfoEnum.REQUEST_ID;
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageAdditionalInfoEnum.TENANT_PARTY_KEY;
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageAdditionalInfoEnum.TRANSACTION_CORRELATION_ID;
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageAdditionalInfoEnum.TRANSACTION_STATUS;
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageAdditionalInfoEnum.TRANSACTION_TYPE;
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageTypeEnum.CARD_AUTH;
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageTypeEnum.CARD_AUTH_VIA_ADVICE;
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageTypeEnum.FEES_AND_CHARGES;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.DEBIT_CREDIT_INDICATOR;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.PARENT_TRANSACTION_ID;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.PARTY_KEY;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.PAYMENT_METHOD_TYPE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.PRODUCT_KEY;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.SUBSCRIPTION_KEY;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.TRANSACTION_CODE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.TRANSACTION_ID;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageTypeEnum.CAIN001;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageTypeEnum.TAX;
+import static com.tenxbanking.cardrails.adapter.secondary.messagecreator.PosEntryModeEnum.convertPosEntryCode;
+
+import com.google.common.collect.ImmutableMap;
+import com.tenx.universalbanking.transactionmessage.TransactionMessage;
+import com.tenx.universalbanking.transactionmessage.TransactionMessageHeader;
+import com.tenx.universalbanking.transactionmessage.enums.TaxEnum;
+import com.tenx.universalbanking.transactionmessage.enums.TransactionStatusValueEnum;
+import com.tenx.universalbanking.transactionmessage.paymentmessage.PaymentMessage;
+import com.tenxbanking.cardrails.domain.model.Cain001;
+import com.tenxbanking.cardrails.domain.model.CardTransactionType;
+import com.tenxbanking.cardrails.domain.model.Fee;
+import com.tenxbanking.cardrails.domain.model.Tax;
+import com.tenxbanking.cardrails.domain.model.transaction.AuthTransaction;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CardAuthTransactionMessageCreator {
+
+  private static final String TENANT_KEY = &quot;10000&quot;;
+  private static final String TRANSACTION_ACCOUNT_QUALIFIER = &quot;ACTL&quot;;
+<span class="nc" id="L71">  private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter</span>
+<span class="nc" id="L72">      .ofPattern(&quot;yyyy-MM-dd'T'HH:mm:ss.SSSZ&quot;);</span>
+
+
+  private final PaymentTransactionCodeMapper paymentTransactionCodeMapper;
+  private final GeneratorUtil generatorUtil;
+
+
+<span class="nc" id="L79">  private static final Map&lt;CardTransactionType, TransactionStatusValueEnum&gt; TRANSACTION_STATUS_MAP = ImmutableMap</span>
+<span class="nc" id="L80">      .of(CardTransactionType.REVERSAL, TransactionStatusValueEnum.REVERSE,</span>
+          CardTransactionType.ADVICE, TransactionStatusValueEnum.APPROVED,
+          CardTransactionType.AUTH, TransactionStatusValueEnum.RESERVE);
+
+
+  @Autowired
+  public CardAuthTransactionMessageCreator(
+      PaymentTransactionCodeMapper paymentTransactionCodeMapper,
+<span class="nc" id="L88">      GeneratorUtil generatorUtil) {</span>
+<span class="nc" id="L89">    this.paymentTransactionCodeMapper = paymentTransactionCodeMapper;</span>
+<span class="nc" id="L90">    this.generatorUtil = generatorUtil;</span>
+<span class="nc" id="L91">  }</span>
+
+<span class="nc" id="L93">  private final Logger logger = LoggerFactory.getLogger(CardAuthTransactionMessageCreator.class);</span>
+
+  public TransactionMessage create(AuthTransaction authTransaction) {
+
+    //TODO: finalise required fields here
+
+<span class="nc" id="L99">    Cain001 cain001 = authTransaction.getCain001();</span>
+
+<span class="nc" id="L101">    final TransactionMessage cardAuthMessage = new TransactionMessage();</span>
+<span class="nc" id="L102">    final Map&lt;String, Object&gt; tmAdditionalInfo = new HashMap&lt;&gt;();</span>
+
+<span class="nc" id="L104">    cardAuthMessage.setHeader(createHeader(cain001));</span>
+
+<span class="nc" id="L106">    final List&lt;PaymentMessage&gt; paymentMessages = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L108">    PaymentMessage paymentMessage = new PaymentMessage();</span>
+<span class="nc" id="L109">    paymentMessage.setType(CAIN001.name());</span>
+<span class="nc" id="L110">    paymentMessage.setMessage(buildMessage(authTransaction));</span>
+<span class="nc" id="L111">    paymentMessage.setAdditionalInfo(buildPaymentAdditionalInfo(authTransaction));</span>
+
+<span class="nc" id="L113">    paymentMessages.add(paymentMessage);</span>
+
+<span class="nc" id="L115">    cain001.getFee().ifPresent(</span>
+        fee -&gt; {
+<span class="nc" id="L117">          paymentMessages.add(createFeeMessage(fee, authTransaction.getSubscriptionKey()));</span>
+<span class="nc" id="L118">          fee.getTax().ifPresent(</span>
+<span class="nc" id="L119">              tax -&gt; paymentMessages</span>
+<span class="nc" id="L120">                  .add(createPaymentMessageForTax(fee, tax, authTransaction.getSubscriptionKey())));</span>
+<span class="nc" id="L121">        });</span>
+
+<span class="nc" id="L123">    cardAuthMessage.setMessages(paymentMessages);</span>
+
+<span class="nc" id="L125">    tmAdditionalInfo.put(TENANT_PARTY_KEY.name(), TENANT_KEY);</span>
+<span class="nc" id="L126">    String requestID = generatorUtil.generateRandomKey();</span>
+<span class="nc" id="L127">    tmAdditionalInfo.put(REQUEST_ID.name(), requestID);</span>
+<span class="nc" id="L128">    tmAdditionalInfo.put(TRANSACTION_CORRELATION_ID.name(),</span>
+<span class="nc" id="L129">        authTransaction.getCain001().getCorrelationId().toString());</span>
+
+<span class="nc" id="L131">    logger.info(&quot;REQUEST_ID&quot; + requestID);</span>
+
+<span class="nc" id="L133">    tmAdditionalInfo.put(TRANSACTION_STATUS.name(),</span>
+<span class="nc" id="L134">        TRANSACTION_STATUS_MAP.get(authTransaction.getCain001().getCardTransactionType()).name());</span>
+
+<span class="nc" id="L136">    cardAuthMessage.setAdditionalInfo(tmAdditionalInfo);</span>
+
+<span class="nc" id="L138">    return cardAuthMessage;</span>
+  }
+
+  private PaymentMessage createPaymentMessageForTax(Fee fee, Tax tax, UUID subscriptionKey) {
+<span class="nc" id="L142">    Map&lt;String, Object&gt; messageBody = createMessageBodyForTax(fee, tax);</span>
+<span class="nc" id="L143">    Map&lt;String, Object&gt; additionalInfo = createAdditionalInfoForTax(tax, subscriptionKey);</span>
+<span class="nc" id="L144">    PaymentMessage outputMessage = new PaymentMessage();</span>
+<span class="nc" id="L145">    outputMessage.setMessage(messageBody);</span>
+<span class="nc" id="L146">    outputMessage.setAdditionalInfo(additionalInfo);</span>
+<span class="nc" id="L147">    outputMessage.setType(TAX.name());</span>
+<span class="nc" id="L148">    return outputMessage;</span>
+  }
+
+  private Map&lt;String, Object&gt; createMessageBodyForTax(Fee fee, Tax tax) {
+<span class="nc" id="L152">    return new ImmutableMap.Builder&lt;String, Object&gt;()</span>
+<span class="nc" id="L153">        .put(TaxEnum.TRANSACTION_CODE.name(), fee.getTransactionCode())</span>
+<span class="nc" id="L154">        .put(TaxEnum.TRANSACTION_DATE.name(), fee.getTransactionDate())</span>
+<span class="nc" id="L155">        .put(TaxEnum.CURRENCY_CODE.name(), fee.getFeeCurrencyCode())</span>
+<span class="nc" id="L156">        .put(DESCRIPTION.name(), tax.getStatementDescription())</span>
+<span class="nc" id="L157">        .put(TaxEnum.VALUE_DATE_TIME.name(), fee.getValueDateTime())</span>
+<span class="nc" id="L158">        .put(TaxEnum.AMOUNT.name(), tax.getTaxAmount())</span>
+<span class="nc" id="L159">        .build();</span>
+  }
+
+  private Map&lt;String, Object&gt; createAdditionalInfoForTax(Tax tax, UUID subscriptionKey) {
+<span class="nc" id="L163">    return ImmutableMap.of(TRANSACTION_ID.name(), tax.getTransactionId(),</span>
+<span class="nc" id="L164">        PARENT_TRANSACTION_ID.name(), tax.getParentTransactionId(),</span>
+<span class="nc" id="L165">        SUBSCRIPTION_KEY.name(), subscriptionKey.toString());</span>
+  }
+
+  private PaymentMessage createFeeMessage(Fee fee, UUID subscriptionKey) {
+<span class="nc" id="L169">    Map&lt;String, Object&gt; messageBody = createMessageBody(fee);</span>
+<span class="nc" id="L170">    Map&lt;String, Object&gt; additionalInfo = createAdditionalInfo(fee, subscriptionKey);</span>
+<span class="nc" id="L171">    PaymentMessage outputMessage = new PaymentMessage();</span>
+<span class="nc" id="L172">    outputMessage.setMessage(messageBody);</span>
+<span class="nc" id="L173">    outputMessage.setAdditionalInfo(additionalInfo);</span>
+<span class="nc" id="L174">    outputMessage.setType(FEES_AND_CHARGES.name());</span>
+<span class="nc" id="L175">    return outputMessage;</span>
+  }
+
+  private Map&lt;String, Object&gt; createMessageBody(Fee fee) {
+<span class="nc" id="L179">    return new ImmutableMap.Builder&lt;String, Object&gt;()</span>
+<span class="nc" id="L180">        .put(TRANSACTION_CODE.name(), fee.getTransactionCode())</span>
+<span class="nc" id="L181">        .put(TRANSACTION_DATE.name(), fee.getTransactionDate())</span>
+<span class="nc" id="L182">        .put(FEE_CURRENCY_CODE.name(), fee.getFeeCurrencyCode())</span>
+<span class="nc" id="L183">        .put(VALUE_DATE_TIME.name(), fee.getValueDateTime())</span>
+<span class="nc" id="L184">        .put(FEE_AMOUNT.name(), fee.getAmount())</span>
+<span class="nc" id="L185">        .put(FEE_DESCRIPTION.name(), fee.getDescription())</span>
+<span class="nc" id="L186">        .build();</span>
+  }
+
+  private Map&lt;String, Object&gt; createAdditionalInfo(Fee fee, UUID subscriptionKey) {
+<span class="nc" id="L190">    return new ImmutableMap.Builder&lt;String, Object&gt;()</span>
+<span class="nc" id="L191">        .put(TRANSACTION_ID.name(), fee.getTransactionId())</span>
+<span class="nc" id="L192">        .put(SUBSCRIPTION_KEY.name(), subscriptionKey.toString())</span>
+<span class="nc" id="L193">        .put(TRANSACTION_CORRELATION_ID.name(), fee.getTransactionCorrelationId())</span>
+<span class="nc" id="L194">        .put(TRANSACTION_CODE.name(), fee.getTransactionCode())</span>
+<span class="nc" id="L195">        .build();</span>
+  }
+
+  private Map&lt;String, Object&gt; buildPaymentAdditionalInfo(AuthTransaction authTransaction) {
+
+<span class="nc" id="L200">    Map&lt;String, Object&gt; additionalInfo = new HashMap&lt;&gt;();</span>
+
+<span class="nc" id="L202">    additionalInfo.put(PARTY_KEY.name(), authTransaction.getPartyKey().toString());</span>
+<span class="nc" id="L203">    additionalInfo</span>
+<span class="nc" id="L204">        .put(TRANSACTION_ID.name(), authTransaction.getCain001().getTransactionId().toString());</span>
+<span class="nc" id="L205">    additionalInfo.put(PRODUCT_KEY.name(), authTransaction.getProductKey().toString());</span>
+<span class="nc" id="L206">    additionalInfo.put(SUBSCRIPTION_KEY.name(), authTransaction.getSubscriptionKey().toString());</span>
+<span class="nc" id="L207">    additionalInfo.put(DEBIT_CREDIT_INDICATOR.name(), authTransaction.getCreditDebit().name());</span>
+<span class="nc" id="L208">    additionalInfo.put(PAYMENT_METHOD_TYPE.name(),</span>
+<span class="nc" id="L209">        authTransaction.getCain001().getPaymentMethodType().name());</span>
+<span class="nc" id="L210">    additionalInfo.put(TRANSACTION_CODE.name(),</span>
+<span class="nc" id="L211">        paymentTransactionCodeMapper.map(authTransaction.getPaymentMethodType()).getValue());</span>
+<span class="nc" id="L212">    return additionalInfo;</span>
+  }
+
+  private Map&lt;String, Object&gt; buildMessage(AuthTransaction authTransaction) {
+
+<span class="nc" id="L217">    Cain001 cain001 = authTransaction.getCain001();</span>
+<span class="nc" id="L218">    Map&lt;String, Object&gt; message = new HashMap&lt;&gt;();</span>
+
+<span class="nc" id="L220">    message.put(CARD_TOKEN.name(), authTransaction.getCain001().getCardId());</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">    if(authTransaction.getType().equals(CardTransactionType.REVERSAL)){</span>
+<span class="nc" id="L222">      message.put(TOTAL_AMOUNT.name(), authTransaction.getCain001().getReversalAmount().get().getTransaction().getAmount().toPlainString());</span>
+<span class="nc" id="L223">      message.put(AMOUNT.name(), authTransaction.getCain001().getReversalAmount().get().getBilling().getAmount().toPlainString());</span>
+    }else{
+<span class="nc" id="L225">      message.put(TOTAL_AMOUNT.name(), authTransaction.getTransactionAmount().getAmount().toPlainString());</span>
+<span class="nc" id="L226">      message.put(AMOUNT.name(), authTransaction.getBillingAmount().getAmount().toPlainString());</span>
+    }
+<span class="nc" id="L228">    message.put(TRANSACTION_TYPE.name(), cain001.getProcessingCode());</span>
+<span class="nc" id="L229">    message.put(TRANSACTION_CURRENCY_CODE.name(), cain001.getCurrencyCode());</span>
+<span class="nc" id="L230">    message.put(MERCHANT_CATEGORY_CODE.name(), cain001.getMerchantCategoryCode());</span>
+<span class="nc" id="L231">    message.put(CARD_DATA_ENTRY_MODE.name(),</span>
+<span class="nc" id="L232">        convertPosEntryCode(cain001.getPointOfServiceEntryMode()));</span>
+<span class="nc" id="L233">    message.put(TRANSACTION_DATE.name(),</span>
+<span class="nc" id="L234">        DATE_TIME_FORMATTER.format(cain001.getTransactionDate().atZone(ZoneId.of(&quot;Z&quot;))));</span>
+<span class="nc" id="L235">    message.put(TRANSACTION_TIME.name(),</span>
+<span class="nc" id="L236">        cain001.getTransactionDate().atZone(ZoneId.of(&quot;Z&quot;)).toLocalTime().toString());</span>
+<span class="nc" id="L237">    message.put(BANKNET_REFERENCE_NUMBER.name(), cain001.getBanknetReferenceNumber());</span>
+<span class="nc" id="L238">    message</span>
+<span class="nc" id="L239">        .put(CARDHOLDER_PRESENT.name(),</span>
+<span class="nc" id="L240">            isCardHolderPresent(cain001.getPointOfServiceEntryMode()));</span>
+<span class="nc" id="L241">    message.put(TRANSACTION_AMOUNT_QUALIFIER.name(), TRANSACTION_ACCOUNT_QUALIFIER);</span>
+<span class="nc" id="L242">    message.put(VALUE_DATE.name(),</span>
+<span class="nc" id="L243">        DATE_TIME_FORMATTER.format(cain001.getTransactionDate().atZone(ZoneId.of(&quot;Z&quot;))));</span>
+<span class="nc" id="L244">    message.put(CARD_ACCEPTOR_CONDITION_CODE.name(), cain001.getPointOfServiceConditionCode());</span>
+<span class="nc" id="L245">    message.put(EXCHANGE_RATE.name(), cain001.getConversionRate());</span>
+<span class="nc" id="L246">    message.put(INITIATOR_PARTY_ID.name(), cain001.getNetworkId());</span>
+<span class="nc" id="L247">    return message;</span>
+  }
+
+  private boolean isCardHolderPresent(String cardDataEntryMode) {
+<span class="nc bnc" id="L251" title="All 4 branches missed.">    return (!cardDataEntryMode.equals(&quot;01&quot;) &amp;&amp; !cardDataEntryMode.equals(&quot;08&quot;));</span>
+  }
+
+  private TransactionMessageHeader createHeader(Cain001 cain001) {
+<span class="nc" id="L255">    TransactionMessageHeader header = new TransactionMessageHeader();</span>
+<span class="nc" id="L256">    header.setType(</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">        cain001.getCardTransactionType().equals(CardTransactionType.ADVICE) ? CARD_AUTH_VIA_ADVICE</span>
+<span class="nc" id="L258">            .name() : CARD_AUTH.name());</span>
+<span class="nc" id="L259">    return header;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

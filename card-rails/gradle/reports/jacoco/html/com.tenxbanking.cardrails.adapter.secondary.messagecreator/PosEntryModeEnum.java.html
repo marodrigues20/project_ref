@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PosEntryModeEnum.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.messagecreator</a> &gt; <span class="el_source">PosEntryModeEnum.java</span></div><h1>PosEntryModeEnum.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.messagecreator;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+<span class="nc" id="L7">public enum PosEntryModeEnum {</span>
+<span class="nc" id="L8">  UNKNOWN(&quot;00&quot;, &quot;UNKW&quot;),</span>
+<span class="nc" id="L9">  MANUAL_KEY_ENTRY(&quot;01&quot;, &quot;PHYS&quot;),</span>
+<span class="nc" id="L10">  MAG_STRIPE(&quot;02&quot;, &quot;MGST&quot;),</span>
+<span class="nc" id="L11">  PAN_ENTRY_VIA_BAR_CODE(&quot;03&quot;, &quot;BRCD&quot;),</span>
+<span class="nc" id="L12">  PAN_ENTRY_VIA_OCR(&quot;04&quot;, &quot;PHYS&quot;),</span>
+<span class="nc" id="L13">  ICC_READ(&quot;05&quot;, &quot;CICC&quot;),</span>
+<span class="nc" id="L14">  PAN_ENTRY_VIA_CHIP(&quot;06&quot;, &quot;PHYS&quot;),</span>
+<span class="nc" id="L15">  ICC_CONTACTLESS(&quot;07&quot;, &quot;CICC&quot;),</span>
+<span class="nc" id="L16">  PAN_ENTRY_VIA_CONTACTLESS(&quot;08&quot;, &quot;CTLS&quot;),</span>
+<span class="nc" id="L17">  HYBRID_TERMINAL(&quot;79&quot;, &quot;UNKW&quot;),</span>
+<span class="nc" id="L18">  MAG_STRIPE_FALL_BACK(&quot;80&quot;, &quot;MGST&quot;),</span>
+<span class="nc" id="L19">  PAN_VIA_ECOMMERCE(&quot;81&quot;, &quot;PHYS&quot;),</span>
+<span class="nc" id="L20">  MAG_STRIPE_TRACK(&quot;90&quot;, &quot;MGST&quot;),</span>
+<span class="nc" id="L21">  CONTACTLESS_USING_TRACK_RULES(&quot;91&quot;, &quot;CTLS&quot;),</span>
+<span class="nc" id="L22">  CONTACTLESS_INPUT(&quot;92&quot;, &quot;CTLS&quot;),</span>
+<span class="nc" id="L23">  ICC_NO_CVV_CHECKING(&quot;95&quot;, &quot;CICC&quot;);</span>
+
+
+  private final String posCode;
+  private final String cainCode;
+<span class="nc" id="L28">  public static Map&lt;String, String&gt; posEntryMap = (Map) Arrays.stream(values()).collect(Collectors.toMap(PosEntryModeEnum::getPosCode, PosEntryModeEnum::getCainCode));</span>
+
+<span class="nc" id="L30">  PosEntryModeEnum(String posCode, String cainCode) {</span>
+<span class="nc" id="L31">    this.posCode = posCode;</span>
+<span class="nc" id="L32">    this.cainCode = cainCode;</span>
+<span class="nc" id="L33">  }</span>
+
+  public String getPosCode() {
+<span class="nc" id="L36">    return this.posCode;</span>
+  }
+
+  public String getCainCode() {
+<span class="nc" id="L40">    return this.cainCode;</span>
+  }
+
+  public static String convertPosEntryCode(String posCode) {
+<span class="nc" id="L44">    return posEntryMap.get(posCode);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

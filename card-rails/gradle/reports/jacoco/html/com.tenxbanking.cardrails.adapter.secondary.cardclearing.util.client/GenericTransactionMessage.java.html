@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GenericTransactionMessage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.client</a> &gt; <span class="el_source">GenericTransactionMessage.java</span></div><h1>GenericTransactionMessage.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.client;
+
+import com.tenx.universalbanking.transactionmessage.TransactionMessage;
+import com.tenx.universalbanking.transactionmessage.TransactionMessageHeader;
+import com.tenx.universalbanking.transactionmessage.paymentmessage.PaymentMessage;
+import com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.feebehavior.FeeBehavior;
+import com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.feebehavior.FeeMessage;
+import com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.taxbehavior.TaxBehavior;
+import com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.taxbehavior.TaxMessage;
+import com.tenxbanking.cardrails.domain.model.transaction.CardTransaction;
+import java.util.List;
+import java.util.Map;
+
+public abstract class GenericTransactionMessage&lt;T extends CardTransaction&gt; {
+
+  FeeBehavior feeBehavior;
+  TaxBehavior taxBehavior;
+
+
+<span class="fc" id="L20">  public GenericTransactionMessage() {</span>
+
+
+<span class="fc" id="L23">    feeBehavior = new FeeMessage();</span>
+<span class="fc" id="L24">    taxBehavior = new TaxMessage();</span>
+
+
+<span class="fc" id="L27">  }</span>
+
+  public abstract TransactionMessageHeader buildPaymentHeader(T t);
+
+  public abstract PaymentMessage buildPaymentMessage(T t);
+
+  public abstract Map&lt;String, Object&gt; buildPaymentAdditionalInfo(T t);
+
+  public abstract TransactionMessage create(T t);
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

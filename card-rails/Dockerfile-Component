@@ -1,0 +1,9 @@
+FROM 786796192785.dkr.ecr.eu-west-1.amazonaws.com/10x/10x-openjdk-11-ssm:latest AS build
+
+#just for dev
+#FROM openjdk:11 AS build
+
+ADD . /src
+WORKDIR /src
+
+ENTRYPOINT ["./gradlew", "card-rails-component-test:clean", "card-rails-component-test:test", "--info"]

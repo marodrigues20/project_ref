@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SubscriptionEventMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.primary.consumer</a> &gt; <span class="el_source">SubscriptionEventMapper.java</span></div><h1>SubscriptionEventMapper.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.primary.consumer;
+
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
+import static java.util.Objects.isNull;
+import static java.util.stream.Collectors.toList;
+import static org.springframework.util.CollectionUtils.isEmpty;
+
+import com.tenx.dub.subscription.event.v1.Limits;
+import com.tenx.dub.subscription.event.v1.SubscriptionEvent;
+import com.tenx.dub.subscription.event.v1.TransactionLimits;
+import com.tenxbanking.cardrails.domain.model.subscription.ResetPeriodEnums;
+import com.tenxbanking.cardrails.domain.model.subscription.Subscription;
+import com.tenxbanking.cardrails.domain.model.subscription.SubscriptionSettings;
+import com.tenxbanking.cardrails.domain.model.subscription.SubscriptionStatus;
+import com.tenxbanking.cardrails.domain.model.subscription.TransactionLimit;
+import com.tenxbanking.cardrails.domain.model.subscription.TransactionNameEnums;
+import com.tenxbanking.cardrails.domain.service.TimeService;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import org.springframework.stereotype.Component;
+
+@Component
+<span class="nc" id="L27">@AllArgsConstructor</span>
+class SubscriptionEventMapper {
+
+  private final TimeService timeService;
+
+<span class="nc bnc" id="L32" title="All 2 branches missed.">  public Subscription toSubscription(@NonNull final SubscriptionEvent subscriptionEvent) {</span>
+
+<span class="nc" id="L34">    return Subscription.builder()</span>
+<span class="nc" id="L35">        .subscriptionKey(UUID.fromString(subscriptionEvent.getSubscriptionKey()))</span>
+<span class="nc" id="L36">        .settings(singletonList(toSubscriptionSettings(subscriptionEvent.getProductDetails())))</span>
+<span class="nc" id="L37">        .status(SubscriptionStatus.fromString(subscriptionEvent.getSubscriptionStatus()))</span>
+<span class="nc" id="L38">        .build();</span>
+  }
+
+  private SubscriptionSettings toSubscriptionSettings(
+<span class="nc bnc" id="L42" title="All 2 branches missed.">      @NonNull final com.tenx.dub.subscription.event.v1.ProductDetails productDetails) {</span>
+
+<span class="nc" id="L44">    return SubscriptionSettings.builder()</span>
+<span class="nc" id="L45">        .effectiveDate(timeService.toInstant(productDetails.getEffectiveDate()))</span>
+<span class="nc" id="L46">        .productKey(UUID.fromString(productDetails.getProductKey()))</span>
+<span class="nc" id="L47">        .productVersion(productDetails.getMajorVersion())</span>
+<span class="nc" id="L48">        .transactionLimits(toTransactionLimits(productDetails.getLimits()))</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        .hasFees(!isEmpty(productDetails.getFeesCharges()))</span>
+<span class="nc" id="L50">        .build();</span>
+  }
+
+  private List&lt;TransactionLimit&gt; toTransactionLimits(final Limits limits) {
+
+<span class="nc bnc" id="L55" title="All 4 branches missed.">    return (isNull(limits) || isEmpty(limits.getTransactionLimits())</span>
+<span class="nc" id="L56">        ? emptyList()</span>
+<span class="nc" id="L57">        : limits.getTransactionLimits().stream().map(this::toTransactionLimit).collect(toList()));</span>
+  }
+
+  private TransactionLimit toTransactionLimit(TransactionLimits transactionLimits) {
+
+<span class="nc" id="L62">    return new TransactionLimit(</span>
+<span class="nc" id="L63">        TransactionNameEnums.fromString(transactionLimits.getTransactionName()),</span>
+<span class="nc" id="L64">        toBigDecimal(transactionLimits.getMinimumAmount()),</span>
+<span class="nc" id="L65">        toBigDecimal(transactionLimits.getMaximumAmount()),</span>
+<span class="nc" id="L66">        ResetPeriodEnums.fromString(</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            transactionLimits.getResetPeriod() != null ? transactionLimits.getResetPeriod() : ResetPeriodEnums.TRANSACTION.name()));</span>
+  }
+
+  private static BigDecimal toBigDecimal(String amount) {
+
+<span class="nc bnc" id="L72" title="All 2 branches missed.">    return isNull(amount) ? null : new BigDecimal(amount);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

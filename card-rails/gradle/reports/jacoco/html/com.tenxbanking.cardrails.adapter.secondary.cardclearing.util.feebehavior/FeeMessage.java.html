@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FeeMessage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.feebehavior</a> &gt; <span class="el_source">FeeMessage.java</span></div><h1>FeeMessage.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.feebehavior;
+
+import static com.tenx.universalbanking.transactionmessage.enums.Cain001Enum.TRANSACTION_DATE;
+import static com.tenx.universalbanking.transactionmessage.enums.FeesChargesEnum.FEE_AMOUNT;
+import static com.tenx.universalbanking.transactionmessage.enums.FeesChargesEnum.FEE_CURRENCY_CODE;
+import static com.tenx.universalbanking.transactionmessage.enums.FeesChargesEnum.FEE_DESCRIPTION;
+import static com.tenx.universalbanking.transactionmessage.enums.FeesChargesEnum.VALUE_DATE_TIME;
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageAdditionalInfoEnum.TRANSACTION_CORRELATION_ID;
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageTypeEnum.FEES_AND_CHARGES;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.TRANSACTION_CODE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.TRANSACTION_ID;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.SUBSCRIPTION_KEY;
+
+import com.google.common.collect.ImmutableMap;
+import com.tenx.universalbanking.transactionmessage.TransactionMessageHeader;
+import com.tenx.universalbanking.transactionmessage.paymentmessage.PaymentMessage;
+import com.tenxbanking.cardrails.domain.model.Fee;
+import java.util.Map;
+import java.util.UUID;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+<span class="fc" id="L23">@Slf4j</span>
+@Component
+<span class="fc" id="L25">public class FeeMessage implements FeeBehavior&lt;Fee, UUID&gt; {</span>
+
+
+  @Override
+  public void buildPaymentHeader() {
+<span class="fc" id="L30">    paymentMessage.setType(FEES_AND_CHARGES.name());</span>
+<span class="fc" id="L31">  }</span>
+
+  @Override
+  public void buildFeeMessage(Fee fee) {
+
+<span class="fc" id="L36">    final Map&lt;String, Object&gt; map = new ImmutableMap.Builder&lt;String, Object&gt;()</span>
+<span class="fc" id="L37">        .put(TRANSACTION_CODE.name(), fee.getTransactionCode())</span>
+<span class="fc" id="L38">        .put(TRANSACTION_DATE.name(), fee.getTransactionDate())</span>
+<span class="fc" id="L39">        .put(FEE_CURRENCY_CODE.name(), fee.getFeeCurrencyCode())</span>
+<span class="fc" id="L40">        .put(VALUE_DATE_TIME.name(), fee.getValueDateTime())</span>
+<span class="fc" id="L41">        .put(FEE_AMOUNT.name(), fee.getAmount())</span>
+<span class="fc" id="L42">        .put(FEE_DESCRIPTION.name(), fee.getDescription())</span>
+<span class="fc" id="L43">        .build();</span>
+<span class="fc" id="L44">    paymentMessage.setMessage(map);</span>
+
+<span class="fc" id="L46">  }</span>
+
+  @Override
+  public void buildFeeAdditionalInfo(Fee fee, UUID subscriptionKey) {
+
+<span class="fc" id="L51">    PaymentMessage outputMessage = new PaymentMessage();</span>
+
+<span class="fc" id="L53">    final Map&lt;String, Object&gt; map = new ImmutableMap.Builder&lt;String, Object&gt;()</span>
+<span class="fc" id="L54">        .put(TRANSACTION_ID.name(), fee.getTransactionId())</span>
+<span class="fc" id="L55">        .put(SUBSCRIPTION_KEY.name(), subscriptionKey.toString())</span>
+<span class="fc" id="L56">        .put(TRANSACTION_CORRELATION_ID.name(), fee.getTransactionCorrelationId())</span>
+<span class="fc" id="L57">        .put(TRANSACTION_CODE.name(), fee.getTransactionCode())</span>
+<span class="fc" id="L58">        .build();</span>
+<span class="fc" id="L59">    paymentMessage.setAdditionalInfo(map);</span>
+
+<span class="fc" id="L61">  }</span>
+
+  @Override
+  public PaymentMessage getPaymentMessage() {
+<span class="fc" id="L65">    return paymentMessage;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

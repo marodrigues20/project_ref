@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardAuth.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.model.transaction</a> &gt; <span class="el_source">CardAuth.java</span></div><h1>CardAuth.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.model.transaction;
+
+import static com.tenxbanking.cardrails.domain.model.CardTransactionType.AUTH;
+import static java.util.Optional.ofNullable;
+
+import com.tenxbanking.cardrails.domain.model.AuthResponseCode;
+import com.tenxbanking.cardrails.domain.model.Cain001;
+import com.tenxbanking.cardrails.domain.model.Cain002;
+import com.tenxbanking.cardrails.domain.model.CardTransactionType;
+import com.tenxbanking.cardrails.domain.model.Fee;
+import com.tenxbanking.cardrails.domain.model.Money;
+import java.util.Optional;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.ToString;
+
+@Getter
+<span class="nc bnc" id="L22" title="All 12 branches missed.">@Builder(toBuilder = true)</span>
+<span class="nc bnc" id="L23" title="All 62 branches missed.">@EqualsAndHashCode</span>
+<span class="nc" id="L24">@ToString</span>
+<span class="nc bnc" id="L25" title="All 12 branches missed.">@AllArgsConstructor</span>
+public class CardAuth implements AuthTransaction {
+
+  @NonNull
+<span class="nc" id="L29">  private final String cardId;</span>
+  @NonNull
+<span class="nc" id="L31">  private final UUID subscriptionKey;</span>
+  @NonNull
+<span class="nc" id="L33">  private final UUID partyKey;</span>
+  @NonNull
+<span class="nc" id="L35">  private final UUID productKey;</span>
+  @NonNull
+<span class="nc" id="L37">  private final String tenantKey;</span>
+  @NonNull
+<span class="nc" id="L39">  private final Cain001 cain001;</span>
+<span class="nc" id="L40">  private final Cain002 cain002;</span>
+
+  public CardAuth(
+      String cardId,
+      UUID subscriptionKey,
+      UUID partyKey,
+      UUID productKey,
+      String tenantKey,
+<span class="nc" id="L48">      Cain001 cain001) {</span>
+<span class="nc" id="L49">    this.cardId = cardId;</span>
+<span class="nc" id="L50">    this.subscriptionKey = subscriptionKey;</span>
+<span class="nc" id="L51">    this.partyKey = partyKey;</span>
+<span class="nc" id="L52">    this.productKey = productKey;</span>
+<span class="nc" id="L53">    this.tenantKey = tenantKey;</span>
+<span class="nc" id="L54">    this.cain001 = cain001;</span>
+<span class="nc" id="L55">    this.cain002 = null;</span>
+<span class="nc" id="L56">  }</span>
+
+  @Override
+  public CardTransactionType getType() {
+<span class="nc" id="L60">    return AUTH;</span>
+  }
+
+  @Override
+  public Money getTransactionAmount() {
+<span class="nc" id="L65">    return cain001.getTransactionAmount();</span>
+  }
+
+  @Override
+  public Money getBillingAmount() {
+<span class="nc" id="L70">    return cain001.getBillingAmount();</span>
+  }
+
+  @Override
+  public Optional&lt;String&gt; getAuthCode() {
+<span class="nc" id="L75">    return ofNullable(cain002)</span>
+<span class="nc" id="L76">        .map(Cain002::getAuthCode);</span>
+  }
+
+  @Override
+  public AuthResponseCode getAuthResponseCode() {
+<span class="nc" id="L81">    return ofNullable(cain002)</span>
+<span class="nc" id="L82">        .map(Cain002::getAuthResponseCode).orElse(null);</span>
+  }
+
+  public CardAuth withFee(Fee fee) {
+<span class="nc" id="L86">    return this.toBuilder().cain001(cain001.addFee(fee)).build();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

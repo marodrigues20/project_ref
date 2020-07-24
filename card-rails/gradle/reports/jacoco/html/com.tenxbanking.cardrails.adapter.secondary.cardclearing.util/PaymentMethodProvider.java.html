@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PaymentMethodProvider.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.cardclearing.util</a> &gt; <span class="el_source">PaymentMethodProvider.java</span></div><h1>PaymentMethodProvider.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.cardclearing.util;
+
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.CARD_DATA_ENTRY_MODE;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.COMMON_COUNTRY_CODE;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.MERCHANT_CATEGORY_CODE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.PAYMENT_METHOD_TYPE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMethodTypeEnum.CONTACTLESS;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMethodTypeEnum.DOMESTIC_CASH_WITHDRAWAL;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMethodTypeEnum.DOMESTIC_POS_CHIP_AND_PIN;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMethodTypeEnum.INTERNATIONAL_CASH_WITHDRAWAL;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMethodTypeEnum.INTERNATIONAL_POS_CHIP_AND_PIN;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMethodTypeEnum.MAIL_TELEPHONE_ORDER;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMethodTypeEnum.MANUAL_ENTRY;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMethodTypeEnum.ONLINE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMethodTypeEnum.POS_MAG_STRIPE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMethodTypeEnum.UNKNOWN;
+
+import java.util.Map;
+import org.springframework.stereotype.Component;
+
+@Component
+<span class="nc" id="L22">public class PaymentMethodProvider {</span>
+
+  private final static String DOMESTIC_COUNTRY_CODE = &quot;GBR&quot;;
+
+  public void setPaymentMethodType(Map&lt;String, Object&gt; messageMap,
+      Map&lt;String, Object&gt; paymentAdditionalInfo) {
+<span class="nc" id="L28">    String mcc = messageMap.get(MERCHANT_CATEGORY_CODE.name()).toString();</span>
+<span class="nc" id="L29">    String terminalEntry = messageMap.get(CARD_DATA_ENTRY_MODE.name()).toString();</span>
+<span class="nc" id="L30">    String commonCountry = messageMap.get(COMMON_COUNTRY_CODE.name()).toString();</span>
+<span class="nc" id="L31">    String paymentMethod = null;</span>
+<span class="nc bnc" id="L32" title="All 4 branches missed.">    if (&quot;6010&quot;.equals(mcc) || &quot;6011&quot;.equals(mcc)) {</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">      paymentMethod = isDomesticCountry(commonCountry) ? DOMESTIC_CASH_WITHDRAWAL.name()</span>
+<span class="nc" id="L34">          : INTERNATIONAL_CASH_WITHDRAWAL.name();</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">    } else if (&quot;05&quot;.equals(terminalEntry) || &quot;95&quot;.equals(terminalEntry)) {</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">      paymentMethod = isDomesticCountry(commonCountry) ? DOMESTIC_POS_CHIP_AND_PIN.name()</span>
+<span class="nc" id="L37">          : INTERNATIONAL_POS_CHIP_AND_PIN.name();</span>
+<span class="nc bnc" id="L38" title="All 4 branches missed.">    } else if (&quot;03&quot;.equals(terminalEntry) || &quot;04&quot;.equals(terminalEntry)</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">        || &quot;07&quot;.equals(terminalEntry) || &quot;91&quot;.equals(terminalEntry)) {</span>
+<span class="nc" id="L40">      paymentMethod = CONTACTLESS.name();</span>
+<span class="nc bnc" id="L41" title="All 4 branches missed.">    } else if (&quot;02&quot;.equals(terminalEntry) || &quot;80&quot;.equals(terminalEntry) || &quot;90&quot;</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        .equals(terminalEntry)) {</span>
+<span class="nc" id="L43">      paymentMethod = POS_MAG_STRIPE.name();</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">    } else if (&quot;01&quot;.equals(terminalEntry)) {</span>
+<span class="nc" id="L45">      paymentMethod = MAIL_TELEPHONE_ORDER.name();</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    } else if (&quot;81&quot;.equals(terminalEntry)) {</span>
+<span class="nc" id="L47">      paymentMethod = ONLINE.name();</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">    } else if (&quot;79&quot;.equals(terminalEntry)) {</span>
+<span class="nc" id="L49">      paymentMethod = MANUAL_ENTRY.name();</span>
+    } else {
+<span class="nc" id="L51">      paymentMethod = UNKNOWN.name();</span>
+    }
+<span class="nc" id="L53">    paymentAdditionalInfo.put(PAYMENT_METHOD_TYPE.name(), paymentMethod);</span>
+<span class="nc" id="L54">  }</span>
+
+  private boolean isDomesticCountry(String commonCountryCode) {
+<span class="nc" id="L57">    return DOMESTIC_COUNTRY_CODE.equals(commonCountryCode);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

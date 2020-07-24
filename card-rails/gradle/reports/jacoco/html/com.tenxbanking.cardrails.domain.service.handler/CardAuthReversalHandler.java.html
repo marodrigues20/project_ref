@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardAuthReversalHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.service.handler</a> &gt; <span class="el_source">CardAuthReversalHandler.java</span></div><h1>CardAuthReversalHandler.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.service.handler;
+
+import static com.tenxbanking.cardrails.domain.model.CardTransactionType.REVERSAL;
+import static java.lang.String.format;
+
+import com.tenxbanking.cardrails.adapter.primary.rest.exception.UnsolicitedReversalException;
+import com.tenxbanking.cardrails.domain.exception.CardNotFoundException;
+import com.tenxbanking.cardrails.domain.exception.CardSettingsNotFoundException;
+import com.tenxbanking.cardrails.domain.exception.SubscriptionNotFoundException;
+import com.tenxbanking.cardrails.domain.model.Cain001;
+import com.tenxbanking.cardrails.domain.model.Cain002;
+import com.tenxbanking.cardrails.domain.model.CardTransactionType;
+import com.tenxbanking.cardrails.domain.model.card.Card;
+import com.tenxbanking.cardrails.domain.model.card.CardSettings;
+import com.tenxbanking.cardrails.domain.model.subscription.Subscription;
+import com.tenxbanking.cardrails.domain.model.subscription.SubscriptionSettings;
+import com.tenxbanking.cardrails.domain.model.transaction.AuthTransaction;
+import com.tenxbanking.cardrails.domain.model.transaction.CardAuthReversal;
+import com.tenxbanking.cardrails.domain.port.CardSettingsService;
+import com.tenxbanking.cardrails.domain.port.DebitCardService;
+import com.tenxbanking.cardrails.domain.port.SubscriptionService;
+import com.tenxbanking.cardrails.domain.port.finder.AuthFinder;
+import com.tenxbanking.cardrails.domain.port.sender.AuthReversalTransactionSender;
+import com.tenxbanking.cardrails.domain.port.store.CardTransactionStore;
+import com.tenxbanking.cardrails.domain.service.PanHashingService;
+import com.tenxbanking.cardrails.domain.service.TimeService;
+import com.tenxbanking.cardrails.domain.validator.CardTransactionValidator;
+import java.time.Instant;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.function.Supplier;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+<span class="nc" id="L37">@Slf4j</span>
+@Service
+<span class="nc" id="L39">@AllArgsConstructor</span>
+public class CardAuthReversalHandler implements CardHandler {
+
+  private final TimeService timeService;
+  private final SubscriptionService subscriptionService;
+  private final DebitCardService debitCardService;
+  private final CardSettingsService cardSettingsService;
+  private final AuthReversalTransactionSender transactionSender;
+  private final PanHashingService panHashingService;
+  private final CardTransactionStore&lt;AuthTransaction&gt; authTransactionStore;
+  private final AuthFinder authFinder;
+  private final Supplier&lt;UUID&gt; uuidSupplier;
+  private final CardTransactionValidator cardTransactionValidator;
+
+  @Override
+  public CardTransactionType handlesCardTransactionType() {
+<span class="nc" id="L55">    return REVERSAL;</span>
+  }
+
+  @Override
+<span class="nc bnc" id="L59" title="All 2 branches missed.">  public Cain002 auth(@NonNull final Cain001 cain001) {</span>
+
+<span class="nc" id="L61">    final Instant now = timeService.now();</span>
+<span class="nc" id="L62">    final Card card = getCard(cain001.getCardId());</span>
+<span class="nc" id="L63">    final UUID subscriptionKey = card.getSubscriptionKey();</span>
+<span class="nc" id="L64">    final Subscription subscription = getSubscription(subscriptionKey);</span>
+<span class="nc" id="L65">    final SubscriptionSettings settings = subscription.getSubscriptionSettings(now);</span>
+<span class="nc" id="L66">    final CardSettings cardSettings = getCardSettings(cain001.getCardId(), card.getPanHash());</span>
+
+<span class="nc" id="L68">    AuthTransaction cardAuth = authFinder.findMatchingAuthByRetrievalReferenceNumber(cain001.getRetrievalReferenceNumber())</span>
+<span class="nc" id="L69">        .or(() -&gt; authFinder.findMatchingAuthByBanknetReferenceNumber(cain001.getBanknetReferenceNumber()))</span>
+<span class="nc" id="L70">        .or(() -&gt; authFinder.findMatchingAuthByAuthCode(cain001.getAuthCode()))</span>
+<span class="nc" id="L71">        .orElseThrow(() -&gt;</span>
+<span class="nc" id="L72">            new UnsolicitedReversalException(</span>
+<span class="nc" id="L73">                format(&quot;Cannot matching auth for reversal with retrievalReferenceNumber=%s, banknetReferenceNumber=%s, authCode=%s&quot;,</span>
+<span class="nc" id="L74">                    cain001.getRetrievalReferenceNumber(),</span>
+<span class="nc" id="L75">                    cain001.getBanknetReferenceNumber(),</span>
+<span class="nc" id="L76">                    cain001.getAuthCode())));</span>
+    // TODO: if the auth has a fee, how should we reverse that?
+
+<span class="nc" id="L79">    final Cain001 cainWithIds = cain001.addTransactionIds(</span>
+<span class="nc" id="L80">        cardAuth.getCain001().getTransactionId(),</span>
+<span class="nc" id="L81">        cardAuth.getCain001().getCorrelationId());</span>
+
+<span class="nc" id="L83">    CardAuthReversal cardAuthReversal = new CardAuthReversal(</span>
+<span class="nc" id="L84">        cain001.getCardId(),</span>
+<span class="nc" id="L85">        card.getSubscriptionKey(),</span>
+<span class="nc" id="L86">        card.getPartyKey(),</span>
+<span class="nc" id="L87">        settings.getProductKey(),</span>
+<span class="nc" id="L88">        card.getTenantKey(),</span>
+        cainWithIds);
+
+<span class="nc" id="L91">    cardTransactionValidator.validate(cardAuthReversal, card, subscription, cardSettings);</span>
+
+<span class="nc" id="L93">    Cain002 cain002 = transactionSender.reverse(cardAuthReversal);</span>
+
+<span class="nc" id="L95">    cardAuthReversal = cardAuthReversal.toBuilder().cain002(cain002).build();</span>
+
+<span class="nc" id="L97">    authTransactionStore.save(cardAuthReversal);</span>
+
+<span class="nc" id="L99">    return cain002;</span>
+  }
+
+<span class="nc bnc" id="L102" title="All 4 branches missed.">  private CardSettings getCardSettings(@NonNull final String cardId, @NonNull final String panHash) {</span>
+<span class="nc" id="L103">    return cardSettingsService</span>
+<span class="nc" id="L104">        .findByCardIdOrPanHash(cardId, panHash)</span>
+<span class="nc" id="L105">        .orElseThrow(CardSettingsNotFoundException::new);</span>
+  }
+
+<span class="nc bnc" id="L108" title="All 2 branches missed.">  private Card getCard(@NonNull final String cardId) {</span>
+
+<span class="nc" id="L110">    final Optional&lt;Card&gt; cardOptional = debitCardService</span>
+<span class="nc" id="L111">        .findByCardIdHash(panHashingService.hashCardId(cardId));</span>
+
+<span class="nc" id="L113">    return cardOptional.orElseThrow(CardNotFoundException::new);</span>
+  }
+
+<span class="nc bnc" id="L116" title="All 2 branches missed.">  private Subscription getSubscription(@NonNull final UUID subscriptionKey) {</span>
+
+<span class="nc" id="L118">    final Optional&lt;Subscription&gt; subscriptionOptional = subscriptionService</span>
+<span class="nc" id="L119">        .findById(subscriptionKey);</span>
+
+<span class="nc" id="L121">    return subscriptionOptional.orElseThrow(SubscriptionNotFoundException::new);</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

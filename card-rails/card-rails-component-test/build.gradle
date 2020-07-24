@@ -1,0 +1,30 @@
+configurations {
+    compile.exclude(module: 'log4j')
+    compile.exclude(group: 'org.slf4j', module: 'slf4j-log4j12')
+}
+
+dependencies {
+
+    testImplementation project(':card-rails-service')
+    testImplementation project(":card-rails-service").sourceSets.test.output
+
+    testImplementation libs.awaitility
+    testImplementation libs.embeddedRedis
+    testImplementation libs.sprintCloudContract
+    testImplementation libs.transactionMessage
+    testImplementation libs.embeddedCockroach
+
+    testImplementation libs.junitVintageEngine
+    testImplementation libs.junit
+    testImplementation libs.springKafka
+    testImplementation libs.apacheKafka
+    testImplementation libs.apacheKafkaTest
+    testImplementation libs.kafkaAvroSerializer
+    testImplementation libs.kafkaClientsTest
+    testImplementation libs.kafkaStreamsTest
+    testImplementation libs.kafkaSchemaRegistry
+    testImplementation libs.kafkaSchemaRegistryTests
+
+    testImplementation libs.springBootJpa
+    testImplementation libs.springBootStarterTest
+}

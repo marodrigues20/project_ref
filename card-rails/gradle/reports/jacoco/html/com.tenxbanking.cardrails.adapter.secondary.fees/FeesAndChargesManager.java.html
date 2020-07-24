@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FeesAndChargesManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.fees</a> &gt; <span class="el_source">FeesAndChargesManager.java</span></div><h1>FeesAndChargesManager.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.fees;
+
+import static java.util.Optional.empty;
+
+import com.tenxbanking.cardrails.adapter.primary.rest.mapper.TransactionCodeMapper;
+import com.tenxbanking.cardrails.adapter.secondary.fees.model.FeeResponse;
+import com.tenxbanking.cardrails.adapter.secondary.fees.model.FeeTransactionRequest;
+import com.tenxbanking.cardrails.domain.model.Cain001;
+import com.tenxbanking.cardrails.domain.model.Cain003;
+import com.tenxbanking.cardrails.domain.model.Fee;
+import com.tenxbanking.cardrails.domain.model.Tax;
+import com.tenxbanking.cardrails.domain.port.FeesCheckerService;
+import com.tenxbanking.cardrails.domain.service.TimeService;
+import java.util.Optional;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+
+@Component
+<span class="nc" id="L23">@AllArgsConstructor</span>
+public class FeesAndChargesManager implements FeesCheckerService {
+
+  private final FeesAndChargesClient feesAndChargesClient;
+  private final TransactionCodeMapper codeMapper;
+  private final TransactionCodeMapper transactionCodeMapper;
+  private final TimeService timeService;
+
+<span class="nc bnc" id="L31" title="All 2 branches missed.">  public Optional&lt;Fee&gt; check(@NonNull final Cain001 cain001,</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">      @NonNull final UUID subscriptionKey) {</span>
+
+<span class="nc" id="L34">    FeeTransactionRequest request = FeeTransactionRequest.builder()</span>
+<span class="nc" id="L35">        .subscriptionKey(subscriptionKey.toString())</span>
+<span class="nc" id="L36">        .transactionType(cain001.getProcessingCode())</span>
+<span class="nc" id="L37">        .transactionCode(codeMapper</span>
+<span class="nc" id="L38">            .getTransactionCode(cain001.getPaymentMethodType()))</span>
+<span class="nc" id="L39">        .transactionAmount(cain001.getTransactionAmount().getAmount())</span>
+<span class="nc" id="L40">        .merchantCategoryCode(cain001.getMerchantCategoryCode())</span>
+<span class="nc" id="L41">        .transactionId(cain001.getTransactionId().toString())</span>
+<span class="nc" id="L42">        .transactionCorrelationId(cain001.getCorrelationId().toString())</span>
+<span class="nc" id="L43">        .currency(cain001.getCurrencyCode())</span>
+<span class="nc" id="L44">        .transactionDate(timeService.fromInstant(cain001.getTransactionDate()))</span>
+<span class="nc" id="L45">        .amountQualifier(cain001.getAccountQualifier())</span>
+<span class="nc" id="L46">        .build();</span>
+
+<span class="nc" id="L48">    ResponseEntity&lt;FeeResponse&gt; feeResponseResponseEntity = feesAndChargesClient</span>
+<span class="nc" id="L49">        .postTransaction(request);</span>
+
+<span class="nc" id="L51">    return handleResponse(feeResponseResponseEntity);</span>
+  }
+
+
+<span class="nc bnc" id="L55" title="All 4 branches missed.">  public Optional&lt;Fee&gt; check(@NonNull final Cain003 cain003, @NonNull final UUID subscriptionKey) {</span>
+<span class="nc" id="L56">    FeeTransactionRequest request = FeeTransactionRequest.builder()</span>
+<span class="nc" id="L57">        .subscriptionKey(subscriptionKey.toString())</span>
+<span class="nc" id="L58">        .transactionType(cain003.getProcessingCode())</span>
+<span class="nc" id="L59">        .transactionCode(transactionCodeMapper</span>
+<span class="nc" id="L60">            .getTransactionCode(cain003.getPaymentMethodType()))</span>
+<span class="nc" id="L61">        .transactionAmount(cain003.getTransactionAmount().getAmount())</span>
+<span class="nc" id="L62">        .merchantCategoryCode(cain003.getMerchantCategoryCode())</span>
+<span class="nc" id="L63">        .transactionId(cain003.getTransactionId().toString())</span>
+<span class="nc" id="L64">        .transactionCorrelationId(cain003.getCorrelationId().toString())</span>
+<span class="nc" id="L65">        .currency(cain003.getCurrencyCode())</span>
+<span class="nc" id="L66">        .transactionDate(timeService.fromInstant(cain003.getTransactionDate()))</span>
+<span class="nc" id="L67">        .amountQualifier(cain003.getAccountQualifier())</span>
+<span class="nc" id="L68">        .build();</span>
+
+<span class="nc" id="L70">    ResponseEntity&lt;FeeResponse&gt; feeResponseResponseEntity = feesAndChargesClient</span>
+<span class="nc" id="L71">        .postTransaction(request);</span>
+
+<span class="nc" id="L73">    return handleResponse(feeResponseResponseEntity);</span>
+
+  }
+
+
+  private Optional&lt;Fee&gt; handleResponse(ResponseEntity&lt;FeeResponse&gt; responseEntity) {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">    return responseEntity.getStatusCode() == HttpStatus.CREATED</span>
+<span class="nc" id="L80">        ? Optional.of(toFee(responseEntity.getBody()))</span>
+<span class="nc" id="L81">        : empty();</span>
+  }
+
+  private Fee toFee(FeeResponse feeResponse) {
+<span class="nc" id="L85">    return Fee.builder()</span>
+<span class="nc" id="L86">        .amount(feeResponse.getAmount())</span>
+<span class="nc" id="L87">        .description(feeResponse.getDescription())</span>
+<span class="nc" id="L88">        .feeCurrencyCode(feeResponse.getFeeCurrencyCode())</span>
+<span class="nc" id="L89">        .status(feeResponse.getStatus())</span>
+<span class="nc" id="L90">        .tax(Tax.builder().taxAmount(feeResponse.getTaxAmount()).build())</span>
+<span class="nc" id="L91">        .transactionCode(feeResponse.getTransactionCode())</span>
+<span class="nc" id="L92">        .transactionCorrelationId(feeResponse.getTransactionCorrelationId())</span>
+<span class="nc" id="L93">        .transactionDate(feeResponse.getTransactionDate())</span>
+<span class="nc" id="L94">        .transactionId(feeResponse.getTransactionId())</span>
+<span class="nc" id="L95">        .valueDateTime(feeResponse.getValueDateTime())</span>
+<span class="nc" id="L96">        .build();</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

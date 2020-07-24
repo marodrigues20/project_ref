@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Application.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails</a> &gt; <span class="el_source">Application.java</span></div><h1>Application.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.Lifecycle;
+import org.springframework.context.event.EventListener;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+<span class="nc" id="L16">@Slf4j</span>
+@SpringBootApplication
+@EnableFeignClients
+@EnableJpaRepositories(repositoryImplementationPostfix = &quot;CockroachRepository&quot;)
+@EnableScheduling
+<span class="nc" id="L21">public class Application {</span>
+
+  @Value(&quot;${spring.kafka.startlisteners:true}&quot;)
+  private boolean startListeners;
+
+  @Autowired
+  private KafkaListenerEndpointRegistry registry;
+
+  public static void main(String... args) {
+<span class="nc" id="L30">    SpringApplication.run(Application.class);</span>
+<span class="nc" id="L31">  }</span>
+
+  @EventListener(ApplicationReadyEvent.class)
+  public void onApplicationReadyEvent() {
+<span class="nc bnc" id="L35" title="All 2 branches missed.">    if (startListeners) {</span>
+<span class="nc" id="L36">      registry.getAllListenerContainers().forEach(Lifecycle::start);</span>
+<span class="nc" id="L37">      log.info(&quot;Kafka listeners started&quot;);</span>
+    } else {
+<span class="nc" id="L39">      log.warn(&quot;Kafka listeners not started&quot;);</span>
+    }
+<span class="nc" id="L41">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

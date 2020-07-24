@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SubscriptionManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.subscription</a> &gt; <span class="el_source">SubscriptionManager.java</span></div><h1>SubscriptionManager.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.subscription;
+
+import static java.util.Optional.empty;
+import static java.util.concurrent.CompletableFuture.runAsync;
+
+import com.tenxbanking.cardrails.adapter.secondary.redis.SubscriptionRedisRepository;
+import com.tenxbanking.cardrails.domain.model.subscription.Subscription;
+import com.tenxbanking.cardrails.domain.port.SubscriptionService;
+import java.util.Optional;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+<span class="nc" id="L16">@Slf4j</span>
+@Component
+<span class="nc" id="L18">@AllArgsConstructor</span>
+public class SubscriptionManager implements SubscriptionService {
+
+  private final SubscriptionRedisRepository subscriptionRedisRepository;
+  private final SubscriptionFallbackReader subscriptionFallbackReader;
+
+  @Override
+<span class="nc bnc" id="L25" title="All 2 branches missed.">  public Optional&lt;Subscription&gt; findById(@NonNull final UUID subscriptionKey) {</span>
+<span class="nc" id="L26">    return getSubscriptionFromRedis(subscriptionKey)</span>
+<span class="nc" id="L27">        .or(() -&gt; fetchAndSaveSubscriptionFromSubscriptionManager(subscriptionKey));</span>
+  }
+
+  @Override
+<span class="nc bnc" id="L31" title="All 2 branches missed.">  public void remove(@NonNull final UUID subscriptionKey) {</span>
+<span class="nc" id="L32">    subscriptionRedisRepository.deleteById(subscriptionKey);</span>
+<span class="nc" id="L33">  }</span>
+
+  @Override
+<span class="nc bnc" id="L36" title="All 2 branches missed.">  public void save(@NonNull final Subscription subscription) {</span>
+    try {
+<span class="nc" id="L38">      subscriptionRedisRepository.save(subscription);</span>
+<span class="nc" id="L39">      log.info(&quot;Saved subscription {} to redis&quot;, subscription.getSubscriptionKey());</span>
+<span class="nc" id="L40">    } catch (Exception e) {</span>
+<span class="nc" id="L41">      log.error(&quot;Exception saving subscription {} to redis&quot;, subscription.getSubscriptionKey(), e);</span>
+<span class="nc" id="L42">    }</span>
+<span class="nc" id="L43">  }</span>
+
+<span class="nc bnc" id="L45" title="All 2 branches missed.">  private Optional&lt;Subscription&gt; getSubscriptionFromRedis(@NonNull final UUID subscriptionKey) {</span>
+    try {
+<span class="nc" id="L47">      return subscriptionRedisRepository.findById(subscriptionKey);</span>
+<span class="nc" id="L48">    } catch (Exception e) {</span>
+<span class="nc" id="L49">      log.error(&quot;Exception getting subscription {} from redis&quot;, subscriptionKey, e);</span>
+<span class="nc" id="L50">      return empty();</span>
+    }
+  }
+
+  private Optional&lt;Subscription&gt; fetchAndSaveSubscriptionFromSubscriptionManager(
+<span class="nc bnc" id="L55" title="All 2 branches missed.">      @NonNull final UUID subscriptionKey) {</span>
+
+<span class="nc" id="L57">    Optional&lt;Subscription&gt; subscriptionOptional = subscriptionFallbackReader</span>
+<span class="nc" id="L58">        .getSubscription(subscriptionKey);</span>
+<span class="nc" id="L59">    subscriptionOptional.ifPresent(this::saveAsyncIntoRedis);</span>
+<span class="nc" id="L60">    return subscriptionOptional;</span>
+  }
+
+<span class="nc bnc" id="L63" title="All 2 branches missed.">  private void saveAsyncIntoRedis(@NonNull final Subscription subscription) {</span>
+<span class="nc" id="L64">    runAsync(() -&gt; save(subscription));</span>
+<span class="nc" id="L65">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

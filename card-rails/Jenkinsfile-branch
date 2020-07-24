@@ -1,0 +1,9 @@
+@Library('10x-SharedLib@helm/v2.8') _
+
+parameters {
+  string(name: 'source_release_tag', description: 'The source tag of the release to create a branch from')
+}
+
+runPipelineBranch(
+  sourceReleaseTag: "${params.source_release_tag}"
+)

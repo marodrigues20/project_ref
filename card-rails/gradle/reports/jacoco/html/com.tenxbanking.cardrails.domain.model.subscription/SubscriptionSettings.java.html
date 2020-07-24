@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SubscriptionSettings.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.model.subscription</a> &gt; <span class="el_source">SubscriptionSettings.java</span></div><h1>SubscriptionSettings.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.model.subscription;
+
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
+import static net.logstash.logback.encoder.org.apache.commons.lang3.ObjectUtils.isEmpty;
+
+import java.time.Instant;
+import java.util.List;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
+
+<span class="nc bnc" id="L15" title="All 36 branches missed.">@Data</span>
+<span class="nc bnc" id="L16" title="All 6 branches missed.">@AllArgsConstructor</span>
+<span class="nc bnc" id="L17" title="All 6 branches missed.">@Builder(toBuilder = true)</span>
+public class SubscriptionSettings {
+
+  @NonNull
+<span class="nc" id="L21">  private final Instant effectiveDate;</span>
+  @NonNull
+<span class="nc" id="L23">  private final UUID productKey;</span>
+<span class="nc" id="L24">  private final int productVersion;</span>
+  @NonNull
+<span class="nc" id="L26">  private final List&lt;TransactionLimit&gt; transactionLimits;</span>
+<span class="nc" id="L27">  private final boolean hasFees;</span>
+
+  public List&lt;TransactionLimit&gt; getAtmWithdrawalLimits() {
+
+<span class="nc bnc" id="L31" title="All 2 branches missed.">    if (isEmpty(transactionLimits)) {</span>
+<span class="nc" id="L32">      return emptyList();</span>
+    }
+
+<span class="nc" id="L35">    return transactionLimits</span>
+<span class="nc" id="L36">        .stream()</span>
+<span class="nc" id="L37">        .filter(tl -&gt; tl.getTransactionName().isAtmWithdrawal())</span>
+<span class="nc" id="L38">        .collect(toList());</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

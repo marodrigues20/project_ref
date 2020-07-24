@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MerchantAddress.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.primary.rest.model.request</a> &gt; <span class="el_source">MerchantAddress.java</span></div><h1>MerchantAddress.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.primary.rest.model.request;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import lombok.Data;
+import org.springframework.validation.annotation.Validated;
+
+@ApiModel(description = &quot;The address of the merchant from DE-43.&quot;)
+@Validated
+<span class="nc bnc" id="L12" title="All 30 branches missed.">@Data</span>
+public class MerchantAddress {
+
+<span class="nc" id="L15">  @Pattern(regexp = &quot;^[A-Za-z0-9]&quot;)</span>
+  @Size(min = 0, max = 13)
+  @JsonProperty(&quot;cityName&quot;)
+<span class="nc" id="L18">  private String cityName = null;</span>
+
+  @Pattern(regexp = &quot;^[0-9]&quot;)
+  @Size(min = 3, max = 3)
+  @JsonProperty(&quot;countryCode&quot;)
+<span class="nc" id="L23">  private String stateOrCountryCode;</span>
+
+<span class="nc" id="L25">  @Pattern(regexp = &quot;^[A-Za-z0-9]&quot;)</span>
+  @Size(max = 10)
+  @JsonProperty(&quot;postCode&quot;)
+<span class="nc" id="L28">  private String postCode = null;</span>
+
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

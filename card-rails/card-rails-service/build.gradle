@@ -1,0 +1,95 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.commercehub.gradle.plugin:gradle-avro-plugin:0.16.0'
+    }
+}
+
+plugins {
+    id 'com.gorylenko.gradle-git-properties' version '2.0.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compile.exclude(module: 'log4j')
+    compile.exclude(group: 'org.slf4j', module: 'slf4j-log4j12')
+    implementation.exclude(module: 'spring-boot-starter-tomcat')
+    implementation.exclude(group: 'org.apache.tomcat.embed')
+
+    implementationOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+apply plugin: "com.commercehub.gradle.plugin.avro"
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+
+if (!"dev".equalsIgnoreCase(System.getenv("SPRING_PROFILES_ACTIVE"))) {
+    apply from: "http://nexus.internal.10x.mylti3gh7p4x.net/repository/maven-releases/com/tenx/security/security-plugins/0.1.21/security-plugins-0.1.21.gradle"
+}
+
+dependencies {
+
+    implementation libs.springBootStarter
+    implementation libs.springBootWeb
+    implementation libs.hibernateTypes
+    implementation libs.springBootJpa
+    implementation libs.springBootRedis
+    implementation libs.springBootUndertow
+    implementation libs.springBootActuator
+    implementation libs.springCloudFeign
+    implementation libs.springKafka
+    implementation libs.kafkaClients
+    implementation libs.apacheKafka
+    implementation libs.kafkaAvroSerializer
+    implementation libs.springfoxSwagger2
+    implementation libs.springfoxSwaggerUi
+    implementation libs.swaggerAnnotations
+    implementation libs.logstashLogback
+    implementation libs.micrometerCore
+    implementation libs.micrometerPrometheus
+    implementation libs.transactionMessage
+    implementation libs.cain001Enum
+    implementation libs.liquibase
+    implementation libs.postgresql
+    implementation libs.springCloudSleuth
+    implementation libs.feeChargesEnum
+    implementation libs.jacksonDatabind
+    implementation libs.undertowServlet
+    implementation libs.cain003Enum
+
+
+    //lombok - compile only
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+
+    //test libs
+    testImplementation (libs.springBootStarterTest){
+        exclude group: 'junit', module: 'junit'
+    }
+}
+
+jar {
+    enabled = true
+}
+
+// allows command line arguments to be passed to Application parameters
+bootRun {
+    systemProperties = System.properties
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+avro {
+    fieldVisibility = "PRIVATE"
+    createSetters = false
+    validateDefaults = true
+}

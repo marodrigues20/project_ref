@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CurrencyUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.service.utils</a> &gt; <span class="el_source">CurrencyUtil.java</span></div><h1>CurrencyUtil.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.service.utils;
+
+import static java.util.Currency.getAvailableCurrencies;
+import static java.util.Currency.getInstance;
+
+import java.util.Currency;
+import java.util.HashMap;
+import java.util.Map;
+
+public class CurrencyUtil {
+
+<span class="nc" id="L12">  private static Map&lt;Integer, Currency&gt; currencyMap = new HashMap&lt;&gt;();</span>
+
+  static {
+<span class="nc" id="L15">    getAvailableCurrencies()</span>
+<span class="nc" id="L16">        .forEach(currency -&gt; currencyMap.put(currency.getNumericCode(), currency));</span>
+<span class="nc" id="L17">  }</span>
+
+  private CurrencyUtil() {
+  }
+
+  public static String getCurrencyCode(int numericCode) {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">    return currencyMap.get(numericCode) == null ? null</span>
+<span class="nc" id="L24">        : currencyMap.get(numericCode).getCurrencyCode();</span>
+  }
+
+  public static Currency getCurrencyInstance(int numericCode) {
+<span class="nc" id="L28">    return currencyMap.get(numericCode);</span>
+  }
+
+  public static int getCurrencyNumericCode(String currencyCode) {
+<span class="nc" id="L32">    return getInstance(currencyCode).getNumericCode();</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

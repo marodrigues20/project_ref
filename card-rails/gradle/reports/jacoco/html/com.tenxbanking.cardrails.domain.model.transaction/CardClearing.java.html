@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardClearing.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.model.transaction</a> &gt; <span class="el_source">CardClearing.java</span></div><h1>CardClearing.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.model.transaction;
+
+import static com.tenxbanking.cardrails.domain.model.CardTransactionType.CLEARING;
+
+import com.tenxbanking.cardrails.domain.model.Cain003;
+import com.tenxbanking.cardrails.domain.model.CardTransactionType;
+import com.tenxbanking.cardrails.domain.model.Fee;
+import com.tenxbanking.cardrails.domain.model.Money;
+
+import com.tenxbanking.cardrails.domain.model.PaymentMethodType;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.ToString;
+
+@Getter
+<span class="nc bnc" id="L20" title="All 12 branches missed.">@Builder(toBuilder = true)</span>
+<span class="nc bnc" id="L21" title="All 54 branches missed.">@EqualsAndHashCode</span>
+<span class="nc" id="L22">@ToString</span>
+<span class="nc bnc" id="L23" title="All 12 branches missed.">@AllArgsConstructor</span>
+public class CardClearing implements ClearingTransaction {
+
+  @NonNull
+<span class="nc" id="L27">  private final String cardId;</span>
+  @NonNull
+<span class="nc" id="L29">  private final UUID subscriptionKey;</span>
+  @NonNull
+<span class="nc" id="L31">  private final UUID partyKey;</span>
+  @NonNull
+<span class="nc" id="L33">  private final UUID productKey;</span>
+  @NonNull
+<span class="nc" id="L35">  private final String tenantKey;</span>
+  @NonNull
+<span class="nc" id="L37">  private final Cain003 cain003;</span>
+
+  @Override
+  public CardTransactionType getType() {
+<span class="nc" id="L41">    return CLEARING;</span>
+  }
+
+  @Override
+  public Money getTransactionAmount() {
+<span class="nc" id="L46">    return cain003.getTransactionAmount();</span>
+  }
+
+  @Override
+  public Money getBillingAmount() {
+<span class="nc" id="L51">    return cain003.getBillingAmount();</span>
+  }
+
+  @Override
+  public PaymentMethodType getPaymentMethodType() {
+<span class="nc" id="L56">    return getCain003().getPaymentMethodType();</span>
+  }
+
+  // Cain003/Cain004 ??
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

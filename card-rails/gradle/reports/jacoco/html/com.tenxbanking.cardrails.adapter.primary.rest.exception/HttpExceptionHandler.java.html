@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HttpExceptionHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.primary.rest.exception</a> &gt; <span class="el_source">HttpExceptionHandler.java</span></div><h1>HttpExceptionHandler.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.primary.rest.exception;
+
+import static com.tenxbanking.cardrails.adapter.primary.rest.HttpRequestAttribute.IDEMPOTENCY_KEY;
+
+import com.tenxbanking.cardrails.adapter.primary.rest.model.response.ErrorResponse;
+import com.tenxbanking.cardrails.adapter.primary.rest.model.response.SchemeMessageResponse;
+import com.tenxbanking.cardrails.adapter.secondary.redis.RedisIdempotentRepository;
+import com.tenxbanking.cardrails.domain.exception.CardAuthHandlerUnsupportedException;
+import com.tenxbanking.cardrails.domain.exception.CardAuthReservationException;
+import com.tenxbanking.cardrails.domain.exception.CardNotFoundException;
+import com.tenxbanking.cardrails.domain.exception.CardSettingsNotFoundException;
+import com.tenxbanking.cardrails.domain.exception.LimitConstraintException;
+import com.tenxbanking.cardrails.domain.exception.SubscriptionNotFoundException;
+import com.tenxbanking.cardrails.domain.exception.ValidationException;
+import com.tenxbanking.cardrails.domain.model.Cain002;
+import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+<span class="nc" id="L26">@Slf4j</span>
+@RestControllerAdvice
+<span class="nc" id="L28">@AllArgsConstructor</span>
+public class HttpExceptionHandler {
+
+  private static final String UNSOLICITED_REVERSAL_CODE = &quot;76&quot;;
+
+  private final RedisIdempotentRepository redisIdempotentRepository;
+
+  @ExceptionHandler(CardAuthReservationException.class)
+  @ResponseStatus(HttpStatus.BAD_GATEWAY)
+  public ErrorResponse handleCardAuthReservationException(
+      CardAuthReservationException e,
+      HttpServletRequest request) {
+<span class="nc" id="L40">    log.info(&quot;handling exception &quot;, e);</span>
+<span class="nc" id="L41">    removeIdempotencyKey(request);</span>
+<span class="nc" id="L42">    return new ErrorResponse(e.getMessage());</span>
+  }
+
+  @ExceptionHandler(RequestValidationFailureException.class)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ErrorResponse handleRequestValidationFailureException(
+      RequestValidationFailureException e,
+      HttpServletRequest request) {
+<span class="nc" id="L50">    log.info(&quot;handling exception &quot;, e);</span>
+<span class="nc" id="L51">    removeIdempotencyKey(request);</span>
+<span class="nc" id="L52">    return new ErrorResponse(e.getMessage());</span>
+  }
+
+  @ExceptionHandler(value = {LimitConstraintException.class})
+  public ResponseEntity&lt;SchemeMessageResponse&gt; handleLimitConstraintException(LimitConstraintException e,
+      HttpServletRequest request) {
+<span class="nc" id="L58">    log.info(&quot;handling exception &quot;, e);</span>
+<span class="nc" id="L59">    removeIdempotencyKey(request);</span>
+<span class="nc" id="L60">    return ResponseEntity.ok(SchemeMessageResponse.of(Cain002.unsuccessful()));</span>
+  }
+
+  @ExceptionHandler(CardAuthHandlerUnsupportedException.class)
+  @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+  public ErrorResponse handleCardAuthHandlerUnsupportedException(
+      CardAuthHandlerUnsupportedException e,
+      HttpServletRequest request) {
+<span class="nc" id="L68">    log.info(&quot;handling exception &quot;, e);</span>
+<span class="nc" id="L69">    removeIdempotencyKey(request);</span>
+<span class="nc" id="L70">    return new ErrorResponse(e.getMessage());</span>
+  }
+
+  @ExceptionHandler(CardNotFoundException.class)
+  @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+  public ErrorResponse cardNotFoundException(
+      CardNotFoundException e,
+      HttpServletRequest request) {
+<span class="nc" id="L78">    log.info(&quot;handling exception &quot;, e);</span>
+<span class="nc" id="L79">    removeIdempotencyKey(request);</span>
+<span class="nc" id="L80">    return new ErrorResponse(e.getMessage());</span>
+  }
+
+  @ExceptionHandler(CardSettingsNotFoundException.class)
+  @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+  public ErrorResponse cardSettingsNotFoundException(
+      CardSettingsNotFoundException e,
+      HttpServletRequest request) {
+<span class="nc" id="L88">    log.info(&quot;handling exception &quot;, e);</span>
+<span class="nc" id="L89">    removeIdempotencyKey(request);</span>
+<span class="nc" id="L90">    return new ErrorResponse(e.getMessage());</span>
+  }
+
+
+  @ExceptionHandler(SubscriptionNotFoundException.class)
+  @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+  public ErrorResponse subscriptionNotFoundException(
+      SubscriptionNotFoundException e,
+      HttpServletRequest request) {
+<span class="nc" id="L99">    log.info(&quot;handling exception &quot;, e);</span>
+<span class="nc" id="L100">    removeIdempotencyKey(request);</span>
+<span class="nc" id="L101">    return new ErrorResponse(e.getMessage());</span>
+  }
+
+  @ExceptionHandler(ValidationException.class)
+  @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+  public ErrorResponse validationException(
+      ValidationException e,
+      HttpServletRequest request) {
+<span class="nc" id="L109">    log.info(&quot;handling exception &quot;, e);</span>
+<span class="nc" id="L110">    removeIdempotencyKey(request);</span>
+<span class="nc" id="L111">    return new ErrorResponse(e.getMessage());</span>
+  }
+
+  @ExceptionHandler(UnsolicitedReversalException.class)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ErrorResponse handleUnsolicitedReversalExceptionException(
+      UnsolicitedReversalException e,
+      HttpServletRequest request) {
+<span class="nc" id="L119">    log.info(&quot;handling exception &quot;, e);</span>
+<span class="nc" id="L120">    removeIdempotencyKey(request);</span>
+<span class="nc" id="L121">    return new ErrorResponse(e.getMessage(), UNSOLICITED_REVERSAL_CODE);</span>
+  }
+
+  @ExceptionHandler(Exception.class)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  public ErrorResponse handleException(Exception e, HttpServletRequest request) {
+<span class="nc" id="L127">    log.error(&quot;handling exception &quot;, e);</span>
+<span class="nc" id="L128">    removeIdempotencyKey(request);</span>
+<span class="nc" id="L129">    return new ErrorResponse(e.getMessage());</span>
+  }
+
+  private void removeIdempotencyKey(HttpServletRequest request) {
+<span class="nc" id="L133">    Optional.ofNullable((String) request.getAttribute(IDEMPOTENCY_KEY))</span>
+<span class="nc" id="L134">        .ifPresent(redisIdempotentRepository::remove);</span>
+<span class="nc" id="L135">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

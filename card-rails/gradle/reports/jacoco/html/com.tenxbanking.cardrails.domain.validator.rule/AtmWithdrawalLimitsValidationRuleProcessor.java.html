@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AtmWithdrawalLimitsValidationRuleProcessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.validator.rule</a> &gt; <span class="el_source">AtmWithdrawalLimitsValidationRuleProcessor.java</span></div><h1>AtmWithdrawalLimitsValidationRuleProcessor.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.validator.rule;
+
+import static java.lang.String.format;
+import static java.math.BigDecimal.ZERO;
+
+import com.tenxbanking.cardrails.adapter.secondary.database.repository.TransactionLimitCockroachRepository;
+import com.tenxbanking.cardrails.domain.exception.LimitConstraintException;
+import com.tenxbanking.cardrails.domain.model.limits.TimeInterval;
+import com.tenxbanking.cardrails.domain.model.subscription.ResetPeriodEnums;
+import com.tenxbanking.cardrails.domain.service.TimeIntervalService;
+import com.tenxbanking.cardrails.domain.validator.ValidationFailure;
+import java.math.BigDecimal;
+import java.util.Optional;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+<span class="nc" id="L20">@Slf4j</span>
+@Component
+<span class="nc" id="L22">@AllArgsConstructor</span>
+class AtmWithdrawalLimitsValidationRuleProcessor {
+
+  private final TimeIntervalService timeIntervalService;
+  private final TransactionLimitCockroachRepository transactionLimitCockroachRepository;
+
+  Optional&lt;ValidationFailure&gt; verifyMaximumAmountForNonTransactionResetPeriod(
+<span class="nc bnc" id="L29" title="All 2 branches missed.">      @NonNull final BigDecimal transactionAmount,</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">      @NonNull final UUID subscriptionKey,</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">      @NonNull final ResetPeriodEnums resetPeriod,</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">      @NonNull final BigDecimal limitMaxAmount) {</span>
+
+<span class="nc" id="L34">    final TimeInterval timeInterval = timeIntervalService.getCheckPeriod(resetPeriod);</span>
+
+<span class="nc" id="L36">    final Optional&lt;BigDecimal&gt; amountSum = transactionLimitCockroachRepository</span>
+<span class="nc" id="L37">        .getCurrentAtmWithdrawal(subscriptionKey,</span>
+<span class="nc" id="L38">            timeInterval.getStartInstant(),</span>
+<span class="nc" id="L39">            timeInterval.getEndInstant());</span>
+
+<span class="nc" id="L41">    final BigDecimal totalAfterTransaction = amountSum.orElse(ZERO).add(transactionAmount);</span>
+
+<span class="nc bnc" id="L43" title="All 2 branches missed.">    if (totalAfterTransaction.compareTo(limitMaxAmount) &gt; 0) {</span>
+
+<span class="nc" id="L45">      final String msg = format(</span>
+          &quot;Transaction with amount %s for subscription %s does not comply with maximum %s amount %s (total after transaction: %s)&quot;,
+          transactionAmount,
+          subscriptionKey,
+          resetPeriod,
+          limitMaxAmount,
+          totalAfterTransaction);
+
+<span class="nc" id="L53">      return Optional.of(ValidationFailure.of(msg));</span>
+    }
+<span class="nc" id="L55">    return Optional.empty();</span>
+  }
+
+  Optional&lt;ValidationFailure&gt; verifyMinimumAmountForTransactionResetPeriod(
+<span class="nc bnc" id="L59" title="All 2 branches missed.">      @NonNull final BigDecimal transactionAmount,</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">      @NonNull final UUID subscriptionKey,</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">      @NonNull final BigDecimal limitMinAmount) {</span>
+
+<span class="nc bnc" id="L63" title="All 2 branches missed.">    if (transactionAmount.compareTo(limitMinAmount) &lt; 0) {</span>
+
+<span class="nc" id="L65">      final String msg = format(</span>
+          &quot;Transaction with amount %s for subscription %s does not comply with transaction minimum amount %s&quot;,
+          transactionAmount,
+          subscriptionKey,
+          limitMinAmount);
+<span class="nc" id="L70">      return Optional.of(ValidationFailure.of(msg));</span>
+    }
+<span class="nc" id="L72">    return Optional.empty();</span>
+  }
+
+  Optional&lt;ValidationFailure&gt; verifyMaximumAmountForTransactionResetPeriod(
+<span class="nc bnc" id="L76" title="All 2 branches missed.">      @NonNull final BigDecimal transactionAmount,</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">      @NonNull final UUID subscriptionKey,</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">      @NonNull final BigDecimal limitMinAmount) {</span>
+
+<span class="nc bnc" id="L80" title="All 2 branches missed.">    if (transactionAmount.compareTo(limitMinAmount) &gt; 0) {</span>
+
+<span class="nc" id="L82">      final String msg = format(</span>
+          &quot;Transaction with amount %s for subscription %s does not comply with transaction maximum amount %s&quot;,
+          transactionAmount,
+          subscriptionKey,
+          limitMinAmount);
+
+<span class="nc" id="L88">      return Optional.of(ValidationFailure.of(msg));</span>
+    }
+<span class="nc" id="L90">    return Optional.empty();</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

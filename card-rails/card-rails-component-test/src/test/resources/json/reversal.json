@@ -1,0 +1,63 @@
+{
+  "messageType": "REVERSAL",
+  "processingCode": "000000",
+  "systemTraceNumber": "113059",
+  "transaction": {
+    "amounts": {
+      "transaction": {
+        "amount": 1,
+        "currency": "GBP"
+      },
+      "settlement": null,
+      "billing": {
+        "amount": 1,
+        "currency": "GBP"
+      },
+      "fee": {},
+      "additionalAmounts": [],
+      "conversionRate": 2.032479
+    },
+    "networkCode": "MCC",
+    "banknetReferenceNumber": "00001106T",
+    "dates": {
+      "transactionDate": "2019-10-09",
+      "transactionTime": "12:12:12.122",
+      "settlementDate": "2019-10-05",
+      "conversionDate": "2019-10-05",
+      "transmissionDateTime": "2019-05-10T09:46:13Z"
+    },
+    "retrievalReferenceNumber": "CARD_REVERSAL_TEST_12345"
+  },
+  "card": {
+    "id": "aCardId",
+    "expiryDate": "0922"
+  },
+  "acquirer": {
+    "id": "012825"
+  },
+  "merchant": {
+    "name": "MPTS ECOMM",
+    "address": {
+      "cityName": "WARSZAWA",
+      "countryCode": "GBR"
+    },
+    "terminalId": "00018594",
+    "categoryCode": "5045",
+    "acceptorIdCode": "0001859412     "
+  },
+  "pos": {
+    "additionalPosDetail": "1025100006000616902101234",
+    "posEntryMode": "051",
+    "conditionCode": "00"
+  },
+  "additionalData": {
+    "eCommerceIndicator": "210",
+    "onBehalfOfServices": "18C "
+  },
+  "fraudScoreData": {
+    "rawData": "01038250202XX"
+  },
+  "authCode": "123456",
+  "authResponseCode": "05",
+  "reversalAmounts": null
+}

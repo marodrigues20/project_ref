@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CockroachAuthFinder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.database</a> &gt; <span class="el_source">CockroachAuthFinder.java</span></div><h1>CockroachAuthFinder.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.database;
+
+import static com.tenxbanking.cardrails.domain.model.CardTransactionType.ADVICE;
+import static com.tenxbanking.cardrails.domain.model.CardTransactionType.AUTH;
+
+import com.tenxbanking.cardrails.adapter.secondary.database.model.CardTransactionEntity;
+import com.tenxbanking.cardrails.adapter.secondary.database.repository.CardTransactionCockroachRepository;
+import com.tenxbanking.cardrails.adapter.secondary.database.transformer.AuthTransactionEntityToDomainTransformer;
+import com.tenxbanking.cardrails.domain.model.CardTransactionType;
+import com.tenxbanking.cardrails.domain.model.transaction.AuthTransaction;
+import com.tenxbanking.cardrails.domain.port.finder.AuthFinder;
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@Component
+<span class="nc" id="L21">@AllArgsConstructor</span>
+public class CockroachAuthFinder implements AuthFinder {
+
+<span class="nc" id="L24">  private static final List&lt;CardTransactionType&gt; MATCHING_AUTH_TYPES = List.of(AUTH, ADVICE);</span>
+
+
+  private final CardTransactionCockroachRepository cardTransactionCockroachRepository;
+  private final AuthTransactionEntityToDomainTransformer authTransactionEntityToDomainTransformer;
+
+  @Override
+  public Optional&lt;AuthTransaction&gt; findMatchingAuthByRetrievalReferenceNumber(
+      String retrievalReferenceNumber) {
+<span class="nc" id="L33">    return findMatchingAuth(() -&gt;</span>
+<span class="nc" id="L34">        cardTransactionCockroachRepository</span>
+<span class="nc" id="L35">            .findByCardTransactionTypeInAndRetrievalReferenceNumberAndIsSuccess(</span>
+                MATCHING_AUTH_TYPES,
+                retrievalReferenceNumber,
+                true
+            ));
+  }
+
+  @Override
+  public Optional&lt;AuthTransaction&gt; findMatchingAuthByBanknetReferenceNumber(
+      String banknetReferenceNumber) {
+<span class="nc" id="L45">    return findMatchingAuth(() -&gt;</span>
+<span class="nc" id="L46">        cardTransactionCockroachRepository</span>
+<span class="nc" id="L47">            .findByCardTransactionTypeInAndBanknetReferenceNumberAndIsSuccess(</span>
+                MATCHING_AUTH_TYPES,
+                banknetReferenceNumber,
+                true
+            ));
+  }
+
+  @Override
+  public Optional&lt;AuthTransaction&gt; findMatchingAuthByAuthCode(String authCode) {
+<span class="nc" id="L56">    return findMatchingAuth(() -&gt;</span>
+<span class="nc" id="L57">        cardTransactionCockroachRepository.findByCardTransactionTypeInAndAuthCodeAndIsSuccess(</span>
+            MATCHING_AUTH_TYPES,
+            authCode,
+            true
+        ));
+  }
+
+
+
+  @Override
+  public Optional&lt;AuthTransaction&gt; findByCardIdAndTransactionId(
+      String cardId, String transactionLifeCycleId) {
+
+<span class="nc" id="L70">    return findMatchingAuth(() -&gt;</span>
+<span class="nc" id="L71">        cardTransactionCockroachRepository</span>
+<span class="nc" id="L72">            .findByCardTransactionTypeAndIdAndTransactionIdAndIsSuccess(</span>
+                MATCHING_AUTH_TYPES,
+                cardId,
+                transactionLifeCycleId,
+                true
+            ));
+
+  }
+
+  @Override
+  public Optional&lt;AuthTransaction&gt; findByCardIdAndCreatedDateAndCardAmountAndCardAuth(
+      String cardId, Instant createdDate,
+      BigDecimal transactionAmount, String transactionAuthCode) {
+
+<span class="nc" id="L86">    return findMatchingAuth(() -&gt;</span>
+<span class="nc" id="L87">        cardTransactionCockroachRepository</span>
+<span class="nc" id="L88">            .findByCardTransactionTypeAndCardIdAndCreatedDateAndTransactionAmountAndAuthCodeAndIsSuccess(</span>
+                MATCHING_AUTH_TYPES,
+                cardId,
+                createdDate,
+                transactionAmount,
+                transactionAuthCode,
+                true
+            ));
+
+
+  }
+
+  @Override
+  public Optional&lt;AuthTransaction&gt; findByCardIdAndTransactionAmountAndTransactionAuthCode(
+      String cardId, BigDecimal transactionAmount,
+      String transactionAuthCode) {
+
+<span class="nc" id="L105">    return findMatchingAuth(() -&gt;</span>
+<span class="nc" id="L106">        cardTransactionCockroachRepository</span>
+<span class="nc" id="L107">            .findByCardTransactionTypeAndCardIdAndTransactionAmountAndAuthCodeAndIsSuccess(</span>
+                MATCHING_AUTH_TYPES,
+                cardId,
+                transactionAmount,
+                transactionAuthCode,
+                true
+            ));
+
+  }
+
+  @Override
+  public Optional&lt;AuthTransaction&gt; findByCardIdAndTransactionDateAndTransactionAuthCode(
+      String cardId, Instant transactionDate,
+      String transactionAuthCode) {
+
+<span class="nc" id="L122">    return findMatchingAuth(() -&gt;</span>
+<span class="nc" id="L123">        cardTransactionCockroachRepository</span>
+<span class="nc" id="L124">            .findByCardTransactionTypeAndCardIdAndCreatedDateAndAuthCodeAndIsSuccess(</span>
+                MATCHING_AUTH_TYPES,
+                cardId,
+                transactionDate,
+                transactionAuthCode,
+                true
+            ));
+
+  }
+
+  @Override
+  public Optional&lt;AuthTransaction&gt; findByCardIdAndTransactionDate(
+      String cardId, Instant transactionDate) {
+
+<span class="nc" id="L138">    return findMatchingAuth(() -&gt;</span>
+<span class="nc" id="L139">        cardTransactionCockroachRepository</span>
+<span class="nc" id="L140">            .findByCardTransactionTypeAndCardIdAndCreatedDateAndIsSuccess(</span>
+                MATCHING_AUTH_TYPES,
+                cardId,
+                transactionDate,
+                true
+            ));
+
+
+  }
+
+  private Optional&lt;AuthTransaction&gt; findMatchingAuth(
+      Supplier&lt;List&lt;CardTransactionEntity&gt;&gt; supplier) {
+
+<span class="nc" id="L153">    List&lt;CardTransactionEntity&gt; entities = supplier.get();</span>
+
+<span class="nc bnc" id="L155" title="All 2 branches missed.">    if (entities.size() &gt; 1) {</span>
+<span class="nc" id="L156">      throw new IllegalStateException(</span>
+<span class="nc" id="L157">          String.format(&quot;More than one matching auth found, entities=%s&quot;, entities));</span>
+    }
+
+<span class="nc" id="L160">    return entities</span>
+<span class="nc" id="L161">        .stream()</span>
+<span class="nc" id="L162">        .findFirst()</span>
+<span class="nc" id="L163">        .map(authTransactionEntityToDomainTransformer::transform);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

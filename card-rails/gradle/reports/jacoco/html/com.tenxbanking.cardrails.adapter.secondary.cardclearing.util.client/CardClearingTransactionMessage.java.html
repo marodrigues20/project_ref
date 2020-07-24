@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardClearingTransactionMessage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.client</a> &gt; <span class="el_source">CardClearingTransactionMessage.java</span></div><h1>CardClearingTransactionMessage.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.client;
+
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.BANKNET_REFERENCE_NUMBER;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.BILLING_AMOUNT;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.BILLING_CURRENCY_CODE;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.CARD_ACCEPTOR_ID;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.COMMON_COUNTRY_CODE;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.MERCHANT_CATEGORY_CODE;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.MERCHANT_NUMBER;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.TRANSACTION_AMOUNT;
+import static com.tenx.universalbanking.transactionmessage.enums.Cain003Enum.TRANSACTION_DATE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.AUTHORISATION_CODE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.DEBIT_CREDIT_INDICATOR;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.PAYMENT_METHOD_TYPE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.SETTLEMENT_DATE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.SUBSCRIPTION_KEY;
+
+import com.tenx.universalbanking.transactionmessage.TransactionMessage;
+import com.tenx.universalbanking.transactionmessage.TransactionMessageHeader;
+import com.tenx.universalbanking.transactionmessage.paymentmessage.PaymentMessage;
+import com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum;
+import com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageTypeEnum;
+import com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.feebehavior.FeeBehavior;
+import com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.feebehavior.FeeMessage;
+import com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.taxbehavior.TaxBehavior;
+import com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.taxbehavior.TaxMessage;
+import com.tenxbanking.cardrails.domain.model.Fee;
+import com.tenxbanking.cardrails.domain.model.Tax;
+import com.tenxbanking.cardrails.domain.model.transaction.CardClearing;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+<span class="fc" id="L36">public class CardClearingTransactionMessage extends GenericTransactionMessage&lt;CardClearing&gt; {</span>
+
+
+  @Override
+  public TransactionMessageHeader buildPaymentHeader(CardClearing cardClearing) {
+<span class="fc" id="L41">    TransactionMessageHeader messageHeader = new TransactionMessageHeader();</span>
+<span class="fc" id="L42">    messageHeader.setType(cardClearing.getCain003().getCardTransactionType().name());</span>
+<span class="fc" id="L43">    return messageHeader;</span>
+  }
+
+  @Override
+  public PaymentMessage buildPaymentMessage(CardClearing cardClearing) {
+
+<span class="fc" id="L49">    PaymentMessage paymentMessage = new PaymentMessage();</span>
+<span class="fc" id="L50">    Map&lt;String, Object&gt; messageMap = new HashMap();</span>
+
+<span class="fc" id="L52">    messageMap.put(COMMON_COUNTRY_CODE.name(),</span>
+<span class="fc" id="L53">        cardClearing.getCain003().getMerchant().getAddress().getCountryCode());</span>
+<span class="fc" id="L54">    messageMap.put(BILLING_AMOUNT.name(), cardClearing.getCain003().getBillingAmount().getAmount());</span>
+<span class="fc" id="L55">    messageMap.put(CARD_ACCEPTOR_ID.name(), cardClearing.getCain003().getBanknetReferenceNumber());</span>
+<span class="fc" id="L56">    messageMap.put(TRANSACTION_DATE.name(), cardClearing.getCain003().getTransactionDate());</span>
+<span class="fc" id="L57">    messageMap.put(MERCHANT_CATEGORY_CODE.name(),</span>
+<span class="fc" id="L58">        cardClearing.getCain003().getMerchant().getCategoryCode());</span>
+<span class="fc" id="L59">    messageMap</span>
+<span class="fc" id="L60">        .put(MERCHANT_NUMBER.name(), cardClearing.getCain003().getMerchant().getAcceptorIdCode());</span>
+<span class="fc" id="L61">    messageMap.put(BILLING_CURRENCY_CODE.name(),</span>
+<span class="fc" id="L62">        cardClearing.getCain003().getBillingAmount().getCurrency());</span>
+<span class="fc" id="L63">    messageMap.put(TRANSACTION_AMOUNT.name(),</span>
+<span class="fc" id="L64">        cardClearing.getCain003().getTransactionAmount().getAmount());</span>
+<span class="fc" id="L65">    messageMap.put(BANKNET_REFERENCE_NUMBER.name(),</span>
+<span class="fc" id="L66">        cardClearing.getCain003().getBanknetReferenceNumber());</span>
+
+<span class="fc" id="L68">    paymentMessage.setMessage(messageMap);</span>
+
+<span class="fc" id="L70">    return paymentMessage;</span>
+
+  }
+
+  @Override
+  public Map&lt;String, Object&gt; buildPaymentAdditionalInfo(CardClearing cardClearing) {
+
+<span class="fc" id="L77">    Map&lt;String, Object&gt; messageAdditionalMap = new HashMap();</span>
+
+<span class="fc" id="L79">    messageAdditionalMap</span>
+<span class="fc" id="L80">        .put(DEBIT_CREDIT_INDICATOR.name(), cardClearing.getCain003().getMessageType().name());</span>
+<span class="fc" id="L81">    messageAdditionalMap</span>
+<span class="fc" id="L82">        .put(PAYMENT_METHOD_TYPE.name(), cardClearing.getCain003().getPaymentMethodType().name());</span>
+<span class="fc" id="L83">    messageAdditionalMap</span>
+<span class="fc" id="L84">        .put(SETTLEMENT_DATE.name(), cardClearing.getCain003().getTransactionDate());</span>
+<span class="fc" id="L85">    messageAdditionalMap.put(AUTHORISATION_CODE.name(), cardClearing.getCain003().getAuthCode());</span>
+<span class="fc" id="L86">    messageAdditionalMap.put(SUBSCRIPTION_KEY.name(), cardClearing.getSubscriptionKey());</span>
+
+<span class="fc" id="L88">    return messageAdditionalMap;</span>
+  }
+
+  private void setSubscriptionKey(CardClearing cardClearing, PaymentMessage message) {
+<span class="fc" id="L92">    HashMap&lt;String, Object&gt; additionalInfoMap = (HashMap&lt;String, Object&gt;) message</span>
+<span class="fc" id="L93">        .getAdditionalInfo();</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">    if (additionalInfoMap != null) {</span>
+<span class="fc" id="L95">      additionalInfoMap</span>
+<span class="fc" id="L96">          .put(PaymentMessageAdditionalInfoEnum.SUBSCRIPTION_KEY.name(),</span>
+<span class="fc" id="L97">              cardClearing.getSubscriptionKey().toString());</span>
+<span class="fc" id="L98">      additionalInfoMap</span>
+<span class="fc" id="L99">          .put(PaymentMessageAdditionalInfoEnum.PRODUCT_KEY.name(),</span>
+<span class="fc" id="L100">              cardClearing.getProductKey());</span>
+
+    }
+<span class="fc" id="L103">  }</span>
+
+  @Override
+  public TransactionMessage create(CardClearing cardClearing) {
+
+<span class="fc" id="L108">    List&lt;TransactionMessage&gt; transactionMessageList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L109">    List&lt;PaymentMessage&gt; paymentMessageList = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L111">    TransactionMessage transactionMessage = new TransactionMessage();</span>
+
+<span class="fc" id="L113">    transactionMessage.setHeader(buildPaymentHeader(cardClearing));</span>
+<span class="fc" id="L114">    transactionMessage.setAdditionalInfo(this.buildPaymentAdditionalInfo(cardClearing));</span>
+<span class="fc" id="L115">    PaymentMessage paymentMessageCain003 = buildPaymentMessage(cardClearing);</span>
+<span class="fc" id="L116">    paymentMessageCain003.setType(PaymentMessageTypeEnum.CAIN003.name());</span>
+<span class="fc" id="L117">    setSubscriptionKey(cardClearing,paymentMessageCain003);</span>
+
+<span class="fc bfc" id="L119" title="All 2 branches covered.">    if(cardClearing.getCain003().getFee().isPresent()){</span>
+
+<span class="fc" id="L121">      FeeBehavior&lt;Fee,UUID&gt; feeBehavior = new FeeMessage();</span>
+<span class="fc" id="L122">      feeBehavior.buildPaymentHeader();</span>
+<span class="fc" id="L123">      feeBehavior.buildFeeMessage(cardClearing.getCain003().getFee().get());</span>
+<span class="fc" id="L124">      feeBehavior.buildFeeAdditionalInfo(cardClearing.getCain003().getFee().get(), cardClearing.getSubscriptionKey());</span>
+<span class="fc" id="L125">      PaymentMessage paymentMessageFee = feeBehavior.getPaymentMessage();</span>
+
+<span class="fc" id="L127">      TaxBehavior&lt;Fee, UUID&gt; taxBehavior = new TaxMessage();</span>
+<span class="fc" id="L128">      taxBehavior.buildPaymentHeader();</span>
+<span class="fc" id="L129">      taxBehavior.buildTaxMessage(cardClearing.getCain003().getFee().get());</span>
+<span class="fc" id="L130">      taxBehavior.buildTaxAdditionalInfo(cardClearing.getCain003().getFee().get(), cardClearing.getSubscriptionKey());</span>
+<span class="fc" id="L131">      PaymentMessage paymentMessageTax = taxBehavior.getPaymentMessage();</span>
+
+<span class="fc" id="L133">      paymentMessageList.add(paymentMessageFee);</span>
+<span class="fc" id="L134">      paymentMessageList.add(paymentMessageTax);</span>
+
+    }
+
+<span class="fc" id="L138">    paymentMessageList.add(paymentMessageCain003);</span>
+
+
+<span class="fc" id="L141">    transactionMessage.setMessages(paymentMessageList);</span>
+
+    //transactionMessageList.add(transactionMessage);
+
+<span class="fc" id="L145">    return transactionMessage;</span>
+  }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

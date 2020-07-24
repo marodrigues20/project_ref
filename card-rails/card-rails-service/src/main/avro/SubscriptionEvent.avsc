@@ -1,0 +1,2133 @@
+[{
+		"name": "ProductDetails",
+		"namespace": "com.tenx.dub.subscription.event.v1",
+		"type": "record",
+		"fields": [{
+				"name": "effectiveDate",
+				"type": {
+					"type": "string",
+					"avro.java.string": "String"
+				},
+				"doc": "datetime format ISO8601"
+			},
+			{
+				"name": "productKey",
+				"type": {
+					"type": "string",
+					"avro.java.string": "String"
+				}
+			},
+			{
+				"name": "productCategory",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "productName",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "productType",
+				"type": {
+					"type": "string",
+					"avro.java.string": "String"
+				},
+				"doc": "PersonalCurrentAccount"
+			},
+			{
+				"name": "productDescription",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "productSegment",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "createdDate",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"doc": "datetime format ISO8601",
+				"default": null
+			},
+			{
+				"name": "createdBy",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "updatedDate",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"doc": "datetime format ISO8601",
+				"default": null
+			},
+			{
+				"name": "updatedBy",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "publishedDate",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"doc": "datetime format ISO8601",
+				"default": null
+			},
+			{
+				"name": "publishedBy",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "closedDate",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"doc": "datetime format ISO8601",
+				"default": null
+			},
+			{
+				"name": "closedBy",
+				"type": [
+					"null",
+					{
+						"type": "string",
+						"avro.java.string": "String"
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "status",
+				"type": {
+					"type": "string",
+					"avro.java.string": "String"
+				},
+				"doc": "Design, Live, Updated, Closed, Review, Approved"
+			},
+			{
+				"name": "majorVersion",
+				"type": "int"
+			},
+			{
+				"name": "tags",
+				"type": [
+					"null",
+					{
+						"type": "array",
+						"items": {
+							"type": "string",
+							"avro.java.string": "String"
+						}
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "subProducts",
+				"type": [
+					"null",
+					{
+						"type": "array",
+						"items": {
+							"type": "string",
+							"avro.java.string": "String"
+						}
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "requiredExternalId",
+				"type": [
+					"null",
+					{
+						"type": "array",
+						"items": {
+							"type": "string",
+							"avro.java.string": "String"
+						}
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "limits",
+				"type": [
+					"null",
+					{
+						"type": "record",
+						"name": "Limits",
+						"fields": [{
+								"name": "transactionLimits",
+								"type": [
+									"null",
+									{
+										"type": "array",
+										"items": {
+											"type": "record",
+											"name": "TransactionLimits",
+											"fields": [{
+													"name": "transactionName",
+													"type": {
+														"type": "string",
+														"avro.java.string": "String"
+													},
+													"doc": "ATMWITHDRAWAL,TRANSFERIN,TRANSFEROUT"
+												},
+												{
+													"name": "description",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "minimumAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "maximumAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "resetPeriod",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"doc": "DAY,MONTH",
+													"default": null
+												}
+											]
+										}
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "schemeLimits",
+								"type": [
+									"null",
+									{
+										"type": "array",
+										"items": {
+											"type": "record",
+											"name": "SchemeLimits",
+											"fields": [{
+													"name": "schemeName",
+													"type": {
+														"type": "string",
+														"avro.java.string": "String"
+													},
+													"doc": "FPS,BACS"
+												},
+												{
+													"name": "description",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "minimumAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "maximumAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "resetPeriod",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"doc": "DAY,MONTH",
+													"default": null
+												}
+											]
+										}
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "accountBalanceLimits",
+								"type": [
+									"null",
+									{
+										"type": "array",
+										"items": {
+											"type": "record",
+											"name": "AccountBalanceLimits",
+											"fields": [{
+													"name": "balanceType",
+													"type": {
+														"type": "string",
+														"avro.java.string": "String"
+													},
+													"doc": "CURRENTBALANCE,AVAILABLEBALANCE,AVERAGEBALANCE,EODBALANCE"
+												},
+												{
+													"name": "description",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "minimumAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "maximumAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												}
+											]
+										}
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "productLimits",
+								"type": [
+									"null",
+									{
+										"type": "array",
+										"items": {
+											"type": "record",
+											"name": "ProductLimits",
+											"fields": [{
+													"name": "productKey",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "productName",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "productType",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "description",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "maximumNumber",
+													"type": [
+														"null",
+														"int"
+													],
+													"default": null
+												}
+											]
+										}
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "fundingLimits",
+								"type": [
+									"null",
+									{
+										"type": "array",
+										"items": {
+											"type": "record",
+											"name": "FundingLimits",
+											"fields": [{
+													"name": "fundingMechanism",
+													"type": {
+														"type": "string",
+														"avro.java.string": "String"
+													},
+													"doc": "CARD,TRANSFER"
+												},
+												{
+													"name": "description",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "minimumAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "maximumAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "defaultAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												}
+											]
+										}
+									}
+								],
+								"default": null
+							}
+						]
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "cards",
+				"type": [
+					"null",
+					{
+						"type": "array",
+						"items": {
+							"type": "record",
+							"name": "Card",
+							"fields": [{
+									"name": "cardStatusDefault",
+									"type": {
+										"type": "string",
+										"avro.java.string": "String"
+									},
+									"doc": "ACTIVE, DEACTIVATED"
+								},
+								{
+									"name": "type",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "scheme",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "channelDefaultSettings",
+									"type": [
+										"null",
+										{
+											"type": "record",
+											"name": "ChannelDefaultSettings",
+											"fields": [{
+													"name": "contactless",
+													"type": [
+														"null",
+														"boolean"
+													],
+													"default": null
+												},
+												{
+													"name": "chipPin",
+													"type": [
+														"null",
+														"boolean"
+													],
+													"default": null
+												},
+												{
+													"name": "atm",
+													"type": [
+														"null",
+														"boolean"
+													],
+													"default": null
+												},
+												{
+													"name": "cnp",
+													"type": [
+														"null",
+														"boolean"
+													],
+													"default": null
+												},
+												{
+													"name": "magstripe",
+													"type": [
+														"null",
+														"boolean"
+													],
+													"default": null
+												},
+												{
+													"name": "international",
+													"type": [
+														"null",
+														"boolean"
+													],
+													"default": null
+												},
+												{
+													"name": "online",
+													"type": [
+														"null",
+														"boolean"
+													],
+													"default": null
+												}
+											]
+										}
+									],
+									"default": null
+								}
+							]
+						}
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "termsAndConditions",
+				"type": [
+					"null",
+					{
+						"type": "array",
+						"items": {
+							"type": "record",
+							"name": "TermsAndCondition",
+							"fields": [{
+									"name": "name",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "description",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "version",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "createdDate",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "createdBy",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "updatedDate",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "updatedBy",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "publishedDate",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "status",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "files",
+									"type": {
+										"type": "array",
+										"items": {
+											"type": "record",
+											"name": "File",
+											"fields": [{
+													"name": "url",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "format",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												}
+											]
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "internalDocumentation",
+				"type": [
+					"null",
+					{
+						"type": "record",
+						"name": "InternalDocumentation",
+						"fields": [{
+								"name": "salesAccessChannels",
+								"type": [
+									"null",
+									{
+										"type": "array",
+										"items": {
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "servingAccessChannels",
+								"type": [
+									"null",
+									{
+										"type": "array",
+										"items": {
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "mobileWallet",
+								"type": [
+									"null",
+									{
+										"type": "array",
+										"items": {
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "productURL",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "fraudRiskRating",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "finCrimeRiskRating",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							}
+						]
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "subscriptionCreationRule",
+				"type": {
+					"type": "record",
+					"name": "SubscriptionCreationRule",
+					"fields": [{
+							"name": "lockedStatus",
+							"type": "boolean"
+						},
+						{
+							"name": "requiredSignatoriesNumber",
+							"type": [
+								"null",
+								"int"
+							],
+							"default": null
+						},
+						{
+							"name": "defaultSubscriptionStatus",
+							"type": {
+								"type": "string",
+								"avro.java.string": "String"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "currency",
+				"type": [
+					"null",
+					{
+						"type": "record",
+						"name": "Currency",
+						"fields": [{
+								"name": "currencyCode",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "country",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							}
+						]
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "teams",
+				"type": [
+					"null",
+					{
+						"type": "array",
+						"items": {
+							"type": "record",
+							"name": "Team",
+							"fields": [{
+									"name": "teamKey",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "write",
+									"type": [
+										"null",
+										"boolean"
+									],
+									"default": null
+								}
+							]
+						}
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "customAttributes",
+				"type": [
+					"null",
+					{
+						"type": "array",
+						"items": {
+							"type": "record",
+							"name": "CustomAttributes",
+							"fields": [{
+									"name": "name",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "value",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								}
+							]
+						}
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "documents",
+				"type": [
+					"null",
+					{
+						"type": "array",
+						"items": {
+							"type": "record",
+							"name": "Document",
+							"fields": [{
+									"name": "name",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "description",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "version",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "createdDate",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "createdBy",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "updatedDate",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "updatedBy",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "publishedDate",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "status",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "files",
+									"type": {
+										"type": "array",
+										"items": "File"
+									}
+								}
+							]
+						}
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "feesCharges",
+				"type": [
+					"null",
+					{
+						"type": "array",
+						"items": {
+							"type": "record",
+							"name": "FeesCharges",
+							"fields": [{
+									"name": "feeCategory",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "feeType",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "feeDescription",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "feeTransactionCode",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "transactionCode",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "taxRate",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "statementDescription",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "feeName",
+									"type": [{
+										"type": "string",
+										"avro.java.string": "String"
+									}]
+								},
+								{
+									"name": "feeAmount",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "calculationFrequency",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "applicationFrequency",
+									"type": [
+										"null",
+										{
+											"type": "string",
+											"avro.java.string": "String"
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "feeRate",
+									"type": [
+										"null",
+										{
+											"type": "record",
+											"name": "FeeRate",
+											"fields": [{
+													"name": "rate",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "notionalValue",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "maximumFeeAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "minimumFeeAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												}
+											]
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "validityPeriod",
+									"type": [
+										"null",
+										{
+											"type": "record",
+											"name": "ValidityPeriod",
+											"fields": [{
+													"name": "startDate",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "endDate",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "period",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "periodAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												}
+											]
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "feeCap",
+									"type": [
+										"null",
+										{
+											"type": "record",
+											"name": "FeeCap",
+											"fields": [{
+													"name": "cappingPeriod",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "feeCapAmount",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "feeCapOccurrence",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												}
+											]
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "decisionCriteria",
+									"type": [
+										"null",
+										{
+											"type": "array",
+											"items": {
+												"type": "string",
+												"avro.java.string": "String"
+											}
+										}
+									],
+									"default": null
+								},
+								{
+									"name": "feeRules",
+									"type": [
+										"null",
+										{
+											"type": "array",
+											"items": {
+												"type": "record",
+												"name": "FeeRules",
+												"fields": [{
+														"name": "inputParameters",
+														"type": [
+															"null",
+															{
+																"type": "array",
+																"items": {
+																	"type": "record",
+																	"name": "InputParameters",
+																	"fields": [{
+																			"name": "name",
+																			"type": [
+																				"null",
+																				{
+																					"type": "string",
+																					"avro.java.string": "String"
+																				}
+																			],
+																			"default": null
+																		},
+																		{
+																			"name": "value",
+																			"type": [
+																				"null",
+																				{
+																					"type": "string",
+																					"avro.java.string": "String"
+																				}
+																			],
+																			"default": null
+																		},
+																		{
+																			"name": "operator",
+																			"type": [
+																				"null",
+																				{
+																					"type": "string",
+																					"avro.java.string": "String"
+																				}
+																			],
+																			"default": null
+																		}
+																	]
+																}
+															}
+														],
+														"default": null
+													},
+													{
+														"name": "outputParameters",
+														"type": [
+															"null",
+															{
+																"type": "array",
+																"items": {
+																	"type": "record",
+																	"name": "OutputParameters",
+																	"fields": [{
+																			"name": "name",
+																			"type": [
+																				"null",
+																				{
+																					"type": "string",
+																					"avro.java.string": "String"
+																				}
+																			],
+																			"default": null
+																		},
+																		{
+																			"name": "value",
+																			"type": [
+																				"null",
+																				{
+																					"type": "string",
+																					"avro.java.string": "String"
+																				}
+																			],
+																			"default": null
+																		}
+																	]
+																}
+															}
+														],
+														"default": null
+													}
+												]
+											}
+										}
+									],
+									"default": null
+								}
+							]
+						}
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "creditInterest",
+				"type": [
+					"null",
+					{
+						"type": "record",
+						"name": "CreditInterest",
+						"fields": [{
+								"name": "fixedVariableType",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "includeFees",
+								"type": [
+									"null",
+									"boolean"
+								],
+								"default": null
+							},
+							{
+								"name": "roundingMethod",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "dayCount",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "interestRate",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "tierBandCalcMethod",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "applicationFrequency",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "compoundingFrequency",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "calculationFrequency",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "balanceCriteria",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "interestTierBand",
+								"type": [
+									"null",
+									{
+										"type": "array",
+										"items": {
+											"type": "record",
+											"name": "InterestTierBand",
+											"fields": [{
+													"name": "startRange",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "endRange",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "tierBandRate",
+													"type": [
+														"null",
+														{
+															"type": "string",
+															"avro.java.string": "String"
+														}
+													],
+													"default": null
+												}
+											]
+										}
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "interestRateIndex",
+								"type": [
+									"null",
+									{
+										"type": "record",
+										"name": "InterestRateIndex",
+										"fields": [{
+												"name": "index",
+												"type": [
+													"null",
+													{
+														"type": "string",
+														"avro.java.string": "String"
+													}
+												],
+												"default": null
+											},
+											{
+												"name": "term",
+												"type": [
+													"null",
+													{
+														"type": "string",
+														"avro.java.string": "String"
+													}
+												],
+												"default": null
+											},
+											{
+												"name": "identifier",
+												"type": [
+													"null",
+													{
+														"type": "string",
+														"avro.java.string": "String"
+													}
+												],
+												"default": null
+											},
+											{
+												"name": "url",
+												"type": [
+													"null",
+													{
+														"type": "string",
+														"avro.java.string": "String"
+													}
+												],
+												"default": null
+											}
+										]
+									}
+								],
+								"default": null
+							}
+						]
+					}
+				],
+				"default": null
+			},
+			{
+				"name": "overdraft",
+				"type": [
+					"null",
+					{
+						"type": "record",
+						"name": "Overdraft",
+						"doc": "Schema for com.tenxbanking.producteventmanager.repository.entity.InterestRateIndex",
+						"fields": [{
+								"name": "fixedVariableType",
+								"type": [
+									"null",
+									{
+										"type": "string",
+										"avro.java.string": "String"
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "includeFees",
+								"type": [
+									"null",
+									"boolean"
+								],
+								"default": null
+							},
+							{
+								"name": "roundingMethod",
+								"type": [
+									"null",
+									"string"
+								],
+								"default": null
+							},
+							{
+								"name": "dayCount",
+								"type": [
+									"null",
+									"string"
+								],
+								"default": null
+							},
+							{
+								"name": "interestRate",
+								"type": [
+									"null",
+									"string"
+								],
+								"default": null
+							},
+							{
+								"name": "balanceCriteria",
+								"type": [
+									"null",
+									"string"
+								],
+								"default": null
+							},
+							{
+								"name": "calculationFrequency",
+								"type": [
+									"null",
+									"string"
+								],
+								"default": null
+							},
+							{
+								"name": "compoundingFrequency",
+								"type": [
+									"null",
+									"string"
+								],
+								"default": null
+							},
+							{
+								"name": "applicationFrequency",
+								"type": [
+									"null",
+									"string"
+								],
+								"default": null
+							},
+							{
+								"name": "overdraftTierBand",
+								"type": [
+									"null",
+									{
+										"type": "array",
+										"items": {
+											"type": "record",
+											"name": "OverdraftTierBand",
+											"doc": "Schema for com.tenxbanking.producteventmanager.repository.entity.InterestTierBand",
+											"fields": [{
+													"name": "startRange",
+													"type": [
+														"null",
+														"string"
+													],
+													"default": null
+												},
+												{
+													"name": "endRange",
+													"type": [
+														"null",
+														"string"
+													],
+													"default": null
+												},
+												{
+													"name": "interestRate",
+													"type": [
+														"null",
+														"string"
+													],
+													"default": null
+												},
+												{
+													"name": "tierName",
+													"type": [
+														"null",
+														"string"
+													],
+													"default": null
+												},
+												{
+													"name": "buffer",
+													"type": [
+														"null",
+														"string"
+													],
+													"default": null
+												},
+												{
+													"name": "overdraftFeesCharges",
+													"type": [
+														"null",
+														{
+															"type": "record",
+															"name": "OverdraftFeesCharges",
+															"doc": "Schema for com.tenxbanking.producteventmanager.repository.entity.OverdraftFeesCharges",
+															"fields": [{
+																	"name": "feeCategory",
+																	"type": [
+																		"null",
+																		"string"
+																	],
+																	"default": null
+																},
+																{
+																	"name": "feeDescription",
+																	"type": [
+																		"null",
+																		"string"
+																	],
+																	"default": null
+																},
+																{
+																	"name": "feeTransactionCode",
+																	"type": [
+																		"null",
+																		"string"
+																	],
+																	"default": null
+																},
+																{
+																	"name": "taxRate",
+																	"type": [
+																		"null",
+																		"string"
+																	],
+																	"default": null
+																},
+																{
+																	"name": "statementDescription",
+																	"type": [
+																		"null",
+																		"string"
+																	],
+																	"default": null
+																},
+																{
+																	"name": "feeAmount",
+																	"type": [
+																		"null",
+																		"string"
+																	],
+																	"default": null
+																},
+																{
+																	"name": "calculationFrequency",
+																	"type": [
+																		"null",
+																		"string"
+																	],
+																	"default": null
+																},
+																{
+																	"name": "applicationFrequency",
+																	"type": [
+																		"null",
+																		"string"
+																	],
+																	"default": null
+																},
+																{
+																	"name": "validityPeriod",
+																	"type": [
+																		"null",
+																		"ValidityPeriod"
+																	],
+																	"default": null
+																},
+																{
+																	"name": "feeCap",
+																	"type": [
+																		"null",
+																		"FeeCap"
+																	],
+																	"default": null
+																},
+																{
+																	"name": "feeRules",
+																	"type": [
+																		"null",
+																		{
+																			"type": "array",
+																			"items": "FeeRules"
+																		}
+																	],
+																	"default": null
+																}
+															]
+														}
+													],
+													"default": null
+												},
+												{
+													"name": "tierStatusDefault",
+													"type": [
+														"null",
+														"string"
+													],
+													"default": null
+												}
+											]
+										}
+									}
+								],
+								"default": null
+							},
+							{
+								"name": "termsAndConditions",
+								"type": [
+									"null",
+									"Document"
+								],
+								"default": null
+							}
+						]
+					}
+				],
+				"default": null
+			}
+		]
+	},
+	{
+		"name": "SubscriptionEvent",
+		"namespace": "com.tenx.dub.subscription.event.v1",
+		"type": "record",
+		"fields": [{
+				"name": "subscriptionKey",
+				"type": "string",
+				"doc": "String representation of a UUID"
+			},
+			{
+				"name": "partyRoles",
+				"type": [
+					"null",
+					{
+						"type": "array",
+						"items": {
+							"type": "record",
+							"name": "PartyRole",
+							"fields": [{
+									"name": "partyKey",
+									"type": "string"
+								},
+								{
+									"name": "tenantKey",
+									"type": "string"
+								},
+								{
+									"name": "role",
+									"type": "string",
+									"doc": "One of the following values: PrimaryOwner, Trustee, Nominee, JointOwner, Beneficiary, PowerOfAttorney, LegalGuardian, CustodianForMinor, SuccessorOnDeath, Administrator, ReadOnly. However, note that these values can evolve."
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"name": "productKey",
+				"type": "string"
+			},
+			{
+				"name": "productVersion",
+				"type": "int"
+			},
+			{
+				"name": "parentSubscriptionKey",
+				"type": [
+					"null",
+					"string"
+				],
+				"default": null,
+				"doc": "String representation of a UUID"
+			},
+			{
+				"name": "accountNumber",
+				"type": [
+					"null",
+					"string"
+				],
+				"default": null
+			},
+			{
+				"name": "sortCode",
+				"type": [
+					"null",
+					"string"
+				],
+				"default": null
+			},
+			{
+				"name": "subscriptionStatus",
+				"type": "string",
+				"doc": "One of the following types: ACTIVE, PROVISIONED, FAILED. However, note that these values can evolve."
+			},
+			{
+				"name": "createdDate",
+				"doc": "ISO8601 formatted string",
+				"type": "string"
+			},
+			{
+				"name": "productDetails",
+				"type": "com.tenx.dub.subscription.event.v1.ProductDetails"
+			}
+		]
+	}
+]

@@ -1,0 +1,15 @@
+FROM openjdk:11 AS build
+ADD . /src
+WORKDIR /src
+ARG COMMIT_ID
+ENV COMMIT_ID=$COMMIT_ID
+RUN ./gradlew --no-daemon card-rails-service:clean card-rails-service:bootJar --info
+
+FROM openjdk:11-jre
+EXPOSE 8080
+COPY --from=build /src/card-rails-service/build/libs/card-rails-service.jar /usr/local/bin/card-rails-service.jar
+COPY --from=build /src/run.sh /usr/local/bin/run.sh
+RUN chmod +r /usr/local/bin/card-rails-service.jar
+RUN chmod +x /usr/local/bin/run.sh
+ENV SPRING_PROFILES_ACTIVE=dev
+CMD ["/usr/local/bin/run.sh"]

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LimitsCheckService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.service</a> &gt; <span class="el_source">LimitsCheckService.java</span></div><h1>LimitsCheckService.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.service;
+
+import com.tenxbanking.cardrails.domain.model.subscription.SubscriptionSettings;
+import com.tenxbanking.cardrails.domain.model.subscription.TransactionLimit;
+import java.math.BigDecimal;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+<span class="fc" id="L12">@Slf4j</span>
+@Component
+<span class="fc" id="L14">@AllArgsConstructor</span>
+public class LimitsCheckService {
+
+  private final LimitsCheckProcessor limitsCheckProcessor;
+
+<span class="pc bpc" id="L19" title="1 of 2 branches missed.">  public void checkLimits(@NonNull final BigDecimal transactionAmount,</span>
+<span class="pc bpc" id="L20" title="1 of 2 branches missed.">      @NonNull final UUID subscriptionKey,</span>
+<span class="pc bpc" id="L21" title="1 of 2 branches missed.">      @NonNull final SubscriptionSettings settings) {</span>
+
+<span class="fc" id="L23">    settings.getAtmWithdrawalLimits()</span>
+<span class="fc" id="L24">        .forEach(limit -&gt; checkAtmWithdrawalLimit(transactionAmount, subscriptionKey, limit));</span>
+<span class="fc" id="L25">  }</span>
+
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">  private void checkAtmWithdrawalLimit(@NonNull final BigDecimal transactionAmount,</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">      @NonNull final UUID subscriptionKey,</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">      @NonNull final TransactionLimit limit) {</span>
+
+<span class="fc" id="L31">    verifyMinimumAmount(transactionAmount, subscriptionKey, limit);</span>
+<span class="fc" id="L32">    verifyMaximumAmount(transactionAmount, subscriptionKey, limit);</span>
+<span class="fc" id="L33">  }</span>
+
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">  private void verifyMinimumAmount(@NonNull final BigDecimal transactionAmount,</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">      @NonNull final UUID subscriptionKey,</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">      @NonNull final TransactionLimit limit) {</span>
+
+<span class="fc" id="L39">    limit.getMinimumAmount().ifPresent(limitMinimumAmount -&gt; {</span>
+
+<span class="fc bfc" id="L41" title="All 2 branches covered.">      if (limit.getResetPeriod().isTransaction()) {</span>
+
+<span class="fc" id="L43">        limitsCheckProcessor</span>
+<span class="fc" id="L44">            .verifyMinimumAmountForTransactionResetPeriod(transactionAmount,</span>
+                subscriptionKey,
+<span class="fc" id="L46">                limit.getMinimumAmount().get());</span>
+      }
+<span class="fc" id="L48">    });</span>
+<span class="fc" id="L49">  }</span>
+
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">  private void verifyMaximumAmount(@NonNull final BigDecimal transactionAmount,</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">      @NonNull final UUID subscriptionKey,</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">      @NonNull final TransactionLimit limit) {</span>
+
+<span class="fc" id="L55">    limit.getMaximumAmount().ifPresent(limitMaximumAmount -&gt; {</span>
+
+<span class="fc bfc" id="L57" title="All 2 branches covered.">      if (limit.getResetPeriod().isTransaction()) {</span>
+<span class="fc" id="L58">        limitsCheckProcessor</span>
+<span class="fc" id="L59">            .verifyMaximumAmountForTransactionResetPeriod(transactionAmount,</span>
+                subscriptionKey, limitMaximumAmount);
+      } else {
+<span class="fc" id="L62">        limitsCheckProcessor</span>
+<span class="fc" id="L63">            .verifyMaximumAmountForNonTransactionResetPeriod(transactionAmount,</span>
+<span class="fc" id="L64">                subscriptionKey, limit.getResetPeriod(), limitMaximumAmount);</span>
+      }
+<span class="fc" id="L66">    });</span>
+<span class="fc" id="L67">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

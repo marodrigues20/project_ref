@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardExpiryDateValidationRule.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.validator.rule</a> &gt; <span class="el_source">CardExpiryDateValidationRule.java</span></div><h1>CardExpiryDateValidationRule.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.validator.rule;
+
+import static com.tenxbanking.cardrails.domain.model.CardTransactionType.AUTH;
+import static com.tenxbanking.cardrails.domain.validator.rule.ValidationRule.CARD_EXPIRY_DATE;
+
+import com.tenxbanking.cardrails.domain.model.CardTransactionType;
+import com.tenxbanking.cardrails.domain.model.card.Card;
+import com.tenxbanking.cardrails.domain.model.card.CardSettings;
+import com.tenxbanking.cardrails.domain.model.subscription.Subscription;
+import com.tenxbanking.cardrails.domain.model.transaction.CardTransaction;
+import com.tenxbanking.cardrails.domain.service.TimeService;
+import com.tenxbanking.cardrails.domain.validator.ValidationFailure;
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
+import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CardExpiryDateValidationRule implements CardTransactionValidationRule {
+
+  private static final String MESSAGE = &quot;Card %s has expiry date in the past, cardExpiryDate=%s&quot;;
+
+  private final TimeService timeService;
+
+  @Autowired
+<span class="nc" id="L28">  public CardExpiryDateValidationRule(TimeService timeService) {</span>
+<span class="nc" id="L29">    this.timeService = timeService;</span>
+<span class="nc" id="L30">  }</span>
+
+  @Override
+  public Optional&lt;ValidationFailure&gt; validate(CardTransaction cardTransaction, Card card, Subscription subscription, CardSettings cardSettings) {
+<span class="nc" id="L34">    @NonNull Instant expiryDate = card.getCardExpiryDate();</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">    return timeService.now().isAfter(expiryDate)</span>
+<span class="nc" id="L36">        ? Optional.of(ValidationFailure.of(String.format(MESSAGE, card.getPanHash(), timeService.fromInstant(expiryDate))))</span>
+<span class="nc" id="L37">        : Optional.empty();</span>
+  }
+
+  @Override
+  public ValidationRule getRule() {
+<span class="nc" id="L42">    return CARD_EXPIRY_DATE;</span>
+  }
+
+  @Override
+  public List&lt;CardTransactionType&gt; getApplicableTransactionTypes() {
+<span class="nc" id="L47">    return List.of(AUTH);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

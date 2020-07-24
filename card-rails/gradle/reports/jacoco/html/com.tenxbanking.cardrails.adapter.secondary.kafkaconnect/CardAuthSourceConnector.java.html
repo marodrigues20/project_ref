@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardAuthSourceConnector.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.kafkaconnect</a> &gt; <span class="el_source">CardAuthSourceConnector.java</span></div><h1>CardAuthSourceConnector.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.kafkaconnect;
+
+import com.google.common.collect.ImmutableMap;
+import com.tenxbanking.cardrails.adapter.secondary.kafkaconnect.model.GetConnectorStatusResponse;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+/**
+ * Here are a few important notes.
+ * &lt;ul&gt;
+ *   &lt;li&gt;changing the connector name will republish all messaged stored in card_auth table - be very
+ * careful with changing it!&lt;/li&gt;
+ *   &lt;li&gt;The definition of the connector is hard-coded here temporarily because there are lots of
+ * issues defining the connector via terraform - Sam is investigating another solution for this
+ * problem.&lt;/li&gt;
+ *   &lt;li&gt;This approach does not work on a blue/green deployment if the config changes - so be very
+ * careful with changing it!&lt;/li&gt;
+ * &lt;/ul&gt;
+ */
+<span class="nc" id="L27">@Slf4j</span>
+@Component
+public class CardAuthSourceConnector {
+
+  private static final String CARD_AUTH_CONNECTOR_NAME = &quot;card_auth_source_connector&quot;;
+  private static final String RUNNING_STATE = &quot;RUNNING&quot;;
+
+  private final Map&lt;String, Object&gt; cardAuthConnectorConfig;
+  private final CardRailsKafkaConnectClient cardRailsKafkaConnectClient;
+
+  public CardAuthSourceConnector(
+<span class="nc bnc" id="L38" title="All 2 branches missed.">      @NonNull final CardRailsKafkaConnectClient cardRailsKafkaConnectClient,</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">      @Value(&quot;#{environment.dbUsername}&quot;) @NonNull final String databaseUser,</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">      @Value(&quot;#{environment.database}&quot;) @NonNull final String databaseName) {</span>
+
+<span class="nc" id="L42">    this.cardRailsKafkaConnectClient = cardRailsKafkaConnectClient;</span>
+<span class="nc" id="L43">    this.cardAuthConnectorConfig = getConnectorConfig(databaseName, databaseUser);</span>
+<span class="nc" id="L44">  }</span>
+
+  @Scheduled(cron = &quot;${cardAuthSourceConnector.cronExpression}&quot;)
+  public void verifyCardAuthConnector() {
+
+<span class="nc bnc" id="L49" title="All 2 branches missed.">    if (!isConnectorRunning()) {</span>
+<span class="nc" id="L50">      deleteConnector();</span>
+<span class="nc" id="L51">      registerConnector();</span>
+    }
+<span class="nc" id="L53">  }</span>
+
+  private void registerConnector() {
+
+    try {
+<span class="nc" id="L58">      cardRailsKafkaConnectClient.createConnector(cardAuthConnectorConfig);</span>
+<span class="nc" id="L59">      log.info(&quot;Registered connector {}&quot;, CARD_AUTH_CONNECTOR_NAME);</span>
+<span class="nc" id="L60">    } catch (Exception e) {</span>
+<span class="nc" id="L61">      log.warn(&quot;Exception registering connector {}. Exception message: {}&quot;,</span>
+          CARD_AUTH_CONNECTOR_NAME,
+<span class="nc" id="L63">          e.getMessage());</span>
+<span class="nc" id="L64">    }</span>
+<span class="nc" id="L65">  }</span>
+
+  private void deleteConnector() {
+    try {
+<span class="nc" id="L69">      cardRailsKafkaConnectClient.deleteConnector(CARD_AUTH_CONNECTOR_NAME);</span>
+<span class="nc" id="L70">      log.info(&quot;Deleted connector {}&quot;, CARD_AUTH_CONNECTOR_NAME);</span>
+<span class="nc" id="L71">    } catch (Exception e) {</span>
+<span class="nc" id="L72">      log.warn(&quot;Exception deleting connector {}. Exception message: {}&quot;,</span>
+          CARD_AUTH_CONNECTOR_NAME,
+<span class="nc" id="L74">          e.getMessage());</span>
+<span class="nc" id="L75">    }</span>
+<span class="nc" id="L76">  }</span>
+
+  private boolean isConnectorRunning() {
+<span class="nc" id="L79">    return getConnectorStatus()</span>
+<span class="nc" id="L80">        .map(response -&gt; response.getConnector().getState().equalsIgnoreCase(RUNNING_STATE))</span>
+<span class="nc" id="L81">        .orElse(false);</span>
+  }
+
+  private Optional&lt;GetConnectorStatusResponse&gt; getConnectorStatus() {
+
+    try {
+<span class="nc" id="L87">      final ResponseEntity&lt;GetConnectorStatusResponse&gt; response = cardRailsKafkaConnectClient</span>
+<span class="nc" id="L88">          .getConnectorStatus(CARD_AUTH_CONNECTOR_NAME);</span>
+<span class="nc" id="L89">      return Optional.ofNullable(response.getBody());</span>
+<span class="nc" id="L90">    } catch (Exception e) {</span>
+<span class="nc" id="L91">      log.warn(&quot;Exception getting connector status {}. Exception message: {}&quot;,</span>
+<span class="nc" id="L92">          CARD_AUTH_CONNECTOR_NAME, e.getMessage());</span>
+<span class="nc" id="L93">      return Optional.empty();</span>
+    }
+  }
+
+<span class="nc bnc" id="L97" title="All 2 branches missed.">  private static Map&lt;String, Object&gt; getConnectorConfig(@NonNull final String databaseName,</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">      @NonNull final String databaseUser) {</span>
+
+<span class="nc" id="L100">    final Map&lt;String, Object&gt; config = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L101">    config.put(&quot;tasks.max&quot;, 1);</span>
+<span class="nc" id="L102">    config.put(&quot;connector.class&quot;, &quot;io.confluent.connect.jdbc.JdbcSourceConnector&quot;);</span>
+<span class="nc" id="L103">    config.put(&quot;connection.url&quot;, &quot;jdbc:postgresql://cockroach.db.svc.cluster.local:26257/&quot;</span>
+        + databaseName
+        + &quot;?sslmode=verify-ca&amp;sslcert=/cockroach-certs/client.&quot; + databaseUser + &quot;.crt&quot;
+        + &quot;&amp;sslkey=/cockroach-certs/client.&quot; + databaseUser
+        + &quot;.pk8&amp;sslrootcert=/cockroach-certs/ca.crt&quot;);
+
+<span class="nc" id="L109">    config.put(&quot;connection.user&quot;, databaseUser);</span>
+<span class="nc" id="L110">    config.put(&quot;dialect.name&quot;, &quot;PostgreSqlDatabaseDialect&quot;);</span>
+<span class="nc" id="L111">    config.put(&quot;mode&quot;, &quot;timestamp&quot;);</span>
+<span class="nc" id="L112">    config.put(&quot;timestamp.column.name&quot;, &quot;created_date&quot;);</span>
+<span class="nc" id="L113">    config.put(&quot;query&quot;,</span>
+        &quot;select card_transaction.subscription_key::string as subscription_key&quot;
+            + &quot;, card_transaction.created_date as created_date&quot;
+            + &quot;, transaction_message.transaction_message as transaction_message &quot;
+            + &quot;from card_transaction join transaction_message on card_transaction.id = transaction_message.card_transaction_id&quot;);
+<span class="nc" id="L118">    config.put(&quot;poll.interval.ms&quot;, 250);</span>
+<span class="nc" id="L119">    config.put(&quot;timestamp.delay.interval.ms&quot;, 250);</span>
+<span class="nc" id="L120">    config.put(&quot;key.converter&quot;, &quot;org.apache.kafka.connect.storage.StringConverter&quot;);</span>
+<span class="nc" id="L121">    config.put(&quot;value.converter.schemas.enable&quot;, &quot;false&quot;);</span>
+<span class="nc" id="L122">    config.put(&quot;value.converter&quot;, &quot;org.apache.kafka.connect.storage.StringConverter&quot;);</span>
+<span class="nc" id="L123">    config.put(&quot;transforms&quot;, &quot;extractKey,extractValue&quot;);</span>
+<span class="nc" id="L124">    config</span>
+<span class="nc" id="L125">        .put(&quot;transforms.extractKey.type&quot;, &quot;org.apache.kafka.connect.transforms.ExtractField$Key&quot;);</span>
+<span class="nc" id="L126">    config.put(&quot;transforms.extractKey.field&quot;, &quot;subscription_key&quot;);</span>
+<span class="nc" id="L127">    config.put(&quot;transforms.extractValue.type&quot;,</span>
+        &quot;org.apache.kafka.connect.transforms.ExtractField$Value&quot;);
+<span class="nc" id="L129">    config.put(&quot;transforms.extractValue.field&quot;, &quot;transaction_message&quot;);</span>
+<span class="nc" id="L130">    config.put(&quot;errors.log.enable&quot;, &quot;true&quot;);</span>
+<span class="nc" id="L131">    config.put(&quot;errors.log.include.messages&quot;, &quot;true&quot;);</span>
+<span class="nc" id="L132">    config.put(&quot;topic.prefix&quot;, &quot;payment-messages-topic&quot;);</span>
+
+<span class="nc" id="L134">    final Map&lt;String, Object&gt; sourceConnector = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L135">    sourceConnector.put(&quot;name&quot;, CARD_AUTH_CONNECTOR_NAME);</span>
+<span class="nc" id="L136">    sourceConnector.put(&quot;config&quot;, ImmutableMap.copyOf(config));</span>
+<span class="nc" id="L137">    return ImmutableMap.copyOf(sourceConnector);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

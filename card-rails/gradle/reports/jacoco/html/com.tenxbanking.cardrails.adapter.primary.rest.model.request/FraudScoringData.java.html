@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FraudScoringData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.primary.rest.model.request</a> &gt; <span class="el_source">FraudScoringData.java</span></div><h1>FraudScoringData.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.primary.rest.model.request;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import lombok.Data;
+
+<span class="nc bnc" id="L13" title="All 62 branches missed.">@Data</span>
+public class FraudScoringData {
+
+<span class="nc" id="L16">  @ApiModelProperty(value = &quot;this is the contents of DE-48.75 it represents the  fraud score data&quot;)</span>
+  @Pattern(regexp = &quot;^[A-Za-z0-9]&quot;)
+  @Size(min = 32, max = 32)
+  @JsonProperty(&quot;rawData&quot;)
+<span class="nc" id="L20">  private String rawData = null;</span>
+
+<span class="nc" id="L22">  @ApiModelProperty(value = &quot;The risk score as calculated by the Way4 risk module DE-112.50&quot;)</span>
+  @Pattern(regexp = &quot;^[0-9]&quot;)
+  @Size(min = 4, max = 4)
+  @JsonProperty(&quot;way4RiskScore&quot;)
+<span class="nc" id="L26">  private String way4RiskScore = null;</span>
+
+<span class="nc" id="L28">  @ApiModelProperty(value = &quot;Part of DE-48.75&quot;)</span>
+  @Valid
+  @DecimalMin(&quot;0&quot;)
+  @DecimalMax(&quot;999&quot;)
+  @JsonProperty(&quot;fraudScore&quot;)
+<span class="nc" id="L33">  private BigDecimal fraudScore = null;</span>
+
+<span class="nc" id="L35">  @ApiModelProperty(value = &quot;Part of DE-48.75&quot;)</span>
+  @Pattern(regexp = &quot;^[A-Za-z0-9]&quot;)
+  @Size(min = 2, max = 2)
+  @JsonProperty(&quot;fraudScoreReasonCode&quot;)
+<span class="nc" id="L39">  private String fraudScoreReasonCode = null;</span>
+
+<span class="nc" id="L41">  @ApiModelProperty(value = &quot;Part of DE-48.75&quot;)</span>
+  @Valid
+  @DecimalMin(&quot;0&quot;)
+  @DecimalMax(&quot;999&quot;)
+  @JsonProperty(&quot;rulesScore&quot;)
+<span class="nc" id="L46">  private BigDecimal rulesScore = null;</span>
+
+<span class="nc" id="L48">  @ApiModelProperty(value = &quot;Part of DE-48.75&quot;)</span>
+  @Pattern(regexp = &quot;^[A-Za-z0-9]&quot;)
+  @Size(min = 2, max = 2)
+  @JsonProperty(&quot;rulesReasonCode1&quot;)
+<span class="nc" id="L52">  private String rulesReasonCode1 = null;</span>
+
+<span class="nc" id="L54">  @ApiModelProperty(value = &quot;Part of DE-48.75&quot;)</span>
+  @Pattern(regexp = &quot;^[A-Za-z0-9]&quot;)
+  @Size(min = 2, max = 2)
+  @JsonProperty(&quot;rulesReasonCode2&quot;)
+<span class="nc" id="L58">  private String rulesReasonCode2 = null;</span>
+
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

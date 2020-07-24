@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransactionType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.model</a> &gt; <span class="el_source">TransactionType.java</span></div><h1>TransactionType.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.model;
+
+import lombok.Getter;
+
+<span class="nc" id="L5">@Getter</span>
+public enum TransactionType {
+
+<span class="nc" id="L8">  PURCHASE(&quot;00&quot;, &quot;CRDP&quot;),</span>
+<span class="nc" id="L9">  WITHDRAWAL(&quot;01&quot;, &quot;CHWD&quot;),</span>
+<span class="nc" id="L10">  DEBIT_ADJUSTMENT(&quot;02&quot;, &quot;DADJ&quot;),</span>
+<span class="nc" id="L11">  PURCHASE_WITH_CASHBACK(&quot;09&quot;, &quot;CSHB&quot;),</span>
+<span class="nc" id="L12">  VISA_ONLY_FUNDING(&quot;10&quot;, &quot;LOAD&quot;),</span>
+<span class="nc" id="L13">  CASH_DISBURSEMENT(&quot;17&quot;, &quot;CSHW&quot;),</span>
+<span class="nc" id="L14">  SCRIPT_ISSUE(&quot;18&quot;, &quot;Not Applicable&quot;),</span>
+<span class="nc" id="L15">  PURCHASE_REFUND(&quot;20&quot;, &quot;RFND&quot;),</span>
+<span class="nc" id="L16">  DEPOSIT(&quot;21&quot;, &quot;CSHD&quot;),</span>
+<span class="nc" id="L17">  CREDIT_ADJUSTMENT(&quot;22&quot;, &quot;CADJ&quot;),</span>
+<span class="nc" id="L18">  CHEQUE_DEPOSIT_GUARANTEE(&quot;23&quot;, &quot;Not Applicable&quot;),</span>
+<span class="nc" id="L19">  CHEQUE_DEPOSIT(&quot;24&quot;, &quot;Not Applicable&quot;),</span>
+<span class="nc" id="L20">  PAYMENT(&quot;28&quot;, &quot;CRDP&quot;),</span>
+<span class="nc" id="L21">  BALANCE_ENQUIRY(&quot;30&quot;, &quot;BALC&quot;),</span>
+<span class="nc" id="L22">  ACCOUNT_TRANSFER(&quot;40&quot;, &quot;Not Applicable&quot;),</span>
+<span class="nc" id="L23">  RESERVED_FOR_FUTURE_USE(&quot;90&quot;, &quot;Not Applicable&quot;),</span>
+<span class="nc" id="L24">  PIN_UNBLOCK(&quot;91&quot;, &quot;PINU&quot;),</span>
+<span class="nc" id="L25">  PIN_CHANGE(&quot;92&quot;, &quot;PINC&quot;);</span>
+
+<span class="nc" id="L27">  private String id;</span>
+<span class="nc" id="L28">  private String code;</span>
+
+<span class="nc" id="L30">  TransactionType(String id, String code) {</span>
+<span class="nc" id="L31">    this.id = id;</span>
+<span class="nc" id="L32">    this.code = code;</span>
+<span class="nc" id="L33">  }</span>
+
+  public String getTransactionId() {
+<span class="nc" id="L36">    return id;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

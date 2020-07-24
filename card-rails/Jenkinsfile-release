@@ -1,0 +1,7 @@
+@Library('10x-SharedLib@helm/v2.8') _
+
+runPipelineRelease(
+  primaryBranch: 'develop',
+  repositoryName: 'card-rails',
+  namespace: 'cards'
+)

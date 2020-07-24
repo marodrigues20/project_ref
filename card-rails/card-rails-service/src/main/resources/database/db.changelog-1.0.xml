@@ -1,0 +1,244 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
+  logicalFilePath="db.changelog-1.0.xml">
+
+  <changeSet author="nuno.monteiro" id="1563119402783-1">
+    <createTable tableName="card_auth">
+      <column name="id" type="UUID">
+        <constraints primaryKey="true" primaryKeyName="pk_card_auth"/>
+      </column>
+      <column name="correlation_id" type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="subscription_key" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_date" type="datetime">
+        <constraints nullable="false"/>
+      </column>
+      <column name="transaction_message" type="jsonb">
+        <constraints nullable="false"/>
+      </column>
+      <column name="auth_code" type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="auth_response_code" type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="nuno.monteiro" id="1565372669728-1">
+    <preConditions>
+      <tableExists tableName="card_auth"/>
+    </preConditions>
+    <sql>
+      delete from card_auth;
+    </sql>
+  </changeSet>
+
+  <changeSet author="elliot.sullivan" id="1565343577238-1">
+    <dropNotNullConstraint
+      columnDataType="varchar"
+      columnName="auth_code"
+      tableName="card_auth"/>
+  </changeSet>
+
+  <changeSet author="elliot.sullivan" id="1565343577238-2">
+    <addColumn tableName="card_auth">
+      <column name="message_type" type="varchar(8)">
+        <constraints
+          checkConstraint="check message_type in ('CAIN001', 'CAIN002', 'CAIN003', 'CAIN004')"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_auth">
+      <column name="transaction_id" type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_auth">
+      <column name="pan_hash" type="varchar(32)"/>
+    </addColumn>
+  </changeSet>
+
+  <changeSet author="elliot.sullivan" id="1565343577238-3">
+    <createTable tableName="transaction_limit">
+      <column name="id" type="UUID">
+        <constraints primaryKey="true" primaryKeyName="pk_transaction_limit"/>
+      </column>
+      <column name="subscription_key" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+      <column name="amount" type="decimal">
+        <constraints nullable="false"/>
+      </column>
+      <column name="is_atm_withdrawal" type="boolean">
+        <constraints nullable="false"/>
+      </column>
+      <column name="transaction_datetime" type="datetime">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="elliot.sullivan" id="1565942109-1">
+    <addColumn tableName="card_auth">
+      <column name="banknet_reference_number" type="varchar(32)"/>
+    </addColumn>
+    <addColumn tableName="card_auth">
+      <column name="card_transaction_type" type="varchar(32)"/>
+    </addColumn>
+    <addColumn tableName="card_auth">
+      <column name="processor_account_id" type="varchar(32)"/>
+    </addColumn>
+  </changeSet>
+
+  <changeSet author="freddie.forsyth" id="1571149583-1">
+    <renameTable oldTableName="card_auth" newTableName="card_transaction"/>
+    <addColumn tableName="card_transaction">
+      <column name="retrieval_reference_number" type="varchar(32)"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="is_success" type="boolean">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+    <dropColumn tableName="card_transaction" columnName="message_type"/>
+    <dropColumn tableName="card_transaction" columnName="transaction_message"/>
+    <dropColumn tableName="card_transaction" columnName="processor_account_id"/>
+
+    <createTable tableName="transaction_message">
+      <column name="id" type="UUID">
+        <constraints primaryKey="true" primaryKeyName="pk_transaction_message"/>
+      </column>
+      <column name="card_transaction_id" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+      <column name="transaction_message" type="jsonb">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint
+      baseTableName="transaction_message"
+      baseColumnNames="card_transaction_id"
+      constraintName="transaction_message_card_transaction_fk"
+      onDelete="CASCADE"
+      referencedColumnNames="id"
+      referencedTableName="card_transaction"/>
+
+    <addColumn tableName="card_transaction">
+      <column name="transaction_amount" type="decimal(12,2)">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="transaction_currency" type="varchar(3)">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="billing_amount" type="decimal(12,2)">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="billing_currency" type="varchar(3)">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="settlement_amount" type="decimal(12,2)"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="settlement_currency" type="varchar(3)"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="merchant_category_code" type="varchar(32)"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="account_qualifier" type="varchar(32)"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="card_expiry_date" type="varchar(32)"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="processing_code" type="varchar(32)">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="conversion_rate" type="decimal(12,2)">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="point_of_service_entry_mode" type="varchar(32)"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="point_of_service_condition_code" type="varchar(32)"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="network_id" type="varchar(32)"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="card_acceptor_country_code" type="varchar(32)"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="updated_balance" type="decimal(12,2)"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="fee_id" type="UUID"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="party_key" type="UUID"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="product_key" type="UUID"/>
+    </addColumn>
+    <addColumn tableName="card_transaction">
+      <column name="tenant_key" type="varchar(32)"/>
+    </addColumn>
+
+    <createTable tableName="fee">
+      <column name="id" type="UUID" >
+        <constraints primaryKey="true" primaryKeyName="pk_fee"/>
+      </column>
+      <column name="amount" type="decimal(12,2)"/>
+      <column name="description" type="varchar(32)"/>
+      <column name="transaction_message" type="varchar(32)"/>
+      <column name="fee_currency_code" type="varchar(32)"/>
+      <column name="status" type="varchar(32)"/>
+      <column name="transaction_code" type="varchar(32)"/>
+      <column name="transaction_correlation_id" type="varchar(32)"/>
+      <column name="transaction_date" type="varchar(32)"/>
+      <column name="value_date_time" type="varchar(32)"/>
+      <column name="tax_amount" type="decimal(12,2)"/>
+      <column name="parent_transaction_id" type="varchar(32)"/>
+      <column name="tax_transaction_id" type="varchar(32)"/>
+      <column name="transaction_id" type="varchar(32)"/>
+      <column name="statement_description" type="varchar(32)"/>
+    </createTable>
+
+  </changeSet>
+
+  <changeSet author="freddie.forsyth" id="1571149583-2">
+
+    <addForeignKeyConstraint
+      baseTableName="card_transaction"
+      baseColumnNames="fee_id"
+      constraintName="card_transaction_fee_fk"
+      onDelete="CASCADE"
+      referencedColumnNames="id"
+      referencedTableName="fee"/>
+
+  </changeSet>
+
+
+  <changeSet author="john.mccosker" id="1571151246-1">
+    <renameColumn tableName="card_transaction" oldColumnName="pan_hash" newColumnName="card_id"/>
+  </changeSet>
+
+</databaseChangeLog>

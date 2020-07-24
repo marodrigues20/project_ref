@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardAuthTransactionMessage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.client</a> &gt; <span class="el_source">CardAuthTransactionMessage.java</span></div><h1>CardAuthTransactionMessage.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.secondary.cardclearing.util.client;
+
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageTypeEnum.CARD_AUTH;
+import static com.tenx.universalbanking.transactionmessage.enums.TransactionMessageTypeEnum.CARD_AUTH_VIA_ADVICE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.DEBIT_CREDIT_INDICATOR;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.PARTY_KEY;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.PAYMENT_METHOD_TYPE;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.PRODUCT_KEY;
+import static com.tenx.universalbanking.transactionmessage.paymentmessage.enums.PaymentMessageAdditionalInfoEnum.SUBSCRIPTION_KEY;
+
+import com.tenx.universalbanking.transactionmessage.TransactionMessage;
+import com.tenx.universalbanking.transactionmessage.TransactionMessageHeader;
+import com.tenx.universalbanking.transactionmessage.paymentmessage.PaymentMessage;
+import com.tenxbanking.cardrails.domain.model.CardTransactionType;
+import com.tenxbanking.cardrails.domain.model.transaction.AuthTransaction;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+<span class="nc" id="L20">public class CardAuthTransactionMessage extends GenericTransactionMessage&lt;AuthTransaction&gt; {</span>
+
+  @Override
+  public TransactionMessageHeader buildPaymentHeader(AuthTransaction authTransaction) {
+<span class="nc" id="L24">    TransactionMessageHeader header = new TransactionMessageHeader();</span>
+<span class="nc" id="L25">    header.setType(</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        authTransaction.getCain001().getCardTransactionType().equals(CardTransactionType.ADVICE)</span>
+<span class="nc" id="L27">            ? CARD_AUTH_VIA_ADVICE.name() : CARD_AUTH.name());</span>
+<span class="nc" id="L28">    return header;</span>
+  }
+
+  @Override
+  public PaymentMessage buildPaymentMessage(AuthTransaction authTransaction) {
+
+<span class="nc" id="L34">    PaymentMessage paymentMessage = new PaymentMessage();</span>
+<span class="nc" id="L35">    Map&lt;String, Object&gt; additionalInfo = new HashMap&lt;&gt;();</span>
+
+<span class="nc" id="L37">    additionalInfo.put(PARTY_KEY.name(), authTransaction.getPartyKey().toString());</span>
+<span class="nc" id="L38">    additionalInfo.put(PRODUCT_KEY.name(), authTransaction.getProductKey().toString());</span>
+<span class="nc" id="L39">    additionalInfo.put(SUBSCRIPTION_KEY.name(), authTransaction.getSubscriptionKey().toString());</span>
+
+<span class="nc" id="L41">    additionalInfo.put(DEBIT_CREDIT_INDICATOR.name(), authTransaction.getCreditDebit().name());</span>
+<span class="nc" id="L42">    additionalInfo.put(PAYMENT_METHOD_TYPE.name(),</span>
+<span class="nc" id="L43">        authTransaction.getCain001().getPaymentMethodType().name());</span>
+
+<span class="nc" id="L45">    paymentMessage.setMessage(additionalInfo);</span>
+
+<span class="nc" id="L47">    return paymentMessage;</span>
+  }
+
+  @Override
+  public Map&lt;String, Object&gt; buildPaymentAdditionalInfo(AuthTransaction authTransaction) {
+<span class="nc" id="L52">    Map&lt;String, Object&gt; additionalInfo = new HashMap&lt;&gt;();</span>
+
+<span class="nc" id="L54">    additionalInfo.put(PARTY_KEY.name(), authTransaction.getPartyKey().toString());</span>
+<span class="nc" id="L55">    additionalInfo.put(PRODUCT_KEY.name(), authTransaction.getProductKey().toString());</span>
+<span class="nc" id="L56">    additionalInfo.put(SUBSCRIPTION_KEY.name(), authTransaction.getSubscriptionKey().toString());</span>
+
+<span class="nc" id="L58">    additionalInfo.put(DEBIT_CREDIT_INDICATOR.name(), authTransaction.getCreditDebit().name());</span>
+<span class="nc" id="L59">    additionalInfo.put(PAYMENT_METHOD_TYPE.name(),</span>
+<span class="nc" id="L60">        authTransaction.getCain001().getPaymentMethodType().name());</span>
+<span class="nc" id="L61">    return additionalInfo;</span>
+  }
+
+  @Override
+  public TransactionMessage create(AuthTransaction authTransaction) {
+<span class="nc" id="L66">    return null;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

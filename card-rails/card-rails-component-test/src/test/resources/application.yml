@@ -1,0 +1,83 @@
+context:
+  initializer:
+    classes: com.tenxbanking.tools.embeddedcockroach.EmbeddedCockroachDbRunner
+
+spring:
+  main:
+    banner_mode: "off"
+    allow-bean-definition-overriding: true
+  embedded:
+    kafka:
+      brokers: ""
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    timeout: 1000
+  datasource:
+    url: jdbc:postgresql://localhost:${test.cockroachdb.port}/defaultdb?sslmode=disable
+    username: root
+    password:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connectionTimeout: 1000
+  jpa:
+    database: default
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        use_sql_comments: false
+        format_sql: false
+    open-in-view: false
+    show-sql: true
+  liquibase:
+    change-log: classpath:/database/changelog-master.xml
+
+kafka:
+  ssl:
+    algorithm: http
+  sasl:
+    mechanism:
+    api:
+      key:
+      secret:
+  request:
+    timeout:
+      ms: 20000
+  retry:
+    backoff:
+      ms: 500
+  security:
+    protocol: PLAINTEXT
+  schema:
+    registry:
+      url: http://mock.test
+  bootstrap:
+    servers: ${spring.embedded.kafka.brokers}
+  consumer:
+    topic:
+      subscription: subscription-event-v3
+
+downstream:
+  debitcardmanager:
+    host: "http://localhost:8888"
+  feeschargescalculator:
+    host: "http://localhost:8888"
+  ledgermanager:
+    host: "http://localhost:8888"
+  subscriptionmanager2:
+    host: "http://localhost:8888"
+  cardrailskafkaconnect:
+    host: "http://localhost:8888"
+
+hashpan:
+  saltKey: "1234"
+
+cardAuthSourceConnector:
+  cronExpression: "*/1 * * * * *"
+
+redis:
+  idempotent:
+    expire-time: 1ms

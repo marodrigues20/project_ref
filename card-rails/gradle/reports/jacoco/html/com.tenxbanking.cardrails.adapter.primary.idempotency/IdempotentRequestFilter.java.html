@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IdempotentRequestFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.adapter.primary.idempotency</a> &gt; <span class="el_source">IdempotentRequestFilter.java</span></div><h1>IdempotentRequestFilter.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.adapter.primary.idempotency;
+
+import static com.tenxbanking.cardrails.adapter.primary.rest.HttpRequestAttribute.IDEMPOTENCY_KEY;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tenxbanking.cardrails.adapter.primary.rest.model.response.ErrorResponse;
+import com.tenxbanking.cardrails.adapter.secondary.redis.IdempotentRepository;
+import java.io.IOException;
+import java.util.List;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
+
+@Component
+public class IdempotentRequestFilter implements Filter {
+
+<span class="nc" id="L27">  private static final List&lt;String&gt; EXCLUDED_METHODS = List.of(</span>
+<span class="nc" id="L28">      HttpMethod.GET.name(),</span>
+<span class="nc" id="L29">      HttpMethod.DELETE.name(),</span>
+<span class="nc" id="L30">      HttpMethod.TRACE.name(),</span>
+<span class="nc" id="L31">      HttpMethod.OPTIONS.name(),</span>
+<span class="nc" id="L32">      HttpMethod.HEAD.name()</span>
+  );
+
+  private static final String ERROR_MESSAGE = &quot;A request with an identical request body already been processed&quot;;
+<span class="nc" id="L36">  private static final ErrorResponse ERROR_RESPONSE = new ErrorResponse(ERROR_MESSAGE);</span>
+
+  private final ObjectMapper objectMapper;
+  private final MultiReadHttpServletRequestFactory multiReadRequestFactory;
+  private final IdempotentRepository idempotentRepository;
+  private final RequestHashingService hashingService;
+
+  @Autowired
+  public IdempotentRequestFilter(
+      ObjectMapper objectMapper,
+      MultiReadHttpServletRequestFactory multiReadRequestFactory,
+      IdempotentRepository idempotentRepository,
+<span class="nc" id="L48">      RequestHashingService hashingService) {</span>
+<span class="nc" id="L49">    this.objectMapper = objectMapper;</span>
+<span class="nc" id="L50">    this.multiReadRequestFactory = multiReadRequestFactory;</span>
+<span class="nc" id="L51">    this.idempotentRepository = idempotentRepository;</span>
+<span class="nc" id="L52">    this.hashingService = hashingService;</span>
+<span class="nc" id="L53">  }</span>
+
+  @Override
+  public void doFilter(
+      ServletRequest request,
+      ServletResponse response,
+      FilterChain chain) throws IOException, ServletException {
+
+<span class="nc" id="L61">    HttpServletRequest currentRequest = (HttpServletRequest) request;</span>
+<span class="nc" id="L62">    HttpServletResponse currentResponse = (HttpServletResponse) response;</span>
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">    if (EXCLUDED_METHODS.contains(currentRequest.getMethod())) {</span>
+<span class="nc" id="L65">      chain.doFilter(request, response);</span>
+<span class="nc" id="L66">      return;</span>
+    }
+
+<span class="nc" id="L69">    MultiReadHttpServletRequest multiReadRequest = multiReadRequestFactory.create(currentRequest);</span>
+
+<span class="nc" id="L71">    String body = new String(multiReadRequest.getInputStream().readAllBytes());</span>
+<span class="nc" id="L72">    String hash = hashingService.hash(body);</span>
+
+<span class="nc" id="L74">    request.setAttribute(IDEMPOTENCY_KEY, hash);</span>
+
+<span class="nc bnc" id="L76" title="All 2 branches missed.">    if (!idempotentRepository.add(hash)) {</span>
+<span class="nc" id="L77">      response.getWriter().write(objectMapper.writeValueAsString(ERROR_RESPONSE));</span>
+<span class="nc" id="L78">      currentResponse.setStatus(BAD_REQUEST.value());</span>
+<span class="nc" id="L79">      currentResponse.setContentType(APPLICATION_JSON_VALUE);</span>
+<span class="nc" id="L80">      return;</span>
+    }
+
+<span class="nc" id="L83">    chain.doFilter(multiReadRequest, currentResponse);</span>
+<span class="nc" id="L84">  }</span>
+
+  @Override
+  public void init(FilterConfig filterConfig) throws ServletException {
+
+<span class="nc" id="L89">  }</span>
+
+  @Override
+  public void destroy() {
+
+<span class="nc" id="L94">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

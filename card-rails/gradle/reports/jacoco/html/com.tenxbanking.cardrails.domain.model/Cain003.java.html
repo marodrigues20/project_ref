@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cain003.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">card-rails-service</a> &gt; <a href="index.source.html" class="el_package">com.tenxbanking.cardrails.domain.model</a> &gt; <span class="el_source">Cain003.java</span></div><h1>Cain003.java</h1><pre class="source lang-java linenums">package com.tenxbanking.cardrails.domain.model;
+
+import com.tenxbanking.cardrails.adapter.primary.rest.model.request.CreditDebitEnum;
+import com.tenxbanking.cardrails.domain.model.card.Merchant;
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.Currency;
+import java.util.Optional;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Value;
+import lombok.experimental.Wither;
+
+@Getter
+<span class="nc bnc" id="L19" title="All 36 branches missed.">@AllArgsConstructor</span>
+<span class="nc bnc" id="L20" title="All 36 branches missed.">@Builder(toBuilder = true)</span>
+<span class="nc bnc" id="L21" title="All 222 branches missed.">@EqualsAndHashCode</span>
+public class Cain003 {
+
+  private static final String MESSAGE_TYPE = &quot;CAIN003&quot;;
+
+  @NonNull
+<span class="nc" id="L27">  private final String cardId;</span>
+<span class="nc" id="L28">  private final UUID transactionId;</span>
+<span class="nc" id="L29">  private final UUID correlationId;</span>
+  @NonNull
+<span class="nc" id="L31">  private final Instant createdDate;</span>
+
+<span class="nc" id="L33">  private final String authCode;</span>
+  @NonNull
+<span class="nc" id="L35">  private final String banknetReferenceNumber;</span>
+  @NonNull
+<span class="nc" id="L37">  private final CardTransactionType cardTransactionType;</span>
+  @NonNull
+<span class="nc" id="L39">  private final Instant transactionDate;</span>
+
+<span class="nc" id="L41">  private final String retrievalReferenceNumber;</span>
+  @NonNull
+<span class="nc" id="L43">  private final Money transactionAmount;</span>
+  @NonNull
+<span class="nc" id="L45">  private final Money billingAmount;</span>
+
+<span class="nc" id="L47">  private final Money settlementAmount;</span>
+  @NonNull
+<span class="nc" id="L49">  private final String merchantCategoryCode;</span>
+  @NonNull
+<span class="nc" id="L51">  private final String accountQualifier;</span>
+  @NonNull
+<span class="nc" id="L53">  private final String processingCode;</span>
+
+<span class="nc" id="L55">  private final BigDecimal conversionRate;</span>
+
+<span class="nc" id="L57">  private final String cardExpiryDate;</span>
+  @NonNull
+<span class="nc" id="L59">  private final String pointOfServiceEntryMode;</span>
+  @NonNull
+<span class="nc" id="L61">  private final String pointOfServiceConditionCode;</span>
+  @NonNull
+<span class="nc" id="L63">  private final String networkId;</span>
+  @NonNull
+<span class="nc" id="L65">  private final String cardAcceptorCountryCode;</span>
+
+<span class="nc" id="L67">  private final Money updatedBalance;</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">  @Wither</span>
+  private final Fee fee;
+  @NonNull
+<span class="nc" id="L71">  private final PaymentMethodType paymentMethodType;</span>
+  @NonNull
+<span class="nc" id="L73">  private final Enum&lt;CreditDebitEnum&gt; messageType;</span>
+  @NonNull
+<span class="nc" id="L75">  private final Merchant merchant;</span>
+  @NonNull
+<span class="nc" id="L77">  private final String transactionLifeCycleID;</span>
+
+
+  public String getCurrencyCode() {
+<span class="nc" id="L81">    return transactionAmount.getCurrency().getCurrencyCode();</span>
+  }
+
+  public Currency getCurrency() {
+<span class="nc" id="L85">    return transactionAmount.getCurrency();</span>
+  }
+
+  public Cain003 addFee(Fee fee) {
+<span class="nc" id="L89">    return this.toBuilder().fee(fee).build();</span>
+  }
+
+  public Cain003 addTransactionIds(UUID transactionId, UUID correlationId) {
+<span class="nc" id="L93">    return this.toBuilder().transactionId(transactionId).correlationId(correlationId).build();</span>
+  }
+
+  public Optional&lt;Fee&gt; getFee() {
+<span class="nc" id="L97">    return Optional.ofNullable(fee);</span>
+  }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
