@@ -20,8 +20,12 @@
     <spring-cloud.version>2020.0.3</spring-cloud.version>
   </properties>
 
-
   <dependencies>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>com.google.cloud</groupId>
@@ -33,10 +37,11 @@
       <artifactId>spring-cloud-gcp-starter-pubsub</artifactId>
     </dependency>
 
+    <!-- This Library is necessary to use pubsub emulator
+         The emulator does not support Cloud Console or gcloud pubsub commands.-->
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-pubsub</artifactId>
     </dependency>
 
     <dependency>
@@ -45,9 +50,11 @@
     </dependency>
 
     <dependency>
-      <groupId>com.google.cloud</groupId>
-      <artifactId>google-cloud-pubsub</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
     </dependency>
+
 
   </dependencies>
 
@@ -63,19 +70,18 @@
         <scope>import</scope>
       </dependency>
 
-
-        <dependency>
-          <groupId>com.google.cloud</groupId>
-          <artifactId>libraries-bom</artifactId>
-          <version>22.0.0</version>
-          <type>pom</type>
-          <scope>import</scope>
-        </dependency>
-
+      <!-- This Library is necessary to use pubsub emulator
+           The emulator does not support Cloud Console or gcloud pubsub commands. -->
+      <dependency>
+        <groupId>com.google.cloud</groupId>
+        <artifactId>libraries-bom</artifactId>
+        <version>22.0.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
 
     </dependencies>
   </dependencyManagement>
-
 
   <build>
     <plugins>

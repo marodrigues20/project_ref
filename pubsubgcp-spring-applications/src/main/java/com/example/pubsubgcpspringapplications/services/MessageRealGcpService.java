@@ -7,13 +7,13 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Service
-public class PublishingMessage {
+public class MessageRealGcpService {
 
 
   private final PubSubTemplate pubSubTemplate;
 
   @Autowired
-  public PublishingMessage(PubSubTemplate pubSubTemplate) {
+  public MessageRealGcpService(PubSubTemplate pubSubTemplate) {
     this.pubSubTemplate = pubSubTemplate;
   }
 
@@ -25,7 +25,7 @@ public class PublishingMessage {
     future.addCallback(new ListenableFutureCallback<>() {
       @Override
       public void onSuccess(String result) {
-        System.out.println("Message was sent via the outbound channel adapter to topic-one!");
+        System.out.println("Message was sent via the outbound channel adapter to topic-one!" + result);
       }
 
       @Override
