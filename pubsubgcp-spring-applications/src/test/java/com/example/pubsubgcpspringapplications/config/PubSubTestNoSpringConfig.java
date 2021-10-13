@@ -39,8 +39,8 @@ public class PubSubTestNoSpringConfig {
   private static SubscriberStub subscriberStub;
   private static SubscriptionAdminClient subscriptionAdminClient;
 
-  private static ProjectTopicName topicName = ProjectTopicName.of(PROJECT, TOPIC_NAME);
-  private static ProjectSubscriptionName subscriptionName = ProjectSubscriptionName.of(PROJECT, SUBSCRIPTION_NAME);
+  private static ProjectTopicName projectTopicName = ProjectTopicName.of(PROJECT, TOPIC_NAME);
+  private static ProjectSubscriptionName projectSubscriptionName = ProjectSubscriptionName.of(PROJECT, SUBSCRIPTION_NAME);
 
   private static Subscription subscription;
 
@@ -52,13 +52,13 @@ public class PubSubTestNoSpringConfig {
     CredentialsProvider credentialsProvider = NoCredentialsProvider.create();
 
     topicAdmin = createTopicAdmin(credentialsProvider);
-    topicAdmin.createTopic(topicName);
+    topicAdmin.createTopic(projectTopicName);
 
     publisher = createPublisher(credentialsProvider);
     subscriberStub = createSubscriberStub(credentialsProvider);
 
     subscriptionAdminClient = createSubscriptionAdmin(credentialsProvider);
-    subscription = subscriptionAdminClient.createSubscription(subscriptionName, topicName,
+    subscription = subscriptionAdminClient.createSubscription(projectSubscriptionName, projectTopicName,
         PushConfig.getDefaultInstance(), 0);
 
   }
@@ -82,7 +82,7 @@ public class PubSubTestNoSpringConfig {
   }
 
   private static Publisher createPublisher(CredentialsProvider credentialsProvider) throws IOException {
-    return Publisher.newBuilder(topicName)
+    return Publisher.newBuilder(projectTopicName)
         .setChannelProvider(channelProvider)
         .setCredentialsProvider(credentialsProvider)
         .build();
@@ -97,7 +97,7 @@ public class PubSubTestNoSpringConfig {
   }
 
   public static void tearDown() throws Exception {
-    topicAdmin.deleteTopic(topicName);
+    topicAdmin.deleteTopic(projectTopicName);
     subscriptionAdminClient.deleteSubscription(subscription.getName());
     channel.shutdownNow();
   }
@@ -106,8 +106,8 @@ public class PubSubTestNoSpringConfig {
     return publisher;
   }
 
-  public static ProjectSubscriptionName getSubscriptionName() {
-    return subscriptionName;
+  public static ProjectSubscriptionName getProjectSubscriptionName() {
+    return projectSubscriptionName;
   }
 
   public static Subscription getSubscription() {

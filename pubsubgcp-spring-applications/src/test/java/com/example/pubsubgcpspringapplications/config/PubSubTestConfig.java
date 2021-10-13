@@ -26,11 +26,7 @@ public class PubSubTestConfig {
   private static final String TOPIC_NAME = "topic-one";
   private static final String SUBSCRIPTION_NAME = "sub-one";
 
-  private static ProjectTopicName projectTopicName = ProjectTopicName.of(PROJECT_ID, TOPIC_NAME);
-  private static ProjectSubscriptionName projectSubscriptionName = ProjectSubscriptionName.of(PROJECT_ID, SUBSCRIPTION_NAME);
-  private static Subscription subscription;
   private static PubSubAdmin admin;
-  private static SubscriptionAdminClient subscriptionAdminClient;
 
   public static void setupPubSubEmulator() throws IOException {
 
@@ -65,7 +61,6 @@ public class PubSubTestConfig {
 
   public static void tearDown() throws Exception {
     admin.deleteTopic(TOPIC_NAME);
-    subscriptionAdminClient.deleteSubscription(subscription.getName());
-    subscriptionAdminClient.shutdownNow();
+    admin.deleteSubscription(SUBSCRIPTION_NAME);
   }
 }

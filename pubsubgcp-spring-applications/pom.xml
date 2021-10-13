@@ -32,9 +32,14 @@
       <artifactId>spring-cloud-gcp-starter</artifactId>
     </dependency>
 
+    <!--The Spring Cloud GCP Pub/Sub Starter and Spring Integration Core artifacts -->
     <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>spring-cloud-gcp-starter-pubsub</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.integration</groupId>
+      <artifactId>spring-integration-core</artifactId>
     </dependency>
 
     <!-- This Library is necessary to use pubsub emulator
@@ -44,10 +49,7 @@
       <artifactId>google-cloud-pubsub</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>org.springframework.integration</groupId>
-      <artifactId>spring-integration-core</artifactId>
-    </dependency>
+
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -62,6 +64,7 @@
   <dependencyManagement>
     <dependencies>
 
+      <!-- To install modules for Spring Integration channel adapters -->
       <dependency>
         <groupId>com.google.cloud</groupId>
         <artifactId>spring-cloud-gcp-dependencies</artifactId>

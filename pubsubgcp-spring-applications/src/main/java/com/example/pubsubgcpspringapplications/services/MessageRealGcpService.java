@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+
+//Using Spring Integration channel adapters
 @Service
 public class MessageRealGcpService {
 

@@ -13,8 +13,9 @@ import org.springframework.integration.channel.PublishSubscribeChannel;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.handler.annotation.Header;
 
+//Using Spring Integration channel adapters
 @Configuration
-public class Subscriber {
+public class IntegrationChannelSubscriber {
 
   // Create a message channel for messages arriving from the subscription `sub-one`.
   @Bean
