@@ -1,0 +1,59 @@
+server:
+  port: 8080
+spring:
+  kafka:
+    producer:
+      client-id: kafkasemantics
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false # It's for Jackson configuration. This is for not include type information
+        # in the header. Because cause problem in the deserialization.
+  cloud:
+    stream:
+      bindings:
+        pos-input-channel:
+          destination: json-pos-topic
+          group: group-lewis
+          startOffset: latest
+        notification-output-channel:
+          destination: loyalty-topic
+      kafka:
+        streams:
+          binder:
+            brokers:  localhost:9092
+            #transaction:
+            #  transaction-id-prefix: lewis-tx-
+            configuration:
+              processing.guarantee: exactly_once_v2
+              #commit.interval.ms: 10000
+          bindings: # We don't care about input channels and respective Deserialization because JSON is default.
+            pos-input-channel:
+                configuration:
+                  application.id: kafkasemantic-consumer-notification
+            notification-output-channel:
+              producer:
+                valueSerde: lbg.example.kafkasemantics.serde.NotificationSerde
+                configuration:
+                  application.id: kafkasemantic-producer-notification
+  datasource:
+    url: "jdbc:h2:mem:testdb;Mode=Oracle"
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    hibernate:
+      ddl-auto: 'create-drop'
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2
+logging:
+  level:
+    root: "INFO"

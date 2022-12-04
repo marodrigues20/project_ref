@@ -1,0 +1,54 @@
+{
+  "InvoiceNumber": "71613052",
+  "CreatedTime": 1669303228496,
+  "StoreID": "STR1534",
+  "PosID": "POS364",
+  "CashierID": "OAS898",
+  "CustomerType": "NONPRIME",
+  "CustomerCardNo": "3006055636",
+  "TotalAmount": 6720.0,
+  "NumberOfItems": 4,
+  "PaymentMethod": "CASH",
+  "TaxableAmount": 6720.0,
+  "CGST": 168.0,
+  "SGST": 168.0,
+  "CESS": 8.4,
+  "DeliveryType": "HOME-DELIVERY",
+  "DeliveryAddress": {
+    "AddressLine": "HN. 821, 8267 Dapibus Av.",
+    "City": "Kolkata",
+    "State": "West Bengal",
+    "PinCode": "701624",
+    "ContactNumber": ""
+  },
+  "InvoiceLineItems": [
+    {
+      "ItemCode": "208",
+      "ItemDescription": "Canopy bed",
+      "ItemPrice": 508.0,
+      "ItemQty": 2,
+      "totalValue": 1016.0
+    },
+    {
+      "ItemCode": "213",
+      "ItemDescription": "Infant bed",
+      "ItemPrice": 1755.0,
+      "ItemQty": 2,
+      "totalValue": 3510.0
+    },
+    {
+      "ItemCode": "208",
+      "ItemDescription": "Canopy bed",
+      "ItemPrice": 508.0,
+      "ItemQty": 2,
+      "totalValue": 1016.0
+    },
+    {
+      "ItemCode": "203",
+      "ItemDescription": "Bunk bed",
+      "ItemPrice": 1686.0,
+      "ItemQty": 1,
+      "totalValue": 1686.0
+    }
+  ]
+}
